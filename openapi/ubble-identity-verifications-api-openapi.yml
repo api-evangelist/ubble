@@ -1,0 +1,1492 @@
+openapi: 3.0.3
+info:
+  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Identity verifications API
+  version: 1.0.0
+  x-logo:
+    url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
+  description: ''
+servers:
+- url: https://api.ubble.ai
+tags:
+- name: Identity verifications
+paths:
+  /v2/create-and-start-idv:
+    post:
+      tags:
+      - Identity verifications
+      summary: Create and start an identity verification
+      description: This endpoint allows you to create and identity verification. You should get a `201` response and the identity verification resource containing the `_links/verification_url`.
+      operationId: create_and_start_identity_verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              Only required data:
+                $ref: '#/components/examples/identity_verification_creation_request_body_helper_min'
+              All possible data:
+                $ref: '#/components/examples/identity_verification_creation_request_body_helper_max'
+              Use an existing applicant:
+                $ref: '#/components/examples/identity_verification_creation_request_body_min_plus_aplt'
+            schema:
+              $ref: '#/components/schemas/IdentityVerificationInputHelper'
+      responses:
+        '201':
+          description: Identity verification created
+          content:
+            application/json:
+              examples:
+                identity_verification_creation_response_body_helper:
+                  $ref: '#/components/examples/identity_verification_creation_response_body_helper'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationOutputHelper'
+      callbacks:
+        statusChanged:
+          '{$request.body#/webhook_url}':
+            post:
+              summary: Status update notification
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    example:
+                      specversion: '2.0'
+                      type: identity_verification_capture_completed
+                      subject: idv_5hxpdwegjcbujpth3wdo55d3vm
+                      id: evnt_5hxpdwegjcbujpth3wdo55d3vm
+                      time: '2023-03-22T17:31:00Z'
+                      datacontenttype: application/json
+                      data:
+                        applicant_id: aplt_5hxpdwegjcbujpth3wdo55d3vm
+                        user_journey_id: usj_5hxpdwegjcbujpth3wdo55d3vm
+                        identity_verification_id: idv_5hxpdwegjcbujpth3wdo55d3vm
+                        status: declined
+                        response_codes:
+                        - code: 61310
+                          summary: document_front_not_captured
+                        - code: 62102
+                          summary: document_not_accepted
+                    schema:
+                      $ref: '#/components/schemas/Event'
+              responses:
+                '200':
+                  description: Your server returns this code if it accepts the callback.
+                '201':
+                  description: Your server returns this code if it accepts the callback.
+  /v2/identity-verifications:
+    post:
+      tags:
+      - Identity verifications
+      summary: Create an identity verification
+      description: 'Creates an identity verification.
+
+
+        When this request is successful, you''ll get a 201 response with the identity verification resource.
+
+        '
+      operationId: create_identity_verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              Only required data:
+                $ref: '#/components/examples/identity_verification_creation_request_body_min'
+              All possible data:
+                $ref: '#/components/examples/identity_verification_creation_request_body_max'
+            schema:
+              $ref: '#/components/schemas/IdentityVerificationInputPost'
+      responses:
+        '201':
+          description: Identity verification created successfully
+          content:
+            application/json:
+              examples:
+                identity_verification_creation_response_body:
+                  $ref: '#/components/examples/identity_verification_creation_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationOutputPost'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+        '500':
+          description: Internal server error.
+        '503':
+          description: Service unavailable
+  /v2/identity-verifications/{identity_verification_id}:
+    get:
+      tags:
+      - Identity verifications
+      summary: Retrieve an identity verification
+      description: This endpoint allows you to get the detailed results of an identity verification.
+      operationId: retrieve_identity_verification
+      parameters:
+      - name: identity_verification_id
+        required: true
+        in: path
+        description: ID of the identity verification
+        schema:
+          $ref: '#/components/schemas/IdentityVerificationId'
+      responses:
+        '200':
+          description: Identity verification retrieved
+          content:
+            application/json:
+              examples:
+                identity_verification_response_body:
+                  $ref: '#/components/examples/identity_verification_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationOutputGet'
+  /v2/identity-verifications/{identity_verification_id}/anonymize:
+    post:
+      tags:
+      - Identity verifications
+      summary: Anonymize an identity verification
+      description: Anonymize the personal data of an identity verification with the specified ID.
+      operationId: anonymize_identity_verification
+      parameters:
+      - name: identity_verification_id
+        in: path
+        description: ID of the identity verification to anonymize
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Identity verification anonymized
+          content:
+            application/json:
+              examples:
+                identity_verification_anonymization_response_body:
+                  $ref: '#/components/examples/identity_verification_anonymization_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationOutputAnonymize'
+        '404':
+          description: Identity verification not found
+        '400':
+          description: Bad request. The identity verification cannot be anonymized.
+        '500':
+          description: Internal server error
+  /v2/identity-verifications/{identity_verification_id}/attempts:
+    get:
+      tags:
+      - Identity verifications
+      summary: List attempts
+      description: 'This endpoint allows you to list all attempts of a verification.
+
+
+        Attempts are returned ordered by creation date, newest first.
+
+
+        The response is paginated (see [Pagination](#section/API-standards/Pagination) section).
+
+        You can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.
+
+        '
+      operationId: list_attempts
+      parameters:
+      - name: identity_verification_id
+        in: path
+        description: ID of the identity verification
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/skipParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: List attempt
+          content:
+            application/json:
+              examples:
+                identity_verification_list_response_body:
+                  $ref: '#/components/examples/identity_verification_attempt_list_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationAttemptOutputList'
+        '404':
+          description: The provided verification ID is not valid
+        '500':
+          description: An error occurred while fetching the attempts
+    post:
+      tags:
+      - Identity verifications
+      summary: Create an attempt
+      description: This endpoint allows you to create a new Attempt. It is possible when the identity-verification is in one of the following statuses `created`, `pending`, `capture_in_progress`, `retry_required`
+      operationId: create_attempt
+      parameters:
+      - name: identity_verification_id
+        in: path
+        description: ID of the identity verification
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Minimal body:
+                $ref: '#/components/examples/attempt_creation_request_body_min'
+              All possible data:
+                $ref: '#/components/examples/identity_attempt_creation_request_body_max'
+            schema:
+              $ref: '#/components/schemas/IdentityVerificationAttemptInputPost'
+      responses:
+        '201':
+          description: Attempt created
+          content:
+            application/json:
+              examples:
+                identity_verification_attempt_creation_response_body:
+                  $ref: '#/components/examples/identity_verification_attempt_creation_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationAttemptOutputPost'
+        '404':
+          description: The provided verification ID is not valid
+        '409':
+          description: The current verification status does not allow the creation of a new attempt. The verification status must be either `created`, `pending`, `capture_in_progress`, or `retry_required`
+        '500':
+          description: An error occurred while creating the attempt
+  /v2/identity-verifications/{identity_verification_id}/attempts/{attempt_id}:
+    get:
+      tags:
+      - Identity verifications
+      summary: Retrieve an attempt
+      description: This endpoint allows you to retrieve the details for a given attempt
+      operationId: fetch_attempts
+      parameters:
+      - name: identity_verification_id
+        in: path
+        description: ID of the identity verification
+        required: true
+        schema:
+          type: string
+      - name: attempt_id
+        in: path
+        description: ID of the attempt
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Attempt fetched
+          content:
+            application/json:
+              examples:
+                identity_verification_attempt_get_response_body:
+                  $ref: '#/components/examples/identity_verification_attempt_get_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationAttemptOutputGet'
+        '404':
+          description: The provided verification ID or attempt ID is not valid
+        '500':
+          description: An error occurred while fetching the attempt
+  /v2/identity-verifications/{identity_verification_id}/attempts/{attempt_id}/assets:
+    get:
+      tags:
+      - Identity verifications
+      summary: Retrieve attempt assets
+      description: 'Retrieves the assets associated with an identity verification attempt.
+
+        This includes face images, videos, and document images captured during the verification process.
+
+        Please note that videos are not exposed by default, contact your account manager to enable this feature.
+
+
+        The response is paginated (see [Pagination](#section/API-standards/Pagination) section).
+
+        You can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.
+
+        '
+      operationId: retrieve_identity_verification_attempt_assets
+      parameters:
+      - name: identity_verification_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the identity verification
+      - name: attempt_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the attempt
+      - $ref: '#/components/parameters/skipParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: The assets were retrieved successfully
+          content:
+            application/json:
+              examples:
+                identity_verification_attempt_assets_response_body:
+                  $ref: '#/components/examples/identity_verification_attempt_assets_response_body'
+              schema:
+                $ref: '#/components/schemas/IdentityVerificationAttemptAssetsOutput'
+  /v2/identity-verifications/{identity_verification_id}/notify:
+    post:
+      tags:
+      - Identity verifications
+      summary: Request webhook notification
+      operationId: notify_identity_verification
+      description: This endpoint can be used to initiate a webhook call containing the latest event of an identity verification.
+      parameters:
+      - name: identity_verification_id
+        in: path
+        description: ID of the identity verification to notify
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_url:
+                  type: string
+                  format: uri
+      responses:
+        '204':
+          description: Notification successfully requested
+  /v2/identity-verifications/{identity_verification_id}/pdf-report:
+    get:
+      tags:
+      - Identity verifications
+      summary: Retrieve PDF report of an identity verification
+      description: 'This endpoint allows you to retrieve a PDF report containing all the information of the identity verification.
+
+
+        Please note that this report is only available for verifications in statuses `declined` and `approved` once you receive the `identity_verification_report_created` event.
+
+        '
+      operationId: pdf_identity_verification
+      parameters:
+      - name: identity_verification_id
+        in: path
+        description: ID of the identity verification
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Operation success
+          content:
+            application/json:
+              examples:
+                identity_verification_pdf_response_body:
+                  $ref: '#/components/examples/identity_verification_pdf_response_body'
+              schema:
+                required:
+                - pdf_report
+                allOf:
+                - $ref: '#/components/schemas/IdentityVerificationOutputPdfReport'
+        '404':
+          description: The PDF is not available
+components:
+  schemas:
+    DocumentTypes:
+      type: string
+      description: Type of document.
+      enum:
+      - Driving licence
+      - ID
+      - Other
+      - Passport
+      - Residence Permit
+      - Travel Document
+      - Visa
+    DeclaredData:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+    IdentityVerificationAttemptOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - redirect_url
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationAttemptOutputBase'
+    IdentityVerificationOutputBase:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/VerificationStatuses'
+        response_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        verified_identity:
+          $ref: '#/components/schemas/VerificationIdentity'
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        face:
+          $ref: '#/components/schemas/VerificationFace'
+        verification_policy_version:
+          type: string
+          description: returned ONLY for certified verifications
+        risk_labels:
+          $ref: '#/components/schemas/RiskLabels'
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationBase'
+    GenderA47Enum:
+      enum:
+      - M
+      - F
+      - NA
+      type: string
+      description: '* `M` - M
+
+        * `F` - F
+
+        * `NA` - NA'
+    Address:
+      type: object
+      properties:
+        address_line1:
+          type: string
+          maxLength: 250
+        address_line2:
+          type: string
+          maxLength: 250
+        city:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        zip:
+          type: string
+          maxLength: 50
+        country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+    IdentityVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    InitialDevices:
+      type: string
+      description: Initial device which started the session
+      enum:
+      - mobile
+      - desktop
+    LanguageCode:
+      type: string
+      format: IETF BCP 47 language tag
+      description: Language tag following IETF BCP 47 standard
+      example: en-US
+    IdentityVerificationInputPost:
+      type: object
+      required:
+      - declared_data
+      - webhook_url
+      - applicant_id
+      properties:
+        declared_data:
+          $ref: '#/components/schemas/IdentityDeclaredData'
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationInputBase'
+    IdentityVerificationAttemptOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - redirect_url
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationAttemptOutputBase'
+    IdentityVerificationHelperLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+      - $ref: '#/components/schemas/ActiveLink'
+    VerificationFace:
+      type: object
+      properties:
+        image_signed_url:
+          type: string
+          nullable: true
+    PreSignedUrl:
+      type: string
+      format: uri
+      description: Pre-signed URL
+      example: https://storage-b.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
+    PhonePrefix:
+      type: string
+      format: international phone prefix
+      pattern: ^\+(\d+)$
+      example: '+33'
+    IdentityVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - declared_data
+      - status
+      - webhook_url
+      - redirect_url
+      - _links
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      properties:
+        id:
+          $ref: '#/components/schemas/IdentityVerificationId'
+        declared_data:
+          $ref: '#/components/schemas/IdentityDeclaredData'
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        redirect_url:
+          type: string
+          format: uri
+        _links:
+          $ref: '#/components/schemas/IdentityVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/IdentityVerificationOutputBase'
+    SelectedDocument:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        document_type:
+          $ref: '#/components/schemas/DocumentTypes'
+      required:
+      - country
+      - document_type
+    RiskLabels:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskLabel'
+      description: Risk assessment labels
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
+    VerificationIdentity:
+      type: object
+      description: IdentitySerializer for our main Identity model
+      properties:
+        first_names:
+          type: string
+          nullable: true
+        full_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        last_name_at_birth:
+          type: string
+          nullable: true
+        birth_date:
+          type: string
+          format: date
+          nullable: true
+        birth_place:
+          type: string
+          nullable: true
+          maxLength: 255
+        nationality:
+          type: string
+        gender:
+          type: string
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/GenderA47Enum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+    IdentityVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - declared_data
+      - status
+      - webhook_url
+      - _links
+      - response_codes
+      - risk_labels
+      - applicant_id
+      - user_journey_id
+      properties:
+        id:
+          $ref: '#/components/schemas/IdentityVerificationId'
+        declared_data:
+          $ref: '#/components/schemas/IdentityDeclaredData'
+        _links:
+          $ref: '#/components/schemas/IdentityVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/IdentityVerificationOutputBase'
+    PhoneNumber:
+      type: object
+      required:
+      - country_code
+      - number
+      properties:
+        country_code:
+          $ref: '#/components/schemas/PhonePrefix'
+        number:
+          $ref: '#/components/schemas/DomesticPhoneNumber'
+    BaseApplicantSessionInformation:
+      type: object
+      properties:
+        ip_address:
+          type: string
+          description: Ip address of the applicant during the session
+          example: 123:456:789:00
+        number_of_sessions:
+          type: integer
+          description: Number of sessions opened by user
+          example: 3
+        user_agent:
+          type: string
+          description: User session user agent
+          example: Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
+        initial_device:
+          $ref: '#/components/schemas/InitialDevices'
+    NullEnum:
+      enum:
+      - null
+    IdentityVerificationOutputHelper:
+      type: object
+      required:
+      - id
+      - declared_data
+      - status
+      - webhook_url
+      - _links
+      - response_codes
+      - risk_labels
+      - redirect_url
+      - applicant_id
+      - user_journey_id
+      properties:
+        id:
+          $ref: '#/components/schemas/IdentityVerificationId'
+        declared_data:
+          $ref: '#/components/schemas/IdentityDeclaredData'
+        redirect_url:
+          type: string
+          format: uri
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        _links:
+          $ref: '#/components/schemas/IdentityVerificationHelperLinks'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/IdentityVerificationOutputBase'
+    IdentityVerificationAttemptOutputList:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of identity verification attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/IdentityVerificationAttemptOutputGet'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    IdentityClientInformation:
+      type: object
+      properties:
+        pre_selected_residence_country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        pre_selected_document_issuing_country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        pre_selected_document_type:
+          $ref: '#/components/schemas/DocumentTypes'
+        pre_selected_language:
+          $ref: '#/components/schemas/LanguageCode'
+    IdentityVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationBase'
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    ListLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    Document:
+      type: object
+      properties:
+        personal_number:
+          type: string
+          maxLength: 255
+        tax_identification_number:
+          type: string
+          maxLength: 255
+        document_type:
+          $ref: '#/components/schemas/DocumentTypes'
+        document_issuing_country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        permit_obtaining_date:
+          type: string
+          format: date
+        permit_expiry_date:
+          type: string
+          format: date
+        permit_type_detailed:
+          type: string
+          maxLength: 255
+        permit_type_remarks:
+          type: string
+          maxLength: 255
+        document_number:
+          type: string
+          maxLength: 255
+        document_expiry_date:
+          type: string
+          format: date
+        document_issue_date:
+          type: string
+          format: date
+        document_issue_place:
+          type: string
+          maxLength: 255
+        document_mrz:
+          type: string
+          pattern: ^([A-Z0-9<]{2}[A-Z0-9<]{1,38}[\n\r])+([A-Z0-9<]{2}[A-Z0-9<]{1,44}[\n\r])?([A-Z0-9<]{2}[A-Z0-9<]{1,44}[\n\r])?$
+        front_image_signed_url:
+          $ref: '#/components/schemas/PreSignedUrl'
+        back_image_signed_url:
+          $ref: '#/components/schemas/PreSignedUrl'
+        signature_image_signed_url:
+          $ref: '#/components/schemas/PreSignedUrl'
+        full_name:
+          type: string
+          minLength: 2
+          maxLength: 510
+        first_names:
+          type: string
+          minLength: 1
+          maxLength: 255
+        last_name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        last_name_at_birth:
+          type: string
+          minLength: 1
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+        birth_place:
+          type: string
+          minLength: 1
+          maxLength: 255
+        nationality:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        gender:
+          $ref: '#/components/schemas/Gender'
+        address:
+          type: string
+          maxLength: 1000
+    IdentityVerificationAttemptOutputBase:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/AttemptStates'
+        response_codes:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        applicant_session_information:
+          $ref: '#/components/schemas/IdentityVerificationApplicantSessionInformation'
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/AttemptLinks'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/IdentityAttemptBase'
+    IdentityVerificationOutputPdfReport:
+      type: object
+      properties:
+        pdf_report:
+          type: string
+          format: uri
+    IdentityVerificationAttemptAssetsOutput:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of identity verification attempt assets for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/IdentityVerificationAttemptAssetOutput'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    Event:
+      type: object
+      required:
+      - specversion
+      - type
+      - subject
+      - id
+      - time
+      - datacontenttype
+      - data
+      properties:
+        specversion:
+          type: string
+          description: The version of the CloudEvents specification.
+          example: '2.0'
+        type:
+          type: string
+          description: The type of the CloudEvent.
+          example: identity_verification_capture_completed
+        subject:
+          type: string
+          description: The identifier of the subject of the event.
+          example: idv_5hxpdwegjcbujpth3wdo55d3vm
+        id:
+          type: string
+          description: The identifier of the event.
+          example: evnt_5hxpdwegjcbujpth3wdo55d3vm
+        time:
+          type: string
+          format: date-time
+          description: The time when the event occurred.
+          example: '2023-03-22T17:31:00Z'
+        datacontenttype:
+          type: string
+          description: The content type of the data attribute.
+          example: application/json
+        data:
+          type: object
+          description: The event payload.
+          example:
+            applicant_id: aplt_5hxpdwegjcbujpth3wdo55d3vm
+            user_journey_id: usj_5hxpdwegjcbujpth3wdo55d3vm
+            identity_verification_id: idv_5hxpdwegjcbujpth3wdo55d3vm
+            status: declined
+            response_codes:
+            - code: 61310
+              summary: document_front_not_captured
+            - code: 62102
+              summary: document_not_accepted
+    IdentityVerificationBase:
+      type: object
+      properties:
+        user_journey_id:
+          allOf:
+          - $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+        declared_data:
+          $ref: '#/components/schemas/DeclaredData'
+        webhook_url:
+          type: string
+          format: uri
+    IdentityVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - _links
+      - applicant_id
+      - redirect_url
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      properties:
+        id:
+          $ref: '#/components/schemas/IdentityVerificationId'
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        redirect_url:
+          type: string
+          format: uri
+        _links:
+          $ref: '#/components/schemas/IdentityVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/IdentityVerificationOutputBase'
+    IdentityVerificationApplicantSessionInformation:
+      type: object
+      properties:
+        selected_documents:
+          description: Documents selected by the applicant in selection order
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/SelectedDocument'
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicantSessionInformation'
+    AttemptStates:
+      type: string
+      description: States of an attempt.
+      enum:
+      - pending_redirection
+      - capture_in_progress
+      - checks_in_progress
+      - completed
+      - expired
+      - capture_aborted
+      - capture_refused
+      - checks_inconclusive
+      - terminated
+    BaseOutputList:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    ApplicantLink:
+      type: object
+      required:
+      - applicant
+      properties:
+        applicant:
+          $ref: '#/components/schemas/HalLink'
+    IdentityVerificationAttemptInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/IdentityAttemptBase'
+    VerificationStatuses:
+      type: string
+      description: Status of the verification.
+      enum:
+      - created
+      - pending
+      - capture_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - refused
+      - inconclusive
+    IdentityVerificationAttemptInputPost:
+      type: object
+      required:
+      - redirect_url
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationAttemptInputBase'
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    ActiveLink:
+      type: object
+      required:
+      - verification_url
+      properties:
+        verification_url:
+          $ref: '#/components/schemas/HalLink'
+    IdentityDeclaredData:
+      type: object
+      required:
+      - name
+      properties:
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        email:
+          type: string
+          format: email
+          nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
+      allOf:
+      - $ref: '#/components/schemas/DeclaredData'
+    IdentityAttemptBase:
+      type: object
+      properties:
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        client_information:
+          $ref: '#/components/schemas/IdentityClientInformation'
+        redirect_url:
+          type: string
+          format: uri
+    BlankEnum:
+      enum:
+      - ''
+    DomesticPhoneNumber:
+      type: string
+      format: domestic phone number
+      pattern: ^\d{1,14}$
+      example: '2068133616'
+    Gender:
+      type: string
+      description: Person gender.
+      example: M
+      enum:
+      - M
+      - F
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    AttemptLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ActiveLink'
+      - $ref: '#/components/schemas/SelfLink'
+    IdentityVerificationId:
+      type: string
+      description: Identity verification unique identifier.
+      pattern: ^idv_\w+$
+      example: idv_tkoi5db4hryu5cei5vwoabr7we
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    IdentityVerificationInputHelper:
+      type: object
+      required:
+      - declared_data
+      - webhook_url
+      - redirect_url
+      properties:
+        declared_data:
+          $ref: '#/components/schemas/IdentityDeclaredData'
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        redirect_url:
+          type: string
+          format: uri
+      allOf:
+      - $ref: '#/components/schemas/IdentityVerificationInputBase'
+    IdentityVerificationAttemptAssetOutput:
+      type: object
+      required:
+      - type
+      - _links
+      properties:
+        type:
+          type: string
+          enum:
+          - face_image
+          - face_video
+          - document_front_image
+          - document_back_image
+          - document_back_image
+          - document_front_video
+          - document_signature_image
+          - document_back_video
+          - secondary_document_front_video
+          - secondary_document_front_image
+          - secondary_document_back_image
+          - secondary_document_signature_image
+          - secondary_document_back_video
+          - secondary_document_front_video
+        _links:
+          type: object
+          required:
+          - asset_url
+          properties:
+            asset_url:
+              $ref: '#/components/schemas/HalLink'
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+  examples:
+    identity_verification_creation_request_body_helper_max:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: John Smith
+        phone_number:
+          country_code: '+1'
+          number: '5555550102'
+        redirect_url: https://example.com?query-param=hello
+        webhook_url: https://my.api/events/
+    identity_verification_creation_request_body_min:
+      value:
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: John Smith
+        webhook_url: https://my.api/events/
+    identity_verification_creation_response_body:
+      value:
+        id: idv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: '2017-07-21T17:32:28Z'
+        modified_on: '2017-07-21T17:40:32Z'
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: created
+        response_codes: []
+        risk_labels: []
+        declared_data:
+          name: David Vincent
+        documents: []
+        webhook_url: https://my.api/events/
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    identity_verification_response_body:
+      value:
+        id: idv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: declined
+        response_codes:
+        - code: 61310
+          summary: document_front_not_captured
+        - code: 62102
+          summary: document_not_accepted
+        risk_labels:
+        - multiple_faces_detected
+        verified_identity:
+          full_name: David Vincent
+          birth_date: 1934-10-02
+        declared_data:
+          name: David Vincent
+        documents:
+        - full_name: David Vincent
+          birth_date: 1934-10-02
+          document_type: ID
+          document_issuing_country: US
+          front_image_signed_url: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+        face:
+          image_signed_url: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        webhook_url: https://my.api/events/
+        redirect_url: https://myweb.site?query-param=hello
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+          verification_url:
+            href: https://id.ubble.ai/4hryu5cei5/
+    identity_verification_attempt_assets_response_body:
+      value:
+        data:
+        - _links:
+            asset_url:
+              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+          type: face_image
+        - _links:
+            asset_url:
+              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+          type: face_video
+        - _links:
+            asset_url:
+              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+          type: document_front_image
+        - _links:
+            asset_url:
+              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+          type: document_front_video
+        _links:
+          self:
+            href: https://api.ubble.ai/api/v2/face-authentications/fau_116kcr6z00h62kzvf4hw2twb3b/attempts/fatp_116kcr6z00h62kzvf4hw2twb3d/assets
+        limit: 10
+        skip: 0
+        total_count: 4
+    identity_verification_attempt_list_response_body:
+      value:
+        total_count: 2
+        skip: 10
+        limit: 10
+        data:
+        - id: iatp_tkoi5db4hryu5cei5vwoabrPoQ
+          created_on: 2017-07-21 17:32:28+00:00
+          modified_on: 2017-07-21 17:40:32+00:00
+          status: checks_in_progress
+          response_codes: []
+          phone_number:
+            country_code: '+1'
+            number: '2068133616'
+          redirect_url: https://myweb.site?query-param=hello
+          client_information:
+            pre_selected_residence_country: FR
+            pre_selected_document_issuing_country: FR
+            pre_selected_document_type: ID
+          applicant_session_information:
+            ip_address: 123.123.123.01
+          _links:
+            self:
+              href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts/iatp_idv_tkoi5db4hryu5cei5vwoabr7we
+            verification_url:
+              href: https://id.ubble.ai/4hryu5cei5/
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=10&limit=10
+          next:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=20&limit=10
+          previous:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=0&limit=10
+    identity_verification_pdf_response_body:
+      value:
+        pdf_report: https://www.example.com/reports/idv_123.pdf
+    identity_verification_attempt_creation_response_body:
+      value:
+        id: iatp_tkoi5db4hryu5cei5vwoabrPoQ
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        status: completed
+        response_codes: []
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        client_information:
+          pre_selected_residence_country: FR
+          pre_selected_document_issuing_country: FR
+          pre_selected_document_type: ID
+        redirect_url: https://myweb.site?query-param=hello
+        applicant_session_information:
+          ip_address: 33.333.333.33
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts/iatp_idv_tkoi5db4hryu5cei5vwoabr7we
+          verification_url:
+            href: https://id.ubble.ai/4hryu5cei5/
+    identity_verification_creation_request_body_min_plus_aplt:
+      value:
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: David Vincent
+        webhook_url: https://my.api/events/
+        redirect_url: https://myweb.site?query-param=hello
+    identity_verification_creation_request_body_helper_min:
+      value:
+        declared_data:
+          name: David Vincent
+        webhook_url: https://my.api/events/
+        redirect_url: https://myweb.site?query-param=hello
+    identity_verification_attempt_get_response_body:
+      value:
+        id: iatp_tkoi5db4hryu5cei5vwoabrPoQ
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        redirect_url: https://myweb.site?query-param=hello
+        status: checks_in_progress
+        response_codes: []
+        client_information:
+          pre_selected_residence_country: FR
+          pre_selected_document_issuing_country: FR
+          pre_selected_document_type: ID
+        applicant_session_information:
+          ip_address: 123.123.123.01
+          selected_documents:
+          - country: FR
+            document_type: Passport
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts/iatp_idv_tkoi5db4hryu5cei5vwoabr7we
+          verification_url:
+            href: https://id.ubble.ai/4hryu5cei5/
+    identity_verification_creation_request_body_max:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: David Vincent
+        webhook_url: https://my.api/events/
+    identity_attempt_creation_request_body_max:
+      value:
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        client_information:
+          pre_selected_residence_country: FR
+          pre_selected_document_issuing_country: FR
+          pre_selected_document_type: ID
+        redirect_url: https://myweb.site?query-param=hello
+    identity_verification_creation_response_body_helper:
+      value:
+        id: idv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: pending
+        response_codes: []
+        risk_labels: []
+        declared_data:
+          name: David Vincent
+        documents: []
+        webhook_url: https://my.api/events/
+        redirect_url: https://myweb.site?query-param=hello
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+          verification_url:
+            href: https://id.ubble.ai/4hryu5cei5/
+    attempt_creation_request_body_min:
+      value:
+        redirect_url: https://myweb.site?query-param=hello
+    identity_verification_anonymization_response_body:
+      value:
+        id: idv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: pending
+        response_codes: []
+        risk_labels:
+        - multiple_faces_detected
+        phone_number:
+          country_code: '+1'
+          number: '5555550102'
+        documents: []
+        webhook_url: https://my.api/events/
+        redirect_url: https://myweb.site?query-param=hello
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+  parameters:
+    skipParam:
+      name: skip
+      in: query
+      description: Number of items to skip (offset)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
+x-tagGroups:
+- name: Endpoints documentation
+  tags:
+  - Applicants
+  - Business applicants
+  - Identity verifications
+  - ID document verifications
+  - Face authentications
+  - AML verifications
+  - Website verifications (Coming soon)
+  - Bank document verifications (Coming soon)
+  - Company document verifications (Coming soon)
+  - Address document verifications (Coming soon)
+  - Service status

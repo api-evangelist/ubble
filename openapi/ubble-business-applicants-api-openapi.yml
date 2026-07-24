@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Business applicants API
+  version: 1.0.0
+  x-logo:
+    url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
+  description: ''
+servers:
+- url: https://api.ubble.ai
+tags:
+- name: Business applicants
+paths:
+  /v2/business-applicants:
+    post:
+      tags:
+      - Business applicants
+      summary: Create a Business Applicant
+      description: This section describes all endpoints related to business applicants. It will enable you to create and manage business applicant objects.
+      operationId: create_business_applicant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessApplicantInputPost'
+            examples:
+              All possible data:
+                $ref: '#/components/examples/business_applicant_creation_request_body'
+      responses:
+        '201':
+          description: Business applicant successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessApplicantOutputPost'
+              examples:
+                Always replies:
+                  $ref: '#/components/examples/business_applicant_response_body'
+          links:
+            RetrieveBusinessApplicantById:
+              operationId: retrieve_business_applicant
+              parameters:
+                business_applicant_id: $response.body#/id
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              examples:
+                Invalid request:
+                  value:
+                    error_type: request_invalid
+                    error_codes:
+                    - external_applicant_id__invalid
+  /v2/business-applicants/{business_applicant_id}:
+    get:
+      tags:
+      - Business applicants
+      summary: Retrieve a Business Applicant
+      description: Retrieve a Business Applicant
+      operationId: retrieve_business_applicant
+      parameters:
+      - name: business_applicant_id
+        required: true
+        in: path
+        description: ID of Business Applicant to return
+        schema:
+          $ref: '#/components/schemas/BusinessApplicantId'
+      responses:
+        '200':
+          description: business applicant retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessApplicantOutputGet'
+              examples:
+                Always replies:
+                  $ref: '#/components/examples/business_applicant_response_body'
+        '404':
+          description: Business applicant not found
+components:
+  schemas:
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    BusinessApplicantOutputBase:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BaseBusinessApplicant'
+      - $ref: '#/components/schemas/BusinessApplicantsLinks'
+    BusinessApplicantOutputPost:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantOutputBase'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    BusinessApplicantInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseBusinessApplicant'
+    BusinessApplicantOutputGet:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantOutputBase'
+    BusinessApplicantsLinks:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/SelfLink'
+    BusinessApplicantId:
+      type: string
+      description: Business Applicant unique identifier.
+      pattern: ^bplt_\w+$
+      example: bplt_tkoi5db4hryu5cei5vwoabr7we
+    BaseBusinessApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
+    BusinessApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantInputBase'
+  examples:
+    business_applicant_response_body:
+      value:
+        id: bplt_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        external_applicant_id: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/business-applicants/bplt_tkoi5db4hryu5cei5vwoabr7we
+    business_applicant_creation_request_body:
+      value:
+        external_applicant_id: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
+x-tagGroups:
+- name: Endpoints documentation
+  tags:
+  - Applicants
+  - Business applicants
+  - Identity verifications
+  - ID document verifications
+  - Face authentications
+  - AML verifications
+  - Website verifications (Coming soon)
+  - Bank document verifications (Coming soon)
+  - Company document verifications (Coming soon)
+  - Address document verifications (Coming soon)
+  - Service status

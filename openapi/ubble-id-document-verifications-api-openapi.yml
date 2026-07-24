@@ -1,0 +1,918 @@
+openapi: 3.0.3
+info:
+  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) ID document verifications API
+  version: 1.0.0
+  x-logo:
+    url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
+  description: API for ID document verification
+servers:
+- url: https://api.ubble.ai
+tags:
+- name: ID document verifications
+  description: API for ID document verification
+paths:
+  /v2/id-document-verifications:
+    post:
+      tags:
+      - ID document verifications
+      summary: Create an ID document verification
+      operationId: create_id_document_verification
+      description: Creates an ID document verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              id_document_verification_creation_request_body_min:
+                $ref: '#/components/examples/id_document_verification_creation_request_body_min'
+              id_document_verification_creation_request_body_max:
+                $ref: '#/components/examples/id_document_verification_creation_request_body_max'
+            schema:
+              $ref: '#/components/schemas/IdDocumentVerificationInputPost'
+      responses:
+        '201':
+          description: ID document verification created successfully
+          content:
+            application/json:
+              examples:
+                id_document_verification_creation_response_body:
+                  $ref: '#/components/examples/id_document_verification_creation_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdDocumentVerificationOutputPost'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+  /v2/id-document-verifications/{id_document_verification_id}:
+    get:
+      tags:
+      - ID document verifications
+      summary: Retrieve an ID document verification
+      description: This endpoint allows you to get the detailed results of an ID document verification
+      operationId: retrieve_id_document_verification
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/IdDocumentVerificationId'
+      responses:
+        '200':
+          description: Document verification retrieved successfully
+          content:
+            application/json:
+              examples:
+                id_document_verification_creation_response_body:
+                  $ref: '#/components/examples/id_document_verification_creation_response_body'
+              schema:
+                $ref: '#/components/schemas/IdDocumentVerificationOutputGet'
+        '404':
+          description: ID document verification not found
+        '500':
+          description: Internal server error
+  /v2/id-document-verifications/{id_document_verification_id}/anonymize:
+    post:
+      tags:
+      - ID document verifications
+      summary: Anonymize an ID document verification
+      operationId: anonymize_id_document_verification
+      description: Anonymize the personal data of an ID document verification with the specified ID.
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the document verification to anonymize
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ID document verification anonymized
+          content:
+            application/json:
+              examples:
+                id_document_verification_anonymization_response_body:
+                  $ref: '#/components/examples/id_document_verification_anonymization_response_body'
+              schema:
+                required:
+                - applicant_id
+                - user_journey_id
+                allOf:
+                - $ref: '#/components/schemas/IdDocumentVerificationOutputAnonymize'
+        '404':
+          description: ID document verification not found
+        '500':
+          description: Internal server error
+  /v2/id-document-verifications/{id_document_verification_id}/attempts:
+    get:
+      tags:
+      - ID document verifications
+      summary: List ID document verification attempts
+      operationId: list_attempts_id_document_verification
+      description: 'This endpoint allows you to list all attempts of an ID document verification.
+
+
+        Attempts are returned ordered by creation date, newest first.
+
+
+        The response is paginated (see [Pagination](#section/API-standards/Pagination) section).
+
+        You can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.
+
+        '
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the document verification
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/skipParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: ID document verification attempts retrieved successfully
+          content:
+            application/json:
+              examples:
+                id_document_verification_attempt_list_response_body:
+                  $ref: '#/components/examples/id_document_verification_attempt_list_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputList'
+        '404':
+          description: The provided document verification ID is not valid
+        '500':
+          description: An error occurred while fetching the attempts
+    post:
+      tags:
+      - ID document verifications
+      summary: Create an ID document verification attempt
+      description: 'This endpoint allows you to create an ID document verification attempt. It is possible when the ID document verification is one of the following statuses: `created`, `retry_required`'
+      operationId: create_id_document_verification_attempt
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the document verification
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            examples:
+              id_document_verification_attempt_creation_request_body_min:
+                $ref: '#/components/examples/id_document_verification_attempt_creation_request_body_min'
+              id_document_verification_attempt_creation_request_body_max:
+                $ref: '#/components/examples/id_document_verification_attempt_creation_request_body_max'
+            schema:
+              $ref: '#/components/schemas/IdDocumentVerificationAttemptInputPost'
+      responses:
+        '201':
+          description: ID document verification attempt created
+          content:
+            application/json:
+              examples:
+                id_document_verification_attempt_creation_response_body:
+                  $ref: '#/components/examples/id_document_verification_attempt_creation_response_body'
+              schema:
+                $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputPost'
+        '404':
+          description: The provided ID document verification ID is not valid
+        '409':
+          description: The ID document verification is not in a valid state to create an attempt. The ID document verification status must be `created` or `retry_required`
+        '500':
+          description: An error occurred while creating the attempt
+  /v2/id-document-verifications/{id_document_verification_id}/attempts/{attempt_id}:
+    get:
+      tags:
+      - ID document verifications
+      summary: Retrieve an ID document verification attempt
+      description: This endpoint allows you to retrieve the details for a given ID document verification attempt
+      operationId: fetch_attempts_id_document_verification
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the document verification
+        required: true
+        schema:
+          type: string
+      - name: attempt_id
+        in: path
+        description: ID of the document verification attempt
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ID document verification attempt retrieved successfully
+          content:
+            application/json:
+              examples:
+                id_document_verification_attempt_get_response_body:
+                  $ref: '#/components/examples/id_document_verification_attempt_get_response_body'
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputGet'
+        '404':
+          description: The provided document verification attempt ID is not valid
+        '500':
+          description: An error occurred while fetching the attempt
+  /v2/id-document-verifications/{id_document_verification_id}/attempts/{attempt_id}/assets:
+    get:
+      tags:
+      - ID document verifications
+      summary: Retrieve an ID document verification attempt asset
+      operationId: fetch_asset_id_document_verification_attempt
+      description: 'This endpoint allows you to retrieve the assets associated with an ID document verification.
+
+        This includes the document front image and the document back image.
+
+
+        The response is paginated (see [Pagination](#section/API-standards/Pagination) section).
+
+        You can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.
+
+        '
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the ID document verification
+        required: true
+        schema:
+          type: string
+      - name: attempt_id
+        in: path
+        description: ID of the ID document verification attempt
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/skipParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: ID document verification attempt asset retrieved successfully
+          content:
+            application/json:
+              examples:
+                id_document_verification_attempt_output_assets_response_body:
+                  $ref: '#/components/examples/id_document_verification_attempt_output_assets_response_body'
+              schema:
+                $ref: '#/components/schemas/IdDocumentVerificationAttemptAssetsOutput'
+  /v2/id-document-verifications/{id_document_verification_id}/notify:
+    post:
+      tags:
+      - ID document verifications
+      summary: Request webhook notification
+      operationId: notify_id_document_verification
+      description: This endpoint can be used to initiate a webhook call containing the latest event of an ID document verification
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the document verification to notify
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_url:
+                  type: string
+                  format: uri
+      responses:
+        '204':
+          description: Notification successfully requested
+  /v2/id-document-verifications/{id_document_verification_id}/pdf-report:
+    get:
+      tags:
+      - ID document verifications
+      summary: Retrieve PDF report of an ID document verification
+      operationId: pdf_id_document_verification
+      description: 'This endpoint allows you to retrieve a PDF report of an ID document verification.
+
+
+        Please note that the PDF report is only available for ID document verifications that are
+
+        in status `declined` and `approved` once you receive the `id_document_verification_report_created` event.
+
+        '
+      parameters:
+      - name: id_document_verification_id
+        in: path
+        description: ID of the ID document verification
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ID document verification PDF report retrieved successfully
+          content:
+            application/json:
+              examples:
+                id_document_verification_pdf_report_response_body:
+                  $ref: '#/components/examples/id_document_verification_pdf_report_response_body'
+              schema:
+                $ref: '#/components/schemas/IdDocumentVerificationOutputPdfReport'
+        '404':
+          description: The PDF report is not available
+components:
+  schemas:
+    DocumentTypes:
+      type: string
+      description: Type of document.
+      enum:
+      - Driving licence
+      - ID
+      - Other
+      - Passport
+      - Residence Permit
+      - Travel Document
+      - Visa
+    IdDocumentVerificationStatus:
+      type: string
+      description: ID document verification status.
+      enum:
+      - created
+      - quality_checks_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - inconclusive
+    IdDocumentVerificationAttemptOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputBase'
+    IdDocumentVerificationAttemptOutputBase:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/IdDocumentVerificationAttemptStates'
+        response_codes:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        _links:
+          $ref: '#/components/schemas/SelfLink'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+    IdDocumentVerificationAttemptStates:
+      type: string
+      description: ID document verification attempt state.
+      enum:
+      - quality_checks_in_progress
+      - checks_in_progress
+      - completed
+      - quality_checks_aborted
+      - checks_inconclusive
+      - terminated
+    DeclaredData:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+    IdDocumentVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - _links
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
+    IdDocumentVerificationAttemptOutputList:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of ID document verification attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputGet'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    Document:
+      type: object
+      properties:
+        personal_number:
+          type: string
+          maxLength: 255
+        tax_identification_number:
+          type: string
+          maxLength: 255
+        document_type:
+          $ref: '#/components/schemas/DocumentTypes'
+        document_issuing_country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        permit_obtaining_date:
+          type: string
+          format: date
+        permit_expiry_date:
+          type: string
+          format: date
+        permit_type_detailed:
+          type: string
+          maxLength: 255
+        permit_type_remarks:
+          type: string
+          maxLength: 255
+        document_number:
+          type: string
+          maxLength: 255
+        document_expiry_date:
+          type: string
+          format: date
+        document_issue_date:
+          type: string
+          format: date
+        document_issue_place:
+          type: string
+          maxLength: 255
+        document_mrz:
+          type: string
+          pattern: ^([A-Z0-9<]{2}[A-Z0-9<]{1,38}[\n\r])+([A-Z0-9<]{2}[A-Z0-9<]{1,44}[\n\r])?([A-Z0-9<]{2}[A-Z0-9<]{1,44}[\n\r])?$
+        front_image_signed_url:
+          $ref: '#/components/schemas/PreSignedUrl'
+        back_image_signed_url:
+          $ref: '#/components/schemas/PreSignedUrl'
+        signature_image_signed_url:
+          $ref: '#/components/schemas/PreSignedUrl'
+        full_name:
+          type: string
+          minLength: 2
+          maxLength: 510
+        first_names:
+          type: string
+          minLength: 1
+          maxLength: 255
+        last_name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        last_name_at_birth:
+          type: string
+          minLength: 1
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+        birth_place:
+          type: string
+          minLength: 1
+          maxLength: 255
+        nationality:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        gender:
+          $ref: '#/components/schemas/Gender'
+        address:
+          type: string
+          maxLength: 1000
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    ListLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    IdDocumentVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationBase'
+    IdDocumentVerificationAttemptInputPost:
+      type: object
+      required:
+      - document_front
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationAttemptInputBase'
+    Gender:
+      type: string
+      description: Person gender.
+      example: M
+      enum:
+      - M
+      - F
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    IdDocumentVerificationAttemptAssetsOutput:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of ID document verification attempt assets for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputAssetOutput'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    IdDocumentVerificationAttemptOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputBase'
+    IdDocumentVerificationId:
+      type: string
+      description: ID ocument verification unique identifier.
+      pattern: ^iddv_\w+$
+      example: iddv_tkoi5db4hryu5cei5vwoabr7we
+    IdDocumentVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    IdDocumentVerificationOutputBase:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/IdDocumentVerificationId'
+        status:
+          $ref: '#/components/schemas/IdDocumentVerificationStatus'
+        response_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        document:
+          $ref: '#/components/schemas/Document'
+        _links:
+          $ref: '#/components/schemas/IdDocumentVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationBase'
+      - $ref: '#/components/schemas/DatedObject'
+    IdDocumentVerificationOutputPdfReport:
+      type: object
+      required:
+      - pdf_report
+      properties:
+        pdf_report:
+          type: string
+          format: uri
+    ApplicantLink:
+      type: object
+      required:
+      - applicant
+      properties:
+        applicant:
+          $ref: '#/components/schemas/HalLink'
+    IdDocumentVerificationInputPost:
+      type: object
+      required:
+      - applicant_id
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationInputBase'
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    BaseOutputList:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    IdDocumentVerificationAttemptInputBase:
+      type: object
+      properties:
+        document_front:
+          type: string
+          format: binary
+        document_back:
+          type: string
+          format: binary
+    IdDocumentVerificationBase:
+      type: object
+      properties:
+        user_journey_id:
+          allOf:
+          - $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+        declared_data:
+          $ref: '#/components/schemas/DeclaredData'
+        webhook_url:
+          type: string
+          format: uri
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    IdDocumentVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - user_journey_id
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
+    IdDocumentVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
+    PreSignedUrl:
+      type: string
+      format: uri
+      description: Pre-signed URL
+      example: https://storage-b.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    IdDocumentVerificationAttemptOutputAssetOutput:
+      type: object
+      required:
+      - type
+      - _links
+      properties:
+        type:
+          type: string
+          enum:
+          - document_front_image
+          - document_back_image
+        _links:
+          type: object
+          properties:
+            asset_url:
+              type: object
+              properties:
+                href:
+                  type: string
+                  format: uri
+  examples:
+    id_document_verification_creation_request_body_max:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: David Vincent
+        webhook_url: https://my.api/events/
+    id_document_verification_attempt_creation_request_body_min:
+      value:
+        document_front: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
+
+          '
+    id_document_verification_creation_request_body_min:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: David Vincent
+    id_document_verification_creation_response_body:
+      value:
+        id: iddv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: '2017-07-21T17:32:28Z'
+        modified_on: '2017-07-21T17:40:32Z'
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: created
+        response_codes: []
+        declared_data:
+          name: David Vincent
+        document:
+          full_name: David Vincent
+          birth_date: 1934-10-02
+          document_type: ID
+          document_issuing_country: US
+          front_image_signed_url: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+        webhook_url: https://my.api/events/
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    id_document_verification_anonymization_response_body:
+      value:
+        id: iddv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: created
+        response_codes: []
+        webhook_url: https://my.api/events/
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    id_document_verification_attempt_output_assets_response_body:
+      value:
+        total_count: 2
+        skip: 10
+        limit: 10
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts
+          next:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+          previous:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+        data:
+        - type: document_front_image
+          _links:
+            asset_url:
+              href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/assets/document_front_image
+    id_document_verification_attempt_list_response_body:
+      value:
+        total_count: 2
+        skip: 10
+        limit: 10
+        data:
+        - id: iddv_tkoi5db4hryu5cei5vwoabr7we
+          created_on: 2017-07-21 17:32:28+00:00
+          modified_on: 2017-07-21 17:40:32+00:00
+          status: completed
+          response_codes: []
+          _links:
+            self:
+              href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts
+          next:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+          previous:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+    id_document_verification_attempt_creation_request_body_max:
+      value:
+        document_front: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
+
+          '
+        document_back: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
+
+          '
+    id_document_verification_attempt_get_response_body:
+      value:
+        id: iddv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        status: completed
+        response_codes: []
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
+    id_document_verification_attempt_creation_response_body:
+      value:
+        id: iddv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        status: completed
+        response_codes: []
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
+    id_document_verification_pdf_report_response_body:
+      value:
+        pdf_report: https://www.example.com/reports/iddv_123.pdf
+  parameters:
+    skipParam:
+      name: skip
+      in: query
+      description: Number of items to skip (offset)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
+x-tagGroups:
+- name: Endpoints documentation
+  tags:
+  - Applicants
+  - Business applicants
+  - Identity verifications
+  - ID document verifications
+  - Face authentications
+  - AML verifications
+  - Website verifications (Coming soon)
+  - Bank document verifications (Coming soon)
+  - Company document verifications (Coming soon)
+  - Address document verifications (Coming soon)
+  - Service status

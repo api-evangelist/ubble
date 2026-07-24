@@ -1,0 +1,256 @@
+openapi: 3.0.3
+info:
+  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) AML verifications API
+  version: 1.0.0
+  x-logo:
+    url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
+  description: AML verification endpoints documentation.
+servers:
+- url: https://api.ubble.ai
+tags:
+- name: AML verifications
+  description: AML verification endpoints documentation.
+paths:
+  /v2/aml-verifications:
+    post:
+      tags:
+      - AML verifications
+      summary: Create an AML verification
+      description: This endpoint allows you to create an AML verification. You should get a `201` response.
+      operationId: create_aml_verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              Only required data:
+                $ref: '#/components/examples/aml_verification_creation_request_body_min'
+              All possible data:
+                $ref: '#/components/examples/aml_verification_creation_request_body_max'
+            schema:
+              $ref: '#/components/schemas/AMLVerificationInputPost'
+      responses:
+        '201':
+          description: AML verification created
+          content:
+            application/json:
+              examples:
+                aml_verification_response_body:
+                  $ref: '#/components/examples/aml_verification_response_body'
+              schema:
+                required:
+                - applicant_id
+                allOf:
+                - $ref: '#/components/schemas/AMLVerificationOutputPost'
+  /v2/aml-verifications/{aml_verification_id}:
+    get:
+      tags:
+      - AML verifications
+      summary: Retrieve an AML verification
+      description: This endpoint allows you to get the detailed results of an AML verification.
+      operationId: retrieve_aml_verification
+      parameters:
+      - name: aml_verification_id
+        required: true
+        in: path
+        description: ID of the AML verification
+        schema:
+          $ref: '#/components/schemas/AMLVerificationId'
+      responses:
+        '200':
+          description: AML verification retrieved
+          content:
+            application/json:
+              examples:
+                aml_verification_response_body:
+                  $ref: '#/components/examples/aml_verification_response_body'
+              schema:
+                required:
+                - applicant_id
+                allOf:
+                - $ref: '#/components/schemas/AMLVerificationOutputGet'
+components:
+  schemas:
+    AMLVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    AMLVerificationId:
+      type: string
+      description: AML verification unique identifier.
+      pattern: ^amlv_\w+$
+      example: amlv_tkoi5db4hryu5cei5vwoabr7we
+    AMLVerificationOutputBase:
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/AMLVerificationStatuses'
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/AMLVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/AMLVerificationBase'
+    AMLVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - _links
+      - applicant_id
+      - search_parameters
+      properties:
+        id:
+          $ref: '#/components/schemas/AMLVerificationId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/AMLVerificationOutputBase'
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    AMLVerificationBase:
+      type: object
+      allOf:
+      - properties:
+          webhook_url:
+            type: string
+            format: uri
+          applicant_id:
+            allOf:
+            - $ref: '#/components/schemas/ApplicantId'
+          search_parameters:
+            $ref: '#/components/schemas/SearchParameters'
+          monitored:
+            type: boolean
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    ApplicantLink:
+      type: object
+      required:
+      - applicant
+      properties:
+        applicant:
+          $ref: '#/components/schemas/HalLink'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    AMLVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/AMLVerificationBase'
+    AMLVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - _links
+      - applicant_id
+      - search_parameters
+      properties:
+        id:
+          $ref: '#/components/schemas/AMLVerificationId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/AMLVerificationOutputBase'
+    SearchParameters:
+      type: object
+      required:
+      - configuration_identifier
+      description: ComplyAdvantage search inputs
+      properties:
+        configuration_identifier:
+          type: string
+          description: Configuration identifier
+          example: 12345678-1234-1234-1234-123456789012
+    AMLVerificationInputPost:
+      type: object
+      required:
+      - webhook_url
+      - applicant_id
+      - search_parameters
+      allOf:
+      - $ref: '#/components/schemas/AMLVerificationInputBase'
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    AMLVerificationStatuses:
+      type: string
+      description: Status of the AML verification.
+      enum:
+      - created
+      - screening_in_progress
+      - approved
+      - declined
+      - review_required
+  examples:
+    aml_verification_creation_request_body_min:
+      value:
+        search_parameters:
+          configuration_identifier: 011e5c14-2222-738c-8852-dfdbbe53f233
+        webhook_url: https://my.api/events/
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+    aml_verification_response_body:
+      value:
+        id: amlv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        status: created
+        webhook_url: https://my.api/events/
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        search_parameters:
+          configuration_identifier: 8eb79430-c014-41e5-be73-2c2c091322b8
+        monitored: false
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/aml-verifications/amlv_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    aml_verification_creation_request_body_max:
+      value:
+        search_parameters:
+          configuration_identifier: 011e5c14-2222-738c-8852-dfdbbe53f233
+        webhook_url: https://my.api/events/
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        monitored: false
+x-tagGroups:
+- name: Endpoints documentation
+  tags:
+  - Applicants
+  - Business applicants
+  - Identity verifications
+  - ID document verifications
+  - Face authentications
+  - AML verifications
+  - Website verifications (Coming soon)
+  - Bank document verifications (Coming soon)
+  - Company document verifications (Coming soon)
+  - Address document verifications (Coming soon)
+  - Service status

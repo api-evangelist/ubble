@@ -1,0 +1,307 @@
+openapi: 3.0.3
+info:
+  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Applicants API
+  version: 1.0.0
+  x-logo:
+    url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
+  description: ''
+servers:
+- url: https://api.ubble.ai
+tags:
+- name: Applicants
+paths:
+  /v2/applicants:
+    post:
+      tags:
+      - Applicants
+      summary: Create an Applicant
+      description: This section describes all endpoints related to applicants. It will enable you to create and manage applicant objects.
+      operationId: create_applicant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicantInputPost'
+            examples:
+              All possible data:
+                $ref: '#/components/examples/applicant_creation_request_body'
+      responses:
+        '201':
+          description: Applicant successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicantOutputPost'
+              examples:
+                Always replies:
+                  $ref: '#/components/examples/applicant_response_body'
+          links:
+            RetrieveApplicantById:
+              operationId: retrieve_applicant
+              parameters:
+                applicant_id: $response.body#/id
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              examples:
+                Invalid phone number:
+                  value:
+                    error_type: request_invalid
+                    error_codes:
+                    - phone_number__invalid_format
+  /v2/applicants/{applicant_id}:
+    get:
+      tags:
+      - Applicants
+      summary: Retrieve an Applicant
+      description: Retrieve an Applicant
+      operationId: retrieve_applicant
+      parameters:
+      - name: applicant_id
+        required: true
+        in: path
+        description: ID of Applicant to return
+        schema:
+          $ref: '#/components/schemas/ApplicantId'
+      responses:
+        '200':
+          description: applicant retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicantOutputGet'
+              examples:
+                Always replies:
+                  $ref: '#/components/examples/applicant_response_body'
+        '404':
+          description: Applicant not found
+    patch:
+      tags:
+      - Applicants
+      summary: Update an Applicant
+      description: Update an Applicant
+      operationId: update_applicant
+      parameters:
+      - name: applicant_id
+        required: true
+        in: path
+        description: ID of Applicant to return
+        schema:
+          $ref: '#/components/schemas/ApplicantId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicantInputPatch'
+            examples:
+              All possible data:
+                $ref: '#/components/examples/applicant_patch_request_body'
+      responses:
+        '200':
+          description: applicant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicantOutputPatch'
+              examples:
+                Always replies:
+                  $ref: '#/components/examples/applicant_response_body'
+        '404':
+          description: Applicant not found
+        '400':
+          description: Bad request. One or more input parameters are invalid
+        '500':
+          description: Internal server error
+  /v2/applicants/{applicant_id}/anonymize:
+    post:
+      tags:
+      - Applicants
+      summary: Anonymize an Applicant
+      description: Anonymize the personal data of an applicant with the specified ID.
+      operationId: anonymize_applicant
+      parameters:
+      - name: applicant_id
+        in: path
+        description: ID of the applicant to anonymize
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: applicant anonymized successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicantOutputAnonymize'
+              examples:
+                Always replies:
+                  $ref: '#/components/examples/applicant_response_body_anonymized'
+        '404':
+          description: Identity verification not found
+        '400':
+          description: Bad request. The applicant cannot be anonymized.
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    ApplicantInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicant'
+    ApplicantInputPatch:
+      type: object
+      properties:
+        external_applicant_name:
+          type: string
+          example: David Vincent
+        email:
+          type: string
+          format: email
+          example: david.vincent@courriel.ml
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    ApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ApplicantInputBase'
+    ApplicantOutputAnonymize:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/ApplicantsLinks'
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantOutputBase:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BaseApplicant'
+      - $ref: '#/components/schemas/ApplicantsLinks'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ApplicantOutputPost:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantOutputPatch:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    ApplicantsLinks:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/SelfLink'
+    BaseApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name:
+          type: string
+          example: David Vincent
+        email:
+          type: string
+          format: email
+          example: david.vincent@courriel.ml
+    ApplicantOutputGet:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+  examples:
+    applicant_patch_request_body:
+      value:
+        external_applicant_name: David Vincent
+        email: david.vincent@courriel.ml
+    applicant_response_body:
+      value:
+        id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name: David Vincent
+        email: david.vincent@courriel.ml
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    applicant_response_body_anonymized:
+      value:
+        id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name: David Vincent
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    applicant_creation_request_body:
+      value:
+        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name: David Vincent
+        email: david.vincent@courriel.ml
+x-tagGroups:
+- name: Endpoints documentation
+  tags:
+  - Applicants
+  - Business applicants
+  - Identity verifications
+  - ID document verifications
+  - Face authentications
+  - AML verifications
+  - Website verifications (Coming soon)
+  - Bank document verifications (Coming soon)
+  - Company document verifications (Coming soon)
+  - Address document verifications (Coming soon)
+  - Service status

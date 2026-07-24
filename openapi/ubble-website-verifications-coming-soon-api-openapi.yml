@@ -1,0 +1,414 @@
+openapi: 3.0.3
+info:
+  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Website verifications (Coming soon) API
+  version: 1.0.0
+  x-logo:
+    url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
+  description: ''
+servers:
+- url: https://api.ubble.ai
+tags:
+- name: Website verifications (Coming soon)
+paths:
+  /v2/website-verifications:
+    post:
+      tags:
+      - Website verifications (Coming soon)
+      summary: Create a website verification
+      operationId: create_website_verification
+      description: Creates a website verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebsiteVerificationInputPost'
+      responses:
+        '201':
+          description: Website verification created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/WebsiteVerificationOutputPost'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+        '500':
+          description: Internal server error
+        '503':
+          description: Service unavailable
+  /v2/website-verifications/{website_verification_id}:
+    get:
+      tags:
+      - Website verifications (Coming soon)
+      summary: Retrieve a website verification
+      description: This endpoint allows you to get the detailed results of a website verification
+      operationId: retrieve_website_verification
+      parameters:
+      - name: website_verification_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/WebsiteVerificationId'
+      responses:
+        '200':
+          description: Website verification retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/WebsiteVerificationOutputGet'
+        '404':
+          description: Website verification not found
+        '500':
+          description: Internal server error
+  /v2/website-verifications/{website_verification_id}/anonymize:
+    post:
+      tags:
+      - Website verifications (Coming soon)
+      summary: Anonymize a website verification
+      operationId: anonymize_website_verification
+      description: Anonymize the personal data of a website verification with the specified ID.
+      parameters:
+      - name: website_verification_id
+        in: path
+        description: ID of the website verification to anonymize
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Website verification anonymized
+          content:
+            application/json:
+              schema:
+                required:
+                - applicant_id
+                - user_journey_id
+                - website_url
+                allOf:
+                - $ref: '#/components/schemas/WebsiteVerificationOutputAnonymize'
+        '404':
+          description: Website verification not found
+        '500':
+          description: Internal server error
+  /v2/website-verifications/{website_verification_id}/notify:
+    post:
+      tags:
+      - Website verifications (Coming soon)
+      summary: Request webhook notification
+      operationId: notify_website_verification
+      description: This endpoint can be used to initiate a webhook call containing the latest event of a website verification
+      parameters:
+      - name: website_verification_id
+        in: path
+        description: ID of the website verification to notify
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_url:
+                  type: string
+                  format: uri
+      responses:
+        '204':
+          description: Notification successfully requested
+components:
+  schemas:
+    DisclosureURLs:
+      type: object
+      description: URLs to disclosure pages found on the website
+      properties:
+        privacy_policy_url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the privacy policy page
+        terms_and_conditions_url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the terms and conditions page
+        refund_policy_url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the refund policy page
+        contact_us_url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the contact us page
+    WebsiteVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - website_url
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    RiskLabels:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskLabel'
+      description: Risk assessment labels
+    WebsiteVerificationOutputBase:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WebsiteVerificationId'
+        status:
+          $ref: '#/components/schemas/WebsiteVerificationStatus'
+        response_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        risk_labels:
+          $ref: '#/components/schemas/RiskLabels'
+        website_data:
+          $ref: '#/components/schemas/WebsiteVerificationResult'
+        _links:
+          $ref: '#/components/schemas/WebsiteVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/WebsiteVerificationBase'
+      - $ref: '#/components/schemas/DatedObject'
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    WebsiteVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    Address:
+      type: object
+      properties:
+        address_line1:
+          type: string
+          maxLength: 250
+        address_line2:
+          type: string
+          maxLength: 250
+        city:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        zip:
+          type: string
+          maxLength: 50
+        country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+    WebsiteVerificationInputPost:
+      type: object
+      required:
+      - applicant_id
+      - user_journey_id
+      - website_url
+      allOf:
+      - $ref: '#/components/schemas/WebsiteVerificationInputBase'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    ApplicantLink:
+      type: object
+      required:
+      - applicant
+      properties:
+        applicant:
+          $ref: '#/components/schemas/HalLink'
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    WebsiteVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - website_url
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
+    WebsiteVerificationResult:
+      type: object
+      properties:
+        legal_name:
+          type: string
+          description: Legal name of the company
+        country_of_incorporation:
+          $ref: '#/components/schemas/CountryCodeIso2'
+          description: Country of incorporation of the company
+        mccs:
+          type: array
+          items:
+            type: string
+          description: MCCs of the company
+        alternative_mccs:
+          type: array
+          items:
+            type: string
+          description: Alternative MCCs of the company
+        mcc_rationale:
+          type: string
+          description: Rationale for the MCCs
+        risky_activities:
+          type: array
+          items:
+            type: string
+          description: Risky activities of the company
+        legal_address:
+          $ref: '#/components/schemas/Address'
+        disclosure_urls:
+          $ref: '#/components/schemas/DisclosureURLs'
+        registration_date:
+          type: string
+          format: date
+          nullable: true
+          description: The registration date of the domain
+    WebsiteVerificationId:
+      type: string
+      description: Website verification unique identifier.
+      pattern: ^wbv_\w+$
+      example: wbv_tkoi5db4hryu5cei5vwoabr7we
+    WebsiteVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WebsiteVerificationBase'
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    WebsiteVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - website_url
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
+    WebsiteVerificationBase:
+      type: object
+      properties:
+        user_journey_id:
+          allOf:
+          - $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+        webhook_url:
+          type: string
+          format: uri
+        website_url:
+          type: string
+          format: uri
+          maxLength: 1024
+          description: URL of the website to be verified
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    WebsiteVerificationStatus:
+      type: string
+      description: Status of the website verification.
+      enum:
+      - initial_status
+      - created
+      - checks_in_progress
+      - approved
+      - declined
+      - inconclusive
+    BusinessApplicantId:
+      type: string
+      description: Business Applicant unique identifier.
+      pattern: ^bplt_\w+$
+      example: bplt_tkoi5db4hryu5cei5vwoabr7we
+x-tagGroups:
+- name: Endpoints documentation
+  tags:
+  - Applicants
+  - Business applicants
+  - Identity verifications
+  - ID document verifications
+  - Face authentications
+  - AML verifications
+  - Website verifications (Coming soon)
+  - Bank document verifications (Coming soon)
+  - Company document verifications (Coming soon)
+  - Address document verifications (Coming soon)
+  - Service status
