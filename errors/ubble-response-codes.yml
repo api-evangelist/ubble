@@ -1,0 +1,137 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ubble.ai/docs/reference-info/response-codes
+notes: >-
+  Verification response-code registry for the v2 Identities API (the non-payments
+  sibling of a decline-code table). Codes appear in the response_codes[] array on
+  verifications, attempts, and webhook payloads. Applicability flags per product:
+  idv (identity verification), certified idv, fav (face authentication), iddv
+  (ID document verification), wbv (website verification). Adding new codes is
+  documented as backward compatible - key business rules on statuses, not codes.
+envelope_field: response_codes
+groups:
+  - group: approved
+    check_status: approved
+    codes:
+      - {code: 10000, summary: approved, description: The verification has been approved}
+  - group: applicant-engagement-issue
+    check_status: retry_required
+    codes:
+      - {code: 61101, summary: applicant_never_started, description: Applicant was probably not redirected and never started the flow}
+      - {code: 61111, summary: applicant_not_ready, description: Applicant chose to perform the verification later}
+      - {code: 61112, summary: applicant_no_document, description: Applicant stated they did not have their document}
+      - {code: 61113, summary: camera_access_refused, description: Applicant did not give camera access}
+      - {code: 61121, summary: applicant_drop, description: Applicant left before capture and the URL expired (default 15 minutes)}
+  - group: video-streaming-issue
+    check_status: retry_required
+    codes:
+      - {code: 61201, summary: connection_insufficient, description: Insufficient connection to perform the capture}
+      - {code: 61202, summary: browser_not_supported, description: Browser not suitable for video streaming}
+      - {code: 61203, summary: camera_not_found, description: Device has no camera}
+      - {code: 61911, summary: corrupted_videos, description: Received videos cannot be played}
+      - {code: 61205, summary: sms_not_received, description: DEPRECATED}
+  - group: document-capture-issue
+    check_status: retry_required
+    codes:
+      - {code: 61301, summary: document_blurry, description: Document too blurry}
+      - {code: 61302, summary: document_lighting_issue, description: Poor lighting during document capture}
+      - {code: 61303, summary: document_not_in_color, description: Document not captured in color}
+      - {code: 61310, summary: document_front_not_captured, description: Front of document not captured}
+      - {code: 61311, summary: document_back_not_captured, description: Back of document not captured}
+      - {code: 61312, summary: document_partially_hidden, description: Part of the document hidden}
+      - {code: 61313, summary: document_not_tilted, description: No dynamic view of the document presented}
+      - {code: 61314, summary: document_challenge_timeout, description: Document challenge not met before expiration}
+      - {code: 61315, summary: document_barcode_unreadable, description: DEPRECATED}
+  - group: secondary-document-capture-issue
+    check_status: retry_required
+    codes:
+      - {code: 61321, summary: secondary_document_blurry, description: Secondary document too blurry}
+      - {code: 61322, summary: secondary_document_lighting_issue, description: Poor lighting during secondary document capture}
+      - {code: 61330, summary: secondary_document_front_not_captured, description: Front of secondary document not captured}
+      - {code: 61331, summary: secondary_document_back_not_captured, description: Back of secondary document not captured}
+      - {code: 61332, summary: secondary_document_partially_hidden, description: Part of the secondary document hidden}
+      - {code: 61333, summary: secondary_document_not_tilted, description: No dynamic view of the secondary document}
+  - group: face-capture-issue
+    check_status: retry_required
+    codes:
+      - {code: 61401, summary: face_video_blurry, description: Face video too blurry}
+      - {code: 61402, summary: face_video_lighting_issue, description: Poor lighting during face capture}
+      - {code: 61410, summary: face_not_captured, description: No face presented}
+      - {code: 61411, summary: face_partially_hidden, description: Full front view of face not shown}
+      - {code: 61412, summary: face_not_turned, description: No movement to prove liveness}
+      - {code: 61413, summary: face_challenge_timeout, description: Face challenge not met before expiration}
+      - {code: 61414, summary: various_faces_detected, description: DEPRECATED}
+  - group: other-issues-retry
+    check_status: retry_required
+    codes:
+      - {code: 61901, summary: internal_error, description: Internal error prevented completing the verification}
+  - group: document-non-compliant
+    check_status: declined
+    codes:
+      - {code: 62101, summary: document_expired, description: Expired document presented}
+      - {code: 62102, summary: document_not_accepted, description: Document type not accepted}
+      - {code: 62103, summary: document_damaged, description: Damaged document submitted}
+      - {code: 62104, summary: unsupported_alphabet, description: Document contains an unsupported alphabet}
+      - {code: 62201, summary: document_photocopy, description: Photocopy of a document presented}
+      - {code: 62202, summary: document_screenshot, description: Document presented on a screen}
+  - group: secondary-document-non-compliant
+    check_status: declined
+    codes:
+      - {code: 62121, summary: secondary_document_expired, description: Expired secondary document}
+      - {code: 62122, summary: secondary_document_not_accepted, description: Secondary document type not accepted}
+      - {code: 62123, summary: secondary_document_damaged, description: Damaged secondary document}
+      - {code: 62124, summary: secondary_document_unsupported_alphabet, description: Secondary document in unsupported alphabet}
+      - {code: 62221, summary: secondary_document_photocopy, description: Photocopy of secondary document}
+      - {code: 62222, summary: secondary_document_screenshot, description: Secondary document on a screen}
+  - group: identity-fraud
+    check_status: declined
+    codes:
+      - {code: 62301, summary: document_counterfeit, description: Counterfeit or falsified document}
+      - {code: 62302, summary: document_stolen, description: Document declared stolen or lost}
+      - {code: 62303, summary: document_swap, description: Front and back of two different documents}
+      - {code: 62331, summary: secondary_document_counterfeit, description: Counterfeit secondary document}
+      - {code: 62332, summary: secondary_document_stolen, description: Secondary document declared stolen or lost}
+      - {code: 62333, summary: secondary_document_swap, description: Front and back of two different secondary documents}
+      - {code: 62334, summary: secondary_document_mismatch, description: Applicant not the owner of the secondary document}
+      - {code: 62304, summary: face_mismatch, description: Applicant does not match the document photograph}
+      - {code: 62305, summary: face_not_live, description: Photo or video of someone else's face presented}
+      - {code: 62306, summary: face_alteration, description: Applicant altered their appearance}
+      - {code: 62307, summary: asset_digital_alteration, description: Digitally altered assets}
+      - {code: 62321, summary: face_face_mismatch, description: Face authentication applicant differs from identity verification applicant}
+      - {code: 62399, summary: generic_fraud, description: Replaces all other identity fraud codes for certified identity verification}
+  - group: prohibited-behavior
+    check_status: declined
+    codes:
+      - {code: 62401, summary: declared_identity_mismatch, description: Identity does not match the expected one}
+      - {code: 62402, summary: suspicious_device, description: Technically altered device used}
+      - {code: 62403, summary: consent_unclear, description: Capture appears performed against the applicant's will}
+      - {code: 62404, summary: multiple_documents, description: Multiple documents shown}
+      - {code: 62405, summary: known_fraudulent_face, description: Applicant recently performed a fraud attempt}
+  - group: website-compliance-issues
+    check_status: declined
+    codes:
+      - {code: 72381, summary: missing_terms_and_conditions, description: T&Cs are missing}
+      - {code: 72382, summary: missing_privacy_policy, description: Privacy policy is missing}
+      - {code: 72383, summary: missing_refund_policy, description: Refund policy is missing}
+      - {code: 72384, summary: missing_customer_service_contact, description: Customer service contact is missing}
+      - {code: 72385, summary: missing_legal_entity_name, description: Legal entity name is missing}
+      - {code: 72386, summary: missing_legal_entity_address, description: Legal entity address is missing}
+      - {code: 72387, summary: missing_country_of_incorporation, description: Country of incorporation is missing}
+  - group: medium-issue
+    check_status: inconclusive
+    codes:
+      - {code: 71181, summary: url_does_not_exist, description: URL does not exist}
+      - {code: 71182, summary: website_not_available, description: Website could not be reached}
+      - {code: 71183, summary: website_protected, description: Website protected and cannot be accessed}
+  - group: other-issues-inconclusive
+    check_status: inconclusive
+    codes:
+      - {code: 71901, summary: internal_error, description: Internal error prevented completing the verification}
+  - group: refused
+    verification_status: refused
+    codes:
+      - {code: 63001, summary: applicant_refusal, description: Applicant explicitly refused the verification process}
+  - group: pending-or-inconclusive
+    verification_status: pending or inconclusive
+    codes:
+      - {code: 64001, summary: forcibly_closed, description: New attempt created or verification anonymized while the attempt was still valid}

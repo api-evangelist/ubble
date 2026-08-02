@@ -1,0 +1,41 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Checkout.com Identities API (Ubble)
+  version: 1.0.0
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: apievangelist enrichment pipeline (local pass)
+extends: openapi/ubble-identity-verification-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: ubble
+        harvested: '2026-07-21'
+        origin: https://docs.ubble.ai/openapi.yaml
+        docs: https://docs.ubble.ai/docs/introduction/
+        status_page: https://status.ubble.ai/
+        conventions: conventions/ubble-conventions.yml
+        webhooks: asyncapi/ubble-webhooks.yml
+        response_codes: errors/ubble-response-codes.yml
+        sandbox: sandbox/ubble-sandbox.yml
+  - target: $.info
+    update:
+      x-authentication-note: >-
+        The published contract declares no components.securitySchemes; the
+        documented model is HTTP Basic plus mutual TLS (see
+        authentication/ubble-authentication.yml). Consumers should not assume
+        the API is unauthenticated.
+  - target: $
+    update:
+      x-webhook-envelope:
+        format: CloudEvents
+        signature_header: Cko-Signature
+        algorithm: ECDSA with SHA-512
+  - target: $.tags
+    update:
+      - name: testing
+        description: >-
+          Identity Verification supports simulated scenarios via magic
+          external_applicant_id values (see sandbox/ubble-sandbox.yml).

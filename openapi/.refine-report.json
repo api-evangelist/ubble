@@ -1,0 +1,34 @@
+{
+  "provider": "ubble",
+  "sources": [
+    "ubble-address-document-verifications-coming-soon-api-openapi.yml",
+    "ubble-aml-verifications-api-openapi.yml",
+    "ubble-applicants-api-openapi.yml",
+    "ubble-bank-document-verifications-coming-soon-api-openapi.yml",
+    "ubble-business-applicants-api-openapi.yml",
+    "ubble-company-document-verifications-coming-soon-api-openapi.yml",
+    "ubble-face-authentications-api-openapi.yml",
+    "ubble-id-document-verifications-api-openapi.yml",
+    "ubble-identity-verifications-api-openapi.yml",
+    "ubble-service-status-api-openapi.yml",
+    "ubble-website-verifications-coming-soon-api-openapi.yml"
+  ],
+  "outputs": [
+    "ubble-address-document-verifications-coming-soon-api-openapi.yml",
+    "ubble-aml-verifications-api-openapi.yml",
+    "ubble-applicants-api-openapi.yml",
+    "ubble-bank-document-verifications-coming-soon-api-openapi.yml",
+    "ubble-business-applicants-api-openapi.yml",
+    "ubble-company-document-verifications-coming-soon-api-openapi.yml",
+    "ubble-face-authentications-api-openapi.yml",
+    "ubble-id-document-verifications-api-openapi.yml",
+    "ubble-identity-verifications-api-openapi.yml",
+    "ubble-service-status-api-openapi.yml",
+    "ubble-website-verifications-coming-soon-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

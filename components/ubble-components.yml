@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ubble.ai/docs/web-integration/
+docs:
+  - https://docs.ubble.ai/docs/web-integration/
+  - https://docs.ubble.ai/docs/web-integration/redirect-using-an-iframe
+  - https://docs.ubble.ai/docs/web-integration/redirect-using-webview
+  - https://docs.ubble.ai/docs/web-integration/redirect-using-web-redirection
+  - https://docs.ubble.ai/docs/web-integration/redirect-to-mobile-for-verification
+  - https://docs.ubble.ai/docs/web-integration/customize-the-verification-user-experience
+model: >-
+  The capture experience is a hosted, prebuilt web application: creating an
+  attempt returns a verification URL the applicant is redirected to. Ubble
+  publishes integration surfaces for embedding or redirecting to that hosted
+  flow rather than a client-side component library.
+families:
+  - family: Hosted verification flow
+    kind: hosted-surface
+    description: Prebuilt capture web app reached via the attempt verification URL;
+      URL expires after 15 minutes by default.
+  - family: Iframe embed
+    kind: iframe
+    description: Embed the hosted verification flow in an iframe (camera/microphone
+      permission constraints documented; legacy v1 iframe SDK was served from
+      cdn.ubble.ai).
+    docs: https://docs.ubble.ai/docs/web-integration/redirect-using-an-iframe
+  - family: Webview embed
+    kind: webview
+    description: Open the hosted flow inside a mobile webview (iOS 14.3+ webview
+      compatibility notes in the legacy changelog).
+    docs: https://docs.ubble.ai/docs/web-integration/redirect-using-webview
+  - family: Web redirection
+    kind: redirect
+    description: Full-page redirect of the applicant to the verification URL, with
+      redirect_url back to the client site.
+    docs: https://docs.ubble.ai/docs/web-integration/redirect-using-web-redirection
+  - family: Desktop-to-mobile handoff
+    kind: redirect
+    description: Redirect the applicant from desktop to mobile to perform the capture.
+    docs: https://docs.ubble.ai/docs/web-integration/redirect-to-mobile-for-verification
+  - family: UX customization
+    kind: configuration
+    description: Customize the verification user experience and pre-select customer
+      details via configuration and request parameters.
+    docs: https://docs.ubble.ai/docs/web-integration/customize-the-verification-user-experience
+integration_examples:
+  repo: https://github.com/ubbleai/integration_examples
+  platforms: [Android (Kotlin), iOS (Swift), React Native]
+  notes: First-party examples of integrating the verification flow; no packaged
+    client SDK is published to public registries.

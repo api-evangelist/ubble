@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ubble.ai/docs/introduction/before-you-begin
+docs:
+  - https://docs.ubble.ai/docs/introduction/before-you-begin
+  - https://ubbleai.github.io/developer-documentation/#authentication
+  - https://docs.ubble.ai/docs/api-standard/signature
+summary:
+  types: [http-basic, mutualTLS]
+  api_key_in: []
+  oauth2_flows: []
+notes: >-
+  The published OpenAPI 3.0.3 contract declares no components.securitySchemes; the
+  authentication model is documented in the developer docs. API credentials are
+  created in the client dashboard (https://dashboard.ubble.ai/). The v2 docs
+  instruct clients to include an mTLS certificate in all API calls; the legacy v1
+  reference documents HTTP Basic authentication for standard accounts, with mutual
+  TLS added on top for certified accounts. Webhook notifications and (optionally)
+  API responses are signed with ECDSA/SHA-512 via the Cko-Signature header.
+schemes:
+  - name: basicAuth
+    type: http
+    scheme: basic
+    description: >-
+      HTTP Basic authentication using API credentials managed in the client
+      dashboard or by the account manager (legacy v1 reference; standard accounts).
+    sources:
+      - https://ubbleai.github.io/developer-documentation/#basic-authentication
+  - name: mutualTLS
+    type: mutualTLS
+    description: >-
+      Mutual TLS authentication. The v2 documentation instructs clients to include
+      their mTLS certificate in all API calls; in the legacy v1 reference mTLS is
+      required for certified accounts in addition to Basic authentication.
+    sources:
+      - https://docs.ubble.ai/docs/introduction/before-you-begin
+      - https://ubbleai.github.io/developer-documentation/#mutual-tls-authentication
+response_signing:
+  header: Cko-Signature
+  algorithm: ECDSA with SHA-512
+  format: '<timestamp>:<organization_id>-<test or live verification>-<key version>:<signature>'
+  public_keys: https://dashboard.ubble.ai/security (separate keys for test and live environments)
+  scope: Webhook notifications are signed by default; API response signing is enabled on request.
+  code_samples: https://github.com/ubbleai/code-samples

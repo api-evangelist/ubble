@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.ubble.ai/
+status_page: https://status.ubble.ai/
+status_page_title: Checkout Identity Verification Status
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://docs.ubble.ai/api
+  legacy:
+    version: v1 (identifications API)
+    docs: https://ubbleai.github.io/developer-documentation/
+    last_changelog_entry: v1.23 (2022-12-07)
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal published deprecation policy or RFC 8594 Sunset-header support was
+    found. Deprecations are recorded inline: legacy v1 endpoint init-no-video is
+    marked deprecated in the v1 reference, and several response codes (61205
+    sms_not_received, 61315 document_barcode_unreadable, 61414
+    various_faces_detected) are marked DEPRECATED in the v2 response-code registry.
+compatibility_policy:
+  notes: Adding new response codes is documented as backward compatible; clients
+    should key business rules on statuses, not response codes.
+  docs: https://docs.ubble.ai/docs/reference-info/response-codes
+sla:
+  url: null
+  notes: The configuration ID (usj_ prefix) encodes the service level agreement for
+    receiving results, per https://docs.ubble.ai/docs/id-document-verification/before-you-begin;
+    no public SLA page was found.
+deprecated_operations: []
+data_lifecycle:
+  anonymization: Every verification resource exposes a POST .../anonymize operation
+    (e.g. anonymize_identity_verification) supporting GDPR-aligned data erasure.
+url_expiration: Verification URLs expire by default 15 minutes after creation
+  (identity_verification_link_expired event).

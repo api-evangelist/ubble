@@ -1,0 +1,61 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of https://www.ubble.ai, https://api.ubble.ai, https://docs.ubble.ai
+notes: >-
+  No genuine /.well-known/ discovery documents were found. www.ubble.ai 301-redirects
+  every path (including /.well-known/*) to https://www.checkout.com/products/identity-verification;
+  api.ubble.ai returns 404 for all probed paths; docs.ubble.ai returns its Docusaurus
+  SPA shell (HTML, soft-404) for every unknown path including /.well-known/* and /llms.txt.
+  Absence recorded as valid probe data.
+hosts:
+  - host: https://www.ubble.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+        redirect: https://www.checkout.com/products/identity-verification
+      - path: /.well-known/openid-configuration
+        status: 301
+        redirect: https://www.checkout.com/products/identity-verification
+      - path: /.well-known/oauth-authorization-server
+        status: 301
+        redirect: https://www.checkout.com/products/identity-verification
+      - path: /.well-known/api-catalog
+        status: 301
+        redirect: https://www.checkout.com/products/identity-verification
+      - path: /.well-known/ai-plugin.json
+        status: 301
+        redirect: https://www.checkout.com/products/identity-verification
+  - host: https://api.ubble.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://docs.ubble.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        soft_404: true
+        note: Docusaurus SPA shell returned, not a security.txt
+      - path: /.well-known/openid-configuration
+        status: 200
+        soft_404: true
+        note: Docusaurus SPA shell returned, not an OIDC discovery document
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        soft_404: true
+        note: Docusaurus SPA shell returned
+      - path: /.well-known/api-catalog
+        status: 200
+        soft_404: true
+        note: Docusaurus SPA shell returned
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        soft_404: true
+        note: Docusaurus SPA shell returned

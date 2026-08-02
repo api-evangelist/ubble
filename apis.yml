@@ -1,22 +1,215 @@
 aid: ubble
 name: Ubble
-description: 'Ubble is a company surfaced as a portfolio company of partech and added to the API Evangelist
-  network as a stub for enrichment. Sector: Applicative SaaS. This profile is a lead awaiting the enrichment
-  pipeline.'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
+description: >-
+  Ubble is a Paris-founded identity verification company, now part of Checkout.com
+  and operated as the Checkout.com Identity Verification (Identities) solution.
+  Its API at api.ubble.ai powers video-based identity verification, ID document
+  verification, AML screening with ongoing monitoring, biometric face
+  authentication, and address/bank/company document and website verifications,
+  with a hosted capture flow, CloudEvents webhooks signed with ECDSA/SHA-512, and
+  a published OpenAPI 3.0.3 contract.
 url: https://raw.githubusercontent.com/api-evangelist/ubble/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - partech
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: enrichment pipeline completed local pass
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-- Applicative Saas
-apis: []
+- Identity Verification
+- KYC
+- AML
+- Biometrics
+- Face Authentication
+- Document Verification
+- Fraud Prevention
+- Compliance
+- Fintech
+apis:
+- aid: ubble:ubble-address-document-verifications-coming-soon-api
+  name: Ubble Address document verifications (Coming soon) API
+  description: >-
+    The Address document verifications (Coming soon) API from Ubble — 8 operation(s) for address document
+    verifications (coming soon).
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Address document verifications (Coming soon)
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-address-document-verifications-coming-soon-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-aml-verifications-api
+  name: Ubble AML verifications API
+  description: AML verification endpoints documentation.
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - AML verifications
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-aml-verifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-applicants-api
+  name: Ubble Applicants API
+  description: The Applicants API from Ubble — 3 operation(s) for applicants.
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Applicants
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-applicants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-bank-document-verifications-coming-soon-api
+  name: Ubble Bank document verifications (Coming soon) API
+  description: >-
+    The Bank document verifications (Coming soon) API from Ubble — 8 operation(s) for bank document verifications
+    (coming soon).
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Bank document verifications (Coming soon)
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-bank-document-verifications-coming-soon-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-business-applicants-api
+  name: Ubble Business applicants API
+  description: The Business applicants API from Ubble — 2 operation(s) for business applicants.
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Business applicants
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-business-applicants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-company-document-verifications-coming-soon-api
+  name: Ubble Company document verifications (Coming soon) API
+  description: >-
+    The Company document verifications (Coming soon) API from Ubble — 8 operation(s) for company document
+    verifications (coming soon).
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Company document verifications (Coming soon)
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-company-document-verifications-coming-soon-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-face-authentications-api
+  name: Ubble Face authentications API
+  description: The Face authentications API from Ubble — 7 operation(s) for face authentications.
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Face authentications
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-face-authentications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-id-document-verifications-api
+  name: Ubble ID document verifications API
+  description: API for ID document verification
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - ID document verifications
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-id-document-verifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-identity-verifications-api
+  name: Ubble Identity verifications API
+  description: The Identity verifications API from Ubble — 9 operation(s) for identity verifications.
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Identity verifications
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-identity-verifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-service-status-api
+  name: Ubble Service status API
+  description: The Service status API from Ubble — 1 operation(s) for service status.
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Service status
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-service-status-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
+- aid: ubble:ubble-website-verifications-coming-soon-api
+  name: Ubble Website verifications (Coming soon) API
+  description: >-
+    The Website verifications (Coming soon) API from Ubble — 4 operation(s) for website verifications
+    (coming soon).
+  humanURL: https://docs.ubble.ai/api
+  baseURL: https://api.ubble.ai
+  tags:
+  - Website verifications (Coming soon)
+  properties:
+  - type: OpenAPI
+    url: openapi/ubble-website-verifications-coming-soon-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ubble.ai/docs/introduction/
+  - type: APIReference
+    url: https://docs.ubble.ai/api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +218,61 @@ maintainers:
 common:
 - type: Website
   url: https://www.ubble.ai/
+- type: DeveloperPortal
+  url: https://dashboard.ubble.ai/
+- type: Documentation
+  url: https://docs.ubble.ai/docs/introduction/
+- type: APIReference
+  url: https://docs.ubble.ai/api
+- type: GettingStarted
+  url: https://docs.ubble.ai/docs/introduction/before-you-begin
+- type: Support
+  url: mailto:support.idv@checkout.com
+- type: Blog
+  url: https://www.checkout.com/blog
+- type: GitHubOrganization
+  url: https://github.com/ubbleai
+- type: StatusPage
+  url: https://status.ubble.ai/
+- type: Login
+  url: https://dashboard.ubble.ai/
+- type: TermsOfService
+  url: https://www.checkout.com/legal/terms-and-policies
+- type: PrivacyPolicy
+  url: https://www.checkout.com/legal/privacy-policy
+- type: Compliance
+  url: https://www.checkout.com/products/identity-verification
+- type: TrustCenter
+  url: security/ubble-trust-center.yml
+- type: DomainSecurity
+  url: security/ubble-domain-security.yml
+- type: Authentication
+  url: authentication/ubble-authentication.yml
+- type: Conventions
+  url: conventions/ubble-conventions.yml
+- type: ErrorCatalog
+  url: errors/ubble-problem-types.yml
+- type: ErrorCodes
+  url: errors/ubble-response-codes.yml
+- type: Lifecycle
+  url: lifecycle/ubble-lifecycle.yml
+- type: ChangeLog
+  url: changelog/ubble-changelog.yml
+- type: Sandbox
+  url: sandbox/ubble-sandbox.yml
+- type: Components
+  url: components/ubble-components.yml
+- type: DataModel
+  url: data-model/ubble-data-model.yml
+- type: Webhooks
+  url: asyncapi/ubble-webhooks.yml
+- type: MCPServer
+  url: mcp/ubble-mcp.yml
+- type: LLMsTxt
+  url: llms/ubble-llms.txt
+- type: Overlay
+  url: overlays/ubble-identity-verification-overlay.yaml
+- type: Conformance
+  url: conformance/ubble-conformance.yml
+- type: AgentSkill
+  url: skills/_index.yml

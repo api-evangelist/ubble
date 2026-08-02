@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: ubble-verify-identity.md
+    name: Verify a person's identity with Ubble (Checkout.com Identities API)
+    api: openapi/ubble-identity-verification-openapi-original.yml
+    operations: [create_applicant, create_identity_verification, create_attempt,
+      retrieve_identity_verification, fetch_attempts, pdf_identity_verification,
+      notify_identity_verification]
+  - file: ubble-aml-screening.md
+    name: Screen an applicant for AML risk with Ubble
+    api: openapi/ubble-identity-verification-openapi-original.yml
+    operations: [create_applicant, create_aml_verification, retrieve_aml_verification]
+  - file: ubble-face-authentication.md
+    name: Re-authenticate a returning user with Ubble face authentication
+    api: openapi/ubble-identity-verification-openapi-original.yml
+    operations: [create_face_authentication, create_attempt_face_authentication,
+      retrieve_face_authentication, fetch_attempts_face_authentication,
+      notify_face_authentication]

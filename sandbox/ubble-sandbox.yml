@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ubble.ai/docs/testing/
+docs:
+  - https://docs.ubble.ai/docs/testing/
+  - https://docs.ubble.ai/docs/testing/choose-your-scenario
+  - https://docs.ubble.ai/docs/testing/create-a-first-attempt
+  - https://docs.ubble.ai/docs/testing/verify-webhook-notifications
+access:
+  test_account: Contact your account manager or email support.idv@checkout.com to
+    obtain a test account.
+  dashboard: https://dashboard.ubble.ai/
+  test_vs_live: Separate signing public keys for test and live environments are
+    available in the dashboard security section; the Cko-Signature key ID encodes
+    test-vs-live (e.g. 3456-live-v1).
+scope: Testing is only available for Identity Verification.
+scenario_mechanism: >-
+  Create an applicant and set external_applicant_id to a magic test value; the
+  value selects the scenario simulated for verifications created against that
+  applicant. Values are published verbatim in the testing docs.
+test_values:
+  - scenario: Approved verification
+    external_applicant_id: eaplt_10000000000000000000000000
+  - scenario: Approved verification on retry after capture aborted
+    external_applicant_id: eaplt_61XXXA10000000000000000000
+  - scenario: Approved verification on retry after checks inconclusive
+    external_applicant_id: eaplt_61XXXI10000000000000000000
+  - scenario: Declined verification
+    external_applicant_id: eaplt_62XXX000000000000000000000
+  - scenario: Declined verification on retry after capture aborted
+    external_applicant_id: eaplt_61XXXA62XXX000000000000000
+  - scenario: Declined verification on retry after checks inconclusive
+    external_applicant_id: eaplt_61XXXI62XXX000000000000000
+notes:
+  - Replace 61XXX with any response code starting with 61 (retry_required) to test it.
+  - Replace 62XXX with any response code starting with 62 (declined) to test it,
+    e.g. eaplt_62201000000000000000000000 simulates decline 62201 document_photocopy.
+  - Response-code registry lives in errors/ubble-response-codes.yml.
+flow:
+  - Create an applicant (operationId create_applicant) with a scenario external_applicant_id.
+  - Create an identity verification (create_identity_verification) with the applicant_id.
+  - Create an attempt (create_attempt) with the identity_verification_id.
+  - Trigger webhook notifications manually with notify_identity_verification.

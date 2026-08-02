@@ -1,0 +1,88 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ubble-identity-verification-openapi-original.yml
+docs: https://docs.ubble.ai/docs/api-standard/resources-identifiers
+id_format: '{prefix}_{lower-case base-32 encoded GUID}'
+entities:
+- name: aml-verifications
+  id_prefix: amlv
+- name: applicants
+  id_prefix: aplt
+- name: business-applicants
+  id_prefix: bplt
+- name: face-authentication-attempt
+  id_prefix: fatp
+- name: face-authentications
+  id_prefix: fav
+- name: identity-verification-attempt
+  id_prefix: iatp
+- name: identity-verifications
+  id_prefix: idv
+- name: id-document-verification-attempt
+  id_prefix: datp
+- name: id-document-verifications
+  id_prefix: iddv
+- name: user-journey (configuration)
+  id_prefix: usj
+- name: website-verifications
+  id_prefix: wbv
+- name: events
+  id_prefix: evnt
+relationships:
+- from: applicant
+  to: identity-verification
+  type: has_many
+  via: applicant_id
+- from: applicant
+  to: id-document-verification
+  type: has_many
+  via: applicant_id
+- from: applicant
+  to: face-authentication
+  type: has_many
+  via: applicant_id
+- from: applicant
+  to: aml-verification
+  type: has_many
+  via: applicant_id
+- from: business-applicant
+  to: website-verification
+  type: has_many
+  via: applicant_id
+- from: business-applicant
+  to: company-document-verification
+  type: has_many
+  via: applicant_id
+- from: identity-verification
+  to: attempt
+  type: has_many
+  via: identity_verification_id
+- from: id-document-verification
+  to: attempt
+  type: has_many
+  via: id_document_verification_id
+- from: face-authentication
+  to: attempt
+  type: has_many
+  via: face_authentication_id
+- from: address-document-verification
+  to: attempt
+  type: has_many
+  via: address_document_verification_id
+- from: bank-document-verification
+  to: attempt
+  type: has_many
+  via: bank_document_verification_id
+- from: company-document-verification
+  to: attempt
+  type: has_many
+  via: company_document_verification_id
+- from: attempt
+  to: assets
+  type: has_many
+  via: attempt_id
+- from: verification
+  to: user-journey (configuration)
+  type: belongs_to
+  via: user_journey_id
+schemas_count: 210

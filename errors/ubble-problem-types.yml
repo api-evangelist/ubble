@@ -1,0 +1,252 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ubble-identity-verification-openapi-original.yml
+format: custom-envelope
+envelope:
+  description: For HTTP 400 and 422 the response body contains error_type (short description
+    code) and error_codes (list of detailed codes, formatted {error}, {target/attribute}__{error},
+    or {nested_object}__{object_attribute}__{error}).
+  fields:
+  - error_type
+  - error_codes
+  docs: https://docs.ubble.ai/docs/api-standard/error-handling
+  example:
+    error_type: invalid_request
+    error_codes:
+    - birth_date__invalid_format
+    - first_name__required
+    - phone_number__country_code__invalid
+problems:
+- status: 400
+  title: Bad request
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_applicant
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_business_applicant
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_face_authentication
+  - '... 2 more'
+- status: 400
+  title: Bad request.
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_identity_verification
+- status: 400
+  title: Bad request. One or more input parameters are invalid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#update_applicant
+- status: 400
+  title: Bad request. The applicant cannot be anonymized.
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_applicant
+- status: 400
+  title: Bad request. The face authentication cannot be anonymized.
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_face_authentication
+- status: 400
+  title: Bad request. The identity verification cannot be anonymized.
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_identity_verification
+- status: 401
+  title: Unauthorized
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_identity_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_website_verification
+- status: 404
+  title: Address Document Verification not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_address_document_verification
+- status: 404
+  title: Applicant not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_applicant
+  - openapi/ubble-identity-verification-openapi-original.yml#update_applicant
+- status: 404
+  title: Bank Document Verification not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_bank_document_verification
+- status: 404
+  title: Business applicant not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_business_applicant
+- status: 404
+  title: Company Document Verification not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_company_document_verification
+- status: 404
+  title: Face authentication not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_face_authentication
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_face_authentication
+- status: 404
+  title: ID document verification not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_id_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_id_document_verification
+- status: 404
+  title: Identity verification not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_applicant
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_identity_verification
+- status: 404
+  title: The PDF is not available
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#pdf_identity_verification
+- status: 404
+  title: The PDF report is not available
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#pdf_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#pdf_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#pdf_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#pdf_id_document_verification
+- status: 404
+  title: The provided Address Document Verification ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification_attempt
+- status: 404
+  title: The provided Bank Document Verification ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification_attempt
+- status: 404
+  title: The provided Company Document Verification ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification_attempt
+- status: 404
+  title: The provided ID document verification ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification_attempt
+- status: 404
+  title: The provided document verification ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_id_document_verification
+- status: 404
+  title: The provided document verification attempt ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_id_document_verification
+- status: 404
+  title: The provided face authentication ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_face_authentication
+  - openapi/ubble-identity-verification-openapi-original.yml#create_attempt_face_authentication
+- status: 404
+  title: The provided face authentication ID or attempt ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_face_authentication
+- status: 404
+  title: The provided verification ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts
+  - openapi/ubble-identity-verification-openapi-original.yml#create_attempt
+- status: 404
+  title: The provided verification ID or attempt ID is not valid
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts
+- status: 404
+  title: Website verification not found
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_website_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_website_verification
+- status: 409
+  title: The Address Document Verification is not in a valid state to create an attempt.
+    The Address Document Verification status must be `created` or `retry_required`
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification_attempt
+- status: 409
+  title: The Bank Document Verification is not in a valid state to create an attempt.
+    The Bank Document Verification status must be `created` or `retry_required`
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification_attempt
+- status: 409
+  title: The Company Document Verification is not in a valid state to create an attempt.
+    The Company Document Verification status must be `created` or `retry_required`
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification_attempt
+- status: 409
+  title: The ID document verification is not in a valid state to create an attempt.
+    The ID document verification status must be `created` or `retry_required`
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification_attempt
+- status: 409
+  title: The current face authentication status does not allow the creation of a new
+    attempt. The face authentication status must be either `created`, `pending`, `capture_in_progress`,
+    or `retry_required`
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_attempt_face_authentication
+- status: 409
+  title: The current verification status does not allow the creation of a new attempt.
+    The verification status must be either `created`, `pending`, `capture_in_progress`,
+    or `retry_required`
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_attempt
+- status: 422
+  title: Unprocessable entity
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_identity_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_website_verification
+- status: 500
+  title: An error occurred while creating the attempt
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification_attempt
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification_attempt
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification_attempt
+  - openapi/ubble-identity-verification-openapi-original.yml#create_attempt_face_authentication
+  - openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification_attempt
+  - openapi/ubble-identity-verification-openapi-original.yml#create_attempt
+- status: 500
+  title: An error occurred while fetching the attempt
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_face_authentication
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_id_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts
+- status: 500
+  title: An error occurred while fetching the attempts
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_face_authentication
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts_id_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#list_attempts
+- status: 500
+  title: Internal server error
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#retrieve_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#update_applicant
+  - openapi/ubble-identity-verification-openapi-original.yml#anonymize_applicant
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification
+  - '... 15 more'
+- status: 500
+  title: Internal server error.
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_identity_verification
+- status: 503
+  title: Service unavailable
+  operations:
+  - openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_identity_verification
+  - openapi/ubble-identity-verification-openapi-original.yml#create_website_verification

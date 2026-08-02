@@ -1,0 +1,86 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.ubble.ai/docs/api-standard/
+docs:
+  - https://docs.ubble.ai/docs/api-standard/content-type
+  - https://docs.ubble.ai/docs/api-standard/pagination
+  - https://docs.ubble.ai/docs/api-standard/error-handling
+  - https://docs.ubble.ai/docs/api-standard/resources-identifiers
+  - https://docs.ubble.ai/docs/api-standard/signature
+  - https://docs.ubble.ai/docs/api-standard/required-tag
+authentication:
+  style: HTTP Basic + mutual TLS (see authentication/ubble-authentication.yml)
+  artifact: authentication/ubble-authentication.yml
+content_type:
+  request: application/json
+  response: application/json
+idempotency:
+  supported: false
+  notes: No idempotency-key header or retry-safety contract is documented in the
+    v2 API standard pages or the OpenAPI contract.
+pagination:
+  style: offset
+  request_params:
+    - name: skip
+      description: 'Number of items to skip (offset). Default: 0'
+    - name: limit
+      description: 'Maximum number of items to return per page. Default: 10'
+  response_fields:
+    - total_count
+    - skip
+    - limit
+    - data
+    - _links
+  navigation_links:
+    object: _links
+    links: [self, next, previous]
+    recommended: true
+  docs: https://docs.ubble.ai/docs/api-standard/pagination
+resource_identifiers:
+  format: '{prefix}_{lower-case base-32 encoded GUID}'
+  prefixes:
+    amlv: aml-verifications
+    aplt: applicants
+    fatp: face-authentication-attempt
+    fav: face-authentications
+    iatp: identity-verification-attempt
+    idv: identity-verifications
+    datp: id-document-verification-attempt
+    iddv: id-document-verifications
+    usj: user-journey (configuration ID)
+  docs: https://docs.ubble.ai/docs/api-standard/resources-identifiers
+error_envelope:
+  applies_to: [400, 422]
+  fields:
+    - error_type: short description code (e.g. invalid_request)
+    - error_codes: list of detailed codes formatted {error}, {target/attribute}__{error},
+        or {nested_object}__{object_attribute}__{error}
+  artifact: errors/ubble-problem-types.yml
+  domain_codes: errors/ubble-response-codes.yml
+response_signing:
+  header: Cko-Signature
+  algorithm: ECDSA with SHA-512
+  signed_by_default: webhooks
+  api_responses: opt-in via account manager
+  docs: https://docs.ubble.ai/docs/api-standard/signature
+webhooks:
+  delivery_expectation: Return 200 or 201 within 10 seconds
+  retries: up to 2
+  manual_trigger: notify endpoints (e.g. notify_identity_verification)
+  user_agent: CkoIdvNotifier
+  ip_whitelisting: hosted in cloudgouv-eu-west-1 (Outscale); public IPs published at
+    https://docs.outscale.com/en/userguide/OUTSCALE-Public-IPs.html
+  artifact: asyncapi/ubble-webhooks.yml
+versioning:
+  scheme: uri-path
+  current: v2
+  notes: v2 resources live under /v2/*; the legacy v1 identifications API is documented
+    at https://ubbleai.github.io/developer-documentation/ with its own dated changelog.
+  artifact: lifecycle/ubble-lifecycle.yml
+compatibility:
+  notes: Adding new response codes is considered backward compatible; clients should
+    build business rules on statuses and treat response codes as additional information.
+  docs: https://docs.ubble.ai/docs/reference-info/response-codes
+rate_limits:
+  documented: false
+  notes: No rate-limit headers or quotas are documented in the v2 API standard pages.

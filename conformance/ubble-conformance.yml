@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ubble-identity-verification-openapi-original.yml + docs.ubble.ai
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 security scheme in the OpenAPI or docs; authentication is
+      HTTP Basic plus mutual TLS.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery document on any Ubble host (probed 2026-07-21).
+  - id: mutual-tls
+    conforms: true
+    evidence: v2 docs instruct including an mTLS certificate in all API calls;
+      legacy v1 requires mTLS for certified accounts
+      (https://docs.ubble.ai/docs/introduction/before-you-begin).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom envelope (error_type + error_codes), not
+      application/problem+json (https://docs.ubble.ai/docs/api-standard/error-handling).
+  - id: pagination
+    conforms: true
+    evidence: Documented offset pagination (skip/limit) with _links navigation
+      object (https://docs.ubble.ai/docs/api-standard/pagination).
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key contract documented in the v2 API standard or OpenAPI.
+  - id: cloudevents
+    conforms: true
+    evidence: Webhook bodies use the CloudEvents envelope (specversion, type,
+      subject, time, datacontenttype, data) per https://docs.ubble.ai/docs/webhooks/.
+  - id: json-api
+    conforms: false
+    evidence: Legacy v1 identifications API followed JSON:API
+      (https://ubbleai.github.io/developer-documentation/#json-api); the current v2
+      API uses plain JSON resources.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: No /.well-known/security.txt on www/api/docs hosts (probed 2026-07-21).
+  - id: gdpr
+    conforms: true
+    evidence: GDPR claimed on the Checkout.com Identity Verification product page
+      (https://www.checkout.com/products/identity-verification); every verification
+      resource exposes an anonymize operation for data erasure.
+  - id: cross-cutting-webhook-signing
+    conforms: true
+    evidence: All webhook deliveries signed by default with ECDSA/SHA-512 via the
+      Cko-Signature header (https://docs.ubble.ai/docs/api-standard/signature).

@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+source: https://www.checkout.com/products/identity-verification
+url: https://www.checkout.com/products/identity-verification
+certifications:
+- GDPR
+evidence:
+- source: https://www.checkout.com/products/identity-verification
+  keywords:
+  - trust center
+  - gdpr

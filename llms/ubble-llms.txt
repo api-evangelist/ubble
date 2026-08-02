@@ -1,0 +1,38 @@
+# Ubble (Checkout.com Identity Verification)
+
+> Ubble is Checkout.com's identity verification (IDV) solution — video-based identity verification, ID document verification, AML screening, face authentication, and website verification, delivered as the Checkout.com Identities API (api.ubble.ai). Ubble was founded in Paris and is now part of Checkout.com; www.ubble.ai redirects to the Checkout.com Identity Verification product page.
+
+Authentication is HTTP Basic plus mutual TLS (certificates and credentials managed in the dashboard). Webhook notifications use a CloudEvents envelope and are signed with ECDSA/SHA-512 via the Cko-Signature header. Errors use an error_type + error_codes envelope; list endpoints paginate with skip/limit and _links. Resource IDs are formatted {prefix}_{base-32 GUID} (idv_, aplt_, fav_, iddv_, usj_, ...).
+
+## APIs
+
+- [Checkout.com Identities API (v2)](https://docs.ubble.ai/api): 67 operations at https://api.ubble.ai — identity verifications, ID document verifications, AML verifications, face authentications, applicants, business applicants, address/bank/company document verifications, website verifications.
+- [Legacy v1 identifications API](https://ubbleai.github.io/developer-documentation/): previous-generation JSON:API reference (changelog ends v1.23, 2022-12-07).
+
+## Specs
+
+- [OpenAPI 3.0.3 (YAML)](https://docs.ubble.ai/openapi.yaml): the published contract for the v2 Identities API.
+- [Repo copy](openapi/ubble-identity-verification-openapi-original.yml): harvested verbatim 2026-07-21.
+
+## Docs
+
+- [Documentation](https://docs.ubble.ai/docs/introduction/): product and integration guides.
+- [API Reference](https://docs.ubble.ai/api): rendered from the OpenAPI contract.
+- [Before you begin](https://docs.ubble.ai/docs/introduction/before-you-begin): test account, credentials, mTLS, webhook URL.
+- [API standard](https://docs.ubble.ai/docs/api-standard/): content type, pagination, error handling, resource identifiers, response signing.
+- [Testing](https://docs.ubble.ai/docs/testing/): magic external_applicant_id values simulate approved/declined/retry scenarios.
+- [Webhooks](https://docs.ubble.ai/docs/webhooks/): event catalog per verification type, retry policy, signature verification.
+- [Response codes](https://docs.ubble.ai/docs/reference-info/response-codes): the 61xxx/62xxx/71xxx/72xxx verification outcome registry.
+- [Status page](https://status.ubble.ai/): Checkout Identity Verification status.
+- [GitHub organization](https://github.com/ubbleai): docs source, signature code samples, integration examples (Android/iOS/React Native).
+
+## Repo artifacts
+
+- [Authentication profile](authentication/ubble-authentication.yml)
+- [Conventions](conventions/ubble-conventions.yml)
+- [Webhook catalog](asyncapi/ubble-webhooks.yml)
+- [Error envelope + HTTP errors](errors/ubble-problem-types.yml)
+- [Response-code registry](errors/ubble-response-codes.yml)
+- [Sandbox / test scenarios](sandbox/ubble-sandbox.yml)
+- [Lifecycle](lifecycle/ubble-lifecycle.yml)
+- [Data model](data-model/ubble-data-model.yml)

@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: https://ubbleai.github.io/developer-documentation/#changelog
+scheme: dated versions (v1.x) for the legacy v1 identifications API; the v2
+  Identities API publishes no dated changelog page (compatibility notes are inline
+  in the docs).
+current_version: v1.23 (legacy v1 reference; v2 API is the current product surface)
+entries:
+  - version: v1.23
+    date: '2022-12-07'
+    breaking: false
+    highlights:
+      - Add Certified Documentation (certified.html)
+  - version: v1.22
+    date: '2022-08-25'
+    breaking: false
+    highlights:
+      - Update comment field documentation
+      - More detail on POST image upload
+      - Known issues for iframe integration
+  - version: v1.21
+    date: '2022-07-05'
+    breaking: false
+    highlights:
+      - Update residence-address
+  - version: v1.20
+    date: '2022-06-13'
+    breaking: false
+    highlights:
+      - Add residence-address
+      - Add car-driving-license-expiry-date
+  - version: v1.19
+    date: '2022-05-10'
+    breaking: false
+    highlights:
+      - Add all-first-names
+      - Add tax-identification-number
+  - version: v1.18
+    date: '2022-02-10'
+    breaking: false
+    highlights:
+      - Change iframe SDK address to cdn.ubble.ai
+notes: >-
+  Full v1 history runs v1.1 (2018-09-01) through v1.23 (2022-12-07) on the legacy
+  reference page. The v2 docs state that adding new response codes is considered
+  backward compatible.

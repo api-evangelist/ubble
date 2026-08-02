@@ -1,0 +1,347 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/ubble-identity-verification-openapi-original.yml
+notes: No official Ubble / Checkout.com Identity Verification MCP server was found
+  (npm, MCP registries, docs searched 2026-07-21). Candidate tool list derived from
+  the published OpenAPI 3.0.3 contract.
+server:
+  name: ubble
+  transport: http
+  url: null
+tools:
+- name: retrieve_api_health
+  description: Retrieve API health
+  method: GET
+  path: /health
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_api_health
+- name: create_address_document_verification
+  description: Create an Address Document Verification
+  method: POST
+  path: /v2/address-document-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification
+- name: retrieve_address_document_verification
+  description: Retrieve an Address Document Verification
+  method: GET
+  path: /v2/address-document-verifications/{address_document_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_address_document_verification
+- name: anonymize_address_document_verification
+  description: Anonymize an Address Document Verification
+  method: POST
+  path: /v2/address-document-verifications/{address_document_verification_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_address_document_verification
+- name: list_attempts_address_document_verification
+  description: List Address Document Verification attempts
+  method: GET
+  path: /v2/address-document-verifications/{address_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#list_attempts_address_document_verification
+- name: create_address_document_verification_attempt
+  description: Create an Address Document Verification attempt
+  method: POST
+  path: /v2/address-document-verifications/{address_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_address_document_verification_attempt
+- name: fetch_attempts_address_document_verification
+  description: Retrieve an Address Document Verification attempt
+  method: GET
+  path: /v2/address-document-verifications/{address_document_verification_id}/attempts/{attempt_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_address_document_verification
+- name: fetch_asset_address_document_verification_attempt
+  description: Retrieve an Address Document Verification attempt asset
+  method: GET
+  path: /v2/address-document-verifications/{address_document_verification_id}/attempts/{attempt_id}/assets
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_asset_address_document_verification_attempt
+- name: notify_address_document_verification
+  description: Request webhook notification
+  method: POST
+  path: /v2/address-document-verifications/{address_document_verification_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_address_document_verification
+- name: pdf_address_document_verification
+  description: Retrieve PDF report of an Address Document Verification
+  method: GET
+  path: /v2/address-document-verifications/{address_document_verification_id}/pdf-report
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#pdf_address_document_verification
+- name: create_aml_verification
+  description: Create an AML verification
+  method: POST
+  path: /v2/aml-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_aml_verification
+- name: retrieve_aml_verification
+  description: Retrieve an AML verification
+  method: GET
+  path: /v2/aml-verifications/{aml_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_aml_verification
+- name: create_applicant
+  description: Create an Applicant
+  method: POST
+  path: /v2/applicants
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_applicant
+- name: retrieve_applicant
+  description: Retrieve an Applicant
+  method: GET
+  path: /v2/applicants/{applicant_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_applicant
+- name: update_applicant
+  description: Update an Applicant
+  method: PATCH
+  path: /v2/applicants/{applicant_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#update_applicant
+- name: anonymize_applicant
+  description: Anonymize an Applicant
+  method: POST
+  path: /v2/applicants/{applicant_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_applicant
+- name: create_bank_document_verification
+  description: Create a Bank Document Verification
+  method: POST
+  path: /v2/bank-document-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification
+- name: retrieve_bank_document_verification
+  description: Retrieve a Bank Document Verification
+  method: GET
+  path: /v2/bank-document-verifications/{bank_document_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_bank_document_verification
+- name: anonymize_bank_document_verification
+  description: Anonymize a Bank Document Verification
+  method: POST
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_bank_document_verification
+- name: list_attempts_bank_document_verification
+  description: List Bank Document Verification attempts
+  method: GET
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#list_attempts_bank_document_verification
+- name: create_bank_document_verification_attempt
+  description: Create a Bank Document Verification attempt
+  method: POST
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_bank_document_verification_attempt
+- name: fetch_attempts_bank_document_verification
+  description: Retrieve a Bank Document Verification attempt
+  method: GET
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/attempts/{attempt_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_bank_document_verification
+- name: fetch_asset_bank_document_verification_attempt
+  description: Retrieve a Bank Document Verification attempt asset
+  method: GET
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/attempts/{attempt_id}/assets
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_asset_bank_document_verification_attempt
+- name: notify_bank_document_verification
+  description: Request webhook notification
+  method: POST
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_bank_document_verification
+- name: pdf_bank_document_verification
+  description: Retrieve PDF report of a Bank Document Verification
+  method: GET
+  path: /v2/bank-document-verifications/{bank_document_verification_id}/pdf-report
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#pdf_bank_document_verification
+- name: create_business_applicant
+  description: Create a Business Applicant
+  method: POST
+  path: /v2/business-applicants
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_business_applicant
+- name: retrieve_business_applicant
+  description: Retrieve a Business Applicant
+  method: GET
+  path: /v2/business-applicants/{business_applicant_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_business_applicant
+- name: create_company_document_verification
+  description: Create a Company Document Verification
+  method: POST
+  path: /v2/company-document-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification
+- name: retrieve_company_document_verification
+  description: Retrieve a Company Document Verification
+  method: GET
+  path: /v2/company-document-verifications/{company_document_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_company_document_verification
+- name: anonymize_company_document_verification
+  description: Anonymize a Company Document Verification
+  method: POST
+  path: /v2/company-document-verifications/{company_document_verification_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_company_document_verification
+- name: list_attempts_company_document_verification
+  description: List Company Document Verification attempts
+  method: GET
+  path: /v2/company-document-verifications/{company_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#list_attempts_company_document_verification
+- name: create_company_document_verification_attempt
+  description: Create a Company Document Verification attempt
+  method: POST
+  path: /v2/company-document-verifications/{company_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_company_document_verification_attempt
+- name: fetch_attempts_company_document_verification
+  description: Retrieve a Company Document Verification attempt
+  method: GET
+  path: /v2/company-document-verifications/{company_document_verification_id}/attempts/{attempt_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_company_document_verification
+- name: fetch_asset_company_document_verification_attempt
+  description: Retrieve a Company Document Verification attempt asset
+  method: GET
+  path: /v2/company-document-verifications/{company_document_verification_id}/attempts/{attempt_id}/assets
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_asset_company_document_verification_attempt
+- name: notify_company_document_verification
+  description: Request webhook notification
+  method: POST
+  path: /v2/company-document-verifications/{company_document_verification_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_company_document_verification
+- name: pdf_company_document_verification
+  description: Retrieve PDF report of a Company Document Verification
+  method: GET
+  path: /v2/company-document-verifications/{company_document_verification_id}/pdf-report
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#pdf_company_document_verification
+- name: create_and_start_identity_verification
+  description: Create and start an identity verification
+  method: POST
+  path: /v2/create-and-start-idv
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_and_start_identity_verification
+- name: create_face_authentication
+  description: Create a face authentication
+  method: POST
+  path: /v2/face-authentications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_face_authentication
+- name: retrieve_face_authentication
+  description: Retrieve a face authentication
+  method: GET
+  path: /v2/face-authentications/{face_authentication_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_face_authentication
+- name: anonymize_face_authentication
+  description: Anonymize a face authentication
+  method: POST
+  path: /v2/face-authentications/{face_authentication_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_face_authentication
+- name: list_attempts_face_authentication
+  description: List attempts
+  method: GET
+  path: /v2/face-authentications/{face_authentication_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#list_attempts_face_authentication
+- name: create_attempt_face_authentication
+  description: Create an attempt
+  method: POST
+  path: /v2/face-authentications/{face_authentication_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_attempt_face_authentication
+- name: fetch_attempts_face_authentication
+  description: Retrieve an attempt
+  method: GET
+  path: /v2/face-authentications/{face_authentication_id}/attempts/{attempt_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_face_authentication
+- name: retrieve_face_authentication_attempt_assets
+  description: Retrieve attempt assets
+  method: GET
+  path: /v2/face-authentications/{face_authentication_id}/attempts/{attempt_id}/assets
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_face_authentication_attempt_assets
+- name: notify_face_authentication
+  description: Request webhook notification
+  method: POST
+  path: /v2/face-authentications/{face_authentication_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_face_authentication
+- name: create_id_document_verification
+  description: Create an ID document verification
+  method: POST
+  path: /v2/id-document-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification
+- name: retrieve_id_document_verification
+  description: Retrieve an ID document verification
+  method: GET
+  path: /v2/id-document-verifications/{id_document_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_id_document_verification
+- name: anonymize_id_document_verification
+  description: Anonymize an ID document verification
+  method: POST
+  path: /v2/id-document-verifications/{id_document_verification_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_id_document_verification
+- name: list_attempts_id_document_verification
+  description: List ID document verification attempts
+  method: GET
+  path: /v2/id-document-verifications/{id_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#list_attempts_id_document_verification
+- name: create_id_document_verification_attempt
+  description: Create an ID document verification attempt
+  method: POST
+  path: /v2/id-document-verifications/{id_document_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_id_document_verification_attempt
+- name: fetch_attempts_id_document_verification
+  description: Retrieve an ID document verification attempt
+  method: GET
+  path: /v2/id-document-verifications/{id_document_verification_id}/attempts/{attempt_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts_id_document_verification
+- name: fetch_asset_id_document_verification_attempt
+  description: Retrieve an ID document verification attempt asset
+  method: GET
+  path: /v2/id-document-verifications/{id_document_verification_id}/attempts/{attempt_id}/assets
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_asset_id_document_verification_attempt
+- name: notify_id_document_verification
+  description: Request webhook notification
+  method: POST
+  path: /v2/id-document-verifications/{id_document_verification_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_id_document_verification
+- name: pdf_id_document_verification
+  description: Retrieve PDF report of an ID document verification
+  method: GET
+  path: /v2/id-document-verifications/{id_document_verification_id}/pdf-report
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#pdf_id_document_verification
+- name: create_identity_verification
+  description: Create an identity verification
+  method: POST
+  path: /v2/identity-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_identity_verification
+- name: retrieve_identity_verification
+  description: Retrieve an identity verification
+  method: GET
+  path: /v2/identity-verifications/{identity_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_identity_verification
+- name: anonymize_identity_verification
+  description: Anonymize an identity verification
+  method: POST
+  path: /v2/identity-verifications/{identity_verification_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_identity_verification
+- name: list_attempts
+  description: List attempts
+  method: GET
+  path: /v2/identity-verifications/{identity_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#list_attempts
+- name: create_attempt
+  description: Create an attempt
+  method: POST
+  path: /v2/identity-verifications/{identity_verification_id}/attempts
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_attempt
+- name: fetch_attempts
+  description: Retrieve an attempt
+  method: GET
+  path: /v2/identity-verifications/{identity_verification_id}/attempts/{attempt_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#fetch_attempts
+- name: retrieve_identity_verification_attempt_assets
+  description: Retrieve attempt assets
+  method: GET
+  path: /v2/identity-verifications/{identity_verification_id}/attempts/{attempt_id}/assets
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_identity_verification_attempt_assets
+- name: notify_identity_verification
+  description: Request webhook notification
+  method: POST
+  path: /v2/identity-verifications/{identity_verification_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_identity_verification
+- name: pdf_identity_verification
+  description: Retrieve PDF report of an identity verification
+  method: GET
+  path: /v2/identity-verifications/{identity_verification_id}/pdf-report
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#pdf_identity_verification
+- name: create_website_verification
+  description: Create a website verification
+  method: POST
+  path: /v2/website-verifications
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#create_website_verification
+- name: retrieve_website_verification
+  description: Retrieve a website verification
+  method: GET
+  path: /v2/website-verifications/{website_verification_id}
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#retrieve_website_verification
+- name: anonymize_website_verification
+  description: Anonymize a website verification
+  method: POST
+  path: /v2/website-verifications/{website_verification_id}/anonymize
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#anonymize_website_verification
+- name: notify_website_verification
+  description: Request webhook notification
+  method: POST
+  path: /v2/website-verifications/{website_verification_id}/notify
+  source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_website_verification
