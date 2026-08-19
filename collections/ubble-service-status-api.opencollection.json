@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Service status API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve API health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/health"
+          },
+          "docs": "This endpoint allows you to get the health of our api, anything other than a 200 status code is not OK"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

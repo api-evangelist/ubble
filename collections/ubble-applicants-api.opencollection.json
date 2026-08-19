@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Applicants API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applicants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/applicants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This section describes all endpoints related to applicants. It will enable you to create and manage applicant objects."
+        },
+        {
+          "info": {
+            "name": "Retrieve an Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/applicants/:applicant_id",
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Applicant to return"
+              }
+            ]
+          },
+          "docs": "Retrieve an Applicant"
+        },
+        {
+          "info": {
+            "name": "Update an Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.ubble.ai/v2/applicants/:applicant_id",
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Applicant to return"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an Applicant"
+        },
+        {
+          "info": {
+            "name": "Anonymize an Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/applicants/:applicant_id/anonymize",
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the applicant to anonymize"
+              }
+            ]
+          },
+          "docs": "Anonymize the personal data of an applicant with the specified ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

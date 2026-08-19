@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) AML verifications API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AML verifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an AML verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/aml-verifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create an AML verification. You should get a `201` response."
+        },
+        {
+          "info": {
+            "name": "Retrieve an AML verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/aml-verifications/:aml_verification_id",
+            "params": [
+              {
+                "name": "aml_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AML verification"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get the detailed results of an AML verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Face authentications API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Face authentications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a face authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/face-authentications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a face authentication."
+        },
+        {
+          "info": {
+            "name": "Retrieve a face authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the face authentication"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get the detailed results of a face authentication."
+        },
+        {
+          "info": {
+            "name": "Anonymize a face authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id/anonymize",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the face authentication to anonymize"
+              }
+            ]
+          },
+          "docs": "Anonymize the personal data of a face authentication with the specified ID."
+        },
+        {
+          "info": {
+            "name": "List attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id/attempts",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the face authentication"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip (offset)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to list all attempts of a face authentication.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n"
+        },
+        {
+          "info": {
+            "name": "Create an attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id/attempts",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the face authentication"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a new Attempt. It is possible when the face-authentication is in one of the following statuses `created`, `pending`, `capture_in_progress`, `retry_required`"
+        },
+        {
+          "info": {
+            "name": "Retrieve an attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id/attempts/:attempt_id",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the face authentication"
+              },
+              {
+                "name": "attempt_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the attempt"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve the details for a given attempt"
+        },
+        {
+          "info": {
+            "name": "Retrieve attempt assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id/attempts/:attempt_id/assets",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the face authentication"
+              },
+              {
+                "name": "attempt_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the attempt"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip (offset)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page"
+              }
+            ]
+          },
+          "docs": "Retrieves the assets associated with a face authentication attempt.\nThis includes face images and videos captured during the verification process.\nPlease note that videos are not exposed by default, contact your account manager to enable this feature.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n"
+        },
+        {
+          "info": {
+            "name": "Request webhook notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/face-authentications/:face_authentication_id/notify",
+            "params": [
+              {
+                "name": "face_authentication_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the face authentication to notify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used to initiate a webhook call containing the latest event of a face authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

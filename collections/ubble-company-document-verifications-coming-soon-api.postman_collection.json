@@ -1,0 +1,1759 @@
+{
+  "item": [
+    {
+      "id": "814d8501-842e-48c4-9ce2-6e93f6fe74dc",
+      "name": "Company document verifications (Coming soon)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec6d5d10-38bc-44d4-b9dc-b9d0bde1fde6",
+          "name": "Create a Company Document Verification",
+          "request": {
+            "name": "Create a Company Document Verification",
+            "description": {
+              "content": "Creates a Company Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e6170b4-532b-4594-b85e-483793c1d9c1",
+              "name": "Company Document Verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21T17:32:28Z\",\n  \"modified_on\": \"2017-07-21T17:40:32Z\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  },\n  \"company_document\": {\n    \"company_number\": \"12-3456789\",\n    \"registered_name\": \"Acme Corporation\",\n    \"legal_address\": {\n      \"address_line1\": \"123 Main St\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zip\": \"10001\",\n      \"country\": \"US\"\n    },\n    \"issue_date\": \"2023-01-15\",\n    \"registration_date\": \"2020-05-10\",\n    \"document_type\": \"ein_letter\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b96ec4cb-50bc-4862-9f2d-15db060ce478",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35ce8a12-4ab4-46e9-85b1-210b5a17f91b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ebe32824-17a7-4532-aaa7-40727bb29775",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b5ff617-1b02-491f-8465-804877e981d0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdd0100b-f58c-4333-9d76-fb1688f6d5ba",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc564995-55e8-4698-bdef-5a21e8729e34",
+          "name": "Retrieve a Company Document Verification",
+          "request": {
+            "name": "Retrieve a Company Document Verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of a Company Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d1cdfd2-8346-4f27-91d8-6f5832d3b543",
+              "name": "Company Document Verification retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"id\": \"cdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"response_codes\": [\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"status\": \"checks_in_progress\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"risk_labels\": [\n    \"mcc_not_confident\",\n    \"mcc_not_confident\"\n  ],\n  \"company_document\": {\n    \"company_number\": \"string\",\n    \"company_name\": \"string\",\n    \"registered_address\": {\n      \"address_line1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"address_line2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"city\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"state\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"zip\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"country\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"issue_date\": \"1980-05-20\",\n    \"registration_date\": \"1990-06-21\",\n    \"document_type\": \"ein_letter\"\n  },\n  \"webhook_url\": \"<uri>\",\n  \"declared_data\": {\n    \"registered_name\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a8ada12-704c-4d0d-ac70-9215b99bdd30",
+              "name": "Company Document Verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11d15abb-29e8-454e-970d-2a4d3859bd7d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e3699f3-b832-434f-ac47-1ee2eeb801a1",
+          "name": "Anonymize a Company Document Verification",
+          "request": {
+            "name": "Anonymize a Company Document Verification",
+            "description": {
+              "content": "Anonymize the personal data of a Company Document Verification with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the document verification to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57242cb6-3570-4217-883f-ad7933d70f8d",
+              "name": "Company Document Verification anonymized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50520b4c-6371-4ebe-8ab0-1124dd464c18",
+              "name": "Company Document Verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f753f747-6e37-4926-8eb8-2ef71c268134",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53445e67-148c-426e-860c-e522d2dbb472",
+          "name": "List Company Document Verification attempts",
+          "request": {
+            "name": "List Company Document Verification attempts",
+            "description": {
+              "content": "This endpoint allows you to list all attempts of a Company Document Verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15c45b59-e864-4184-937c-7f2861ba1d1b",
+              "name": "Company Document Verification attempts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 2,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"data\": [\n    {\n      \"id\": \"cdv_tkoi5db4hryu5cei5vwoabr7we\",\n      \"created_on\": \"2017-07-21 17:32:28+00:00\",\n      \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n      \"status\": \"completed\",\n      \"response_codes\": [],\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123\"\n        }\n      }\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8054e484-178d-44ff-8f41-b531e2ef961c",
+              "name": "The provided document verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1deff0e-54af-4281-ab14-1e573f4402bd",
+              "name": "An error occurred while fetching the attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa68c7f9-2a15-4b7e-a90c-27f2979a530d",
+          "name": "Create a Company Document Verification attempt",
+          "request": {
+            "name": "Create a Company Document Verification attempt",
+            "description": {
+              "content": "This endpoint allows you to create a Company Document Verification attempt. It is possible when the Company Document Verification is one of the following statuses: `created`, `retry_required`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "1",
+                  "value": "o",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "2",
+                  "value": "b",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "3",
+                  "value": "j",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "4",
+                  "value": "e",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "5",
+                  "value": "c",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "6",
+                  "value": "t",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b50e2ca5-1f85-40ae-bfc5-3de03999223a",
+              "name": "Company Document Verification attempt created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58954f8d-1322-482a-af91-d89b47f45304",
+              "name": "The provided Company Document Verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2182a72-5f5c-49ab-b5ab-7d0e084de5fc",
+              "name": "The Company Document Verification is not in a valid state to create an attempt. The Company Document Verification status must be `created` or `retry_required`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fad88822-2ff0-4dec-b15e-5a2470896e1b",
+              "name": "An error occurred while creating the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c158fcc-005a-45ce-856e-22ff7db2a723",
+          "name": "Retrieve a Company Document Verification attempt",
+          "request": {
+            "name": "Retrieve a Company Document Verification attempt",
+            "description": {
+              "content": "This endpoint allows you to retrieve the details for a given Company Document Verification attempt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "attempts",
+                ":attempt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the document verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2f67cd4-3bea-4287-a5b5-b028b869b1ed",
+              "name": "Company Document Verification attempt retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a04c245-7a58-4392-97b1-a018a054358e",
+              "name": "The provided document verification attempt ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "819ca23a-3e95-4513-a797-fc8ffc4c7a44",
+              "name": "An error occurred while fetching the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb1dae86-4906-4a84-bb68-a8e96baf9b1f",
+          "name": "Retrieve a Company Document Verification attempt asset",
+          "request": {
+            "name": "Retrieve a Company Document Verification attempt asset",
+            "description": {
+              "content": "This endpoint allows you to retrieve the assets associated with a Company Document Verification.\nThis includes the document image.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "attempts",
+                ":attempt_id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the Company Document Verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the Company Document Verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ed7aaea-fbf9-491a-9799-2984cdb1bd2d",
+              "name": "Company Document Verification attempt asset retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "attempts",
+                    ":attempt_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the Company Document Verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the Company Document Verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 1,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/...\"\n    }\n  },\n  \"data\": [\n    {\n      \"type\": \"document\",\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/document\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53865efe-76ad-4a28-899d-105c875ef06b",
+          "name": "Request webhook notification",
+          "request": {
+            "name": "Request webhook notification",
+            "description": {
+              "content": "This endpoint can be used to initiate a webhook call containing the latest event of a Company Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the document verification to notify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8638df2b-2956-4aa0-90e0-26ce088db1be",
+              "name": "Notification successfully requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the document verification to notify"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55147bea-5c61-4607-b506-300cf5ed33b5",
+          "name": "Retrieve PDF report of a Company Document Verification",
+          "request": {
+            "name": "Retrieve PDF report of a Company Document Verification",
+            "description": {
+              "content": "This endpoint allows you to retrieve a PDF report of a Company Document Verification.\n\nPlease note that the PDF report is only available for company document verifications that are\nin status `declined` and `approved` once you receive the `company_document_verification_report_created` event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company-document-verifications",
+                ":company_document_verification_id",
+                "pdf-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "company_document_verification_id",
+                  "description": "(Required) ID of the Company Document Verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54032ac2-19d1-43b6-92a1-5c7649bcf8ed",
+              "name": "Company Document Verification PDF report retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the Company Document Verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pdf_report\": \"https://www.example.com/reports/cdv_123.pdf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75b103a4-7760-458b-807f-a6a8fa9fb1df",
+              "name": "The PDF report is not available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company-document-verifications",
+                    ":company_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "company_document_verification_id",
+                      "description": "(Required) ID of the Company Document Verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a6d24ef0-996e-44c5-85ea-f057614a5a91",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Company document verifications (Coming soon) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,762 @@
+{
+  "item": [
+    {
+      "id": "ef8ce244-37e5-4f65-b580-9f8e82b1dfd5",
+      "name": "Applicants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bab44b68-8306-45ee-9a27-5641159664aa",
+          "name": "Create an Applicant",
+          "request": {
+            "name": "Create an Applicant",
+            "description": {
+              "content": "This section describes all endpoints related to applicants. It will enable you to create and manage applicant objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "applicants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76b6cfc6-afe5-4565-bd6d-8e656dbeddfc",
+              "name": "Applicant successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_id\": \"ext_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"external_applicant_id\": \"ext_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "842a2029-f018-42ec-aa0d-c904be0e0206",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_id\": \"ext_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_type\": \"request_invalid\",\n  \"error_codes\": [\n    \"phone_number__invalid_format\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25b33cf9-d078-4419-a35f-f7aca7e907ae",
+          "name": "Retrieve an Applicant",
+          "request": {
+            "name": "Retrieve an Applicant",
+            "description": {
+              "content": "Retrieve an Applicant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "applicants",
+                ":applicant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicant_id",
+                  "description": "(Required) ID of Applicant to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "450f4d37-ef83-438e-a291-5a322973a2e3",
+              "name": "applicant retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of Applicant to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"external_applicant_id\": \"ext_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9d48a35-f303-4784-b033-f34ab35c5fa7",
+              "name": "Applicant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of Applicant to return"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d31cd289-ad9d-4988-81cd-cb1d4b320141",
+          "name": "Update an Applicant",
+          "request": {
+            "name": "Update an Applicant",
+            "description": {
+              "content": "Update an Applicant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "applicants",
+                ":applicant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicant_id",
+                  "description": "(Required) ID of Applicant to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_applicant_name\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2a5d16e-458c-4d72-a2a0-bf08ab7d7fdf",
+              "name": "applicant updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of Applicant to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"external_applicant_id\": \"ext_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ec17a6a-b526-4c96-968e-1a15178eef15",
+              "name": "Bad request. One or more input parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of Applicant to return"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a997fa07-65ca-42ae-807d-439c3457ff94",
+              "name": "Applicant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of Applicant to return"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "963e6a70-1f17-4e5d-b225-91f865592dd8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of Applicant to return"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_name\": \"David Vincent\",\n  \"email\": \"david.vincent@courriel.ml\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf7cc01d-70e0-430d-9159-1deca7f1b040",
+          "name": "Anonymize an Applicant",
+          "request": {
+            "name": "Anonymize an Applicant",
+            "description": {
+              "content": "Anonymize the personal data of an applicant with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "applicants",
+                ":applicant_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicant_id",
+                  "description": "(Required) ID of the applicant to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da30eeac-2039-4917-b85e-384bcf4e3a6f",
+              "name": "applicant anonymized successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of the applicant to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"external_applicant_id\": \"ext_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"external_applicant_name\": \"David Vincent\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f0fa706-7e2d-44a8-a6a9-7f2a9db28df1",
+              "name": "Bad request. The applicant cannot be anonymized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of the applicant to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ccc5794-1326-49fe-a144-d5a843e66fd5",
+              "name": "Identity verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of the applicant to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85cd0842-adbb-4276-883f-77f1f17a0ea1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "applicants",
+                    ":applicant_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicant_id",
+                      "description": "(Required) ID of the applicant to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "811efdb8-b27b-49b3-871e-9b7023511e73",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Applicants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

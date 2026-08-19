@@ -1,0 +1,298 @@
+{
+  "item": [
+    {
+      "id": "00066442-d08b-4191-97a5-f4ea126ac1fa",
+      "name": "Business applicants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f22d36e-e820-4c4a-b54f-5ca50fc4860f",
+          "name": "Create a Business Applicant",
+          "request": {
+            "name": "Create a Business Applicant",
+            "description": {
+              "content": "This section describes all endpoints related to business applicants. It will enable you to create and manage business applicant objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "business-applicants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8c1a7ed-8b5e-40fc-97b0-209bf6691e95",
+              "name": "Business applicant successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "business-applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_id\": \"ext_business_osdfdfdb4hryu5cei5vwoabrk5k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"external_applicant_id\": \"ext_business_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/business-applicants/bplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b65c925-0c76-49c6-a9b4-99d8ae860ad8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "business-applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_applicant_id\": \"ext_business_osdfdfdb4hryu5cei5vwoabrk5k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_type\": \"request_invalid\",\n  \"error_codes\": [\n    \"external_applicant_id__invalid\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63bd50e5-170c-4c2c-b548-f3d016c31311",
+          "name": "Retrieve a Business Applicant",
+          "request": {
+            "name": "Retrieve a Business Applicant",
+            "description": {
+              "content": "Retrieve a Business Applicant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "business-applicants",
+                ":business_applicant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "business_applicant_id",
+                  "description": "(Required) ID of Business Applicant to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ce80647-21b3-4093-93f9-317a7c93ecc6",
+              "name": "business applicant retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "business-applicants",
+                    ":business_applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "business_applicant_id",
+                      "description": "(Required) ID of Business Applicant to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"external_applicant_id\": \"ext_business_osdfdfdb4hryu5cei5vwoabrk5k\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/business-applicants/bplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65d001c1-7491-4d3c-b095-819fce741922",
+              "name": "Business applicant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "business-applicants",
+                    ":business_applicant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "business_applicant_id",
+                      "description": "(Required) ID of Business Applicant to return"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ab71a6e8-1ff4-45a5-bb62-6f884cebcbfd",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Business applicants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

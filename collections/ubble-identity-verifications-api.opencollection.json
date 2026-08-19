@@ -1,0 +1,244 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Identity verifications API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity verifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create and start an identity verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/create-and-start-idv",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create and identity verification. You should get a `201` response and the identity verification resource containing the `_links/verification_url`."
+        },
+        {
+          "info": {
+            "name": "Create an identity verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/identity-verifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an identity verification.\n\nWhen this request is successful, you'll get a 201 response with the identity verification resource.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve an identity verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get the detailed results of an identity verification."
+        },
+        {
+          "info": {
+            "name": "Anonymize an identity verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/anonymize",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification to anonymize"
+              }
+            ]
+          },
+          "docs": "Anonymize the personal data of an identity verification with the specified ID."
+        },
+        {
+          "info": {
+            "name": "List attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/attempts",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip (offset)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to list all attempts of a verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n"
+        },
+        {
+          "info": {
+            "name": "Create an attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/attempts",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a new Attempt. It is possible when the identity-verification is in one of the following statuses `created`, `pending`, `capture_in_progress`, `retry_required`"
+        },
+        {
+          "info": {
+            "name": "Retrieve an attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/attempts/:attempt_id",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification"
+              },
+              {
+                "name": "attempt_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the attempt"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve the details for a given attempt"
+        },
+        {
+          "info": {
+            "name": "Retrieve attempt assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/attempts/:attempt_id/assets",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the identity verification"
+              },
+              {
+                "name": "attempt_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the attempt"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip (offset)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page"
+              }
+            ]
+          },
+          "docs": "Retrieves the assets associated with an identity verification attempt.\nThis includes face images, videos, and document images captured during the verification process.\nPlease note that videos are not exposed by default, contact your account manager to enable this feature.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n"
+        },
+        {
+          "info": {
+            "name": "Request webhook notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/notify",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification to notify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used to initiate a webhook call containing the latest event of an identity verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve PDF report of an identity verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/identity-verifications/:identity_verification_id/pdf-report",
+            "params": [
+              {
+                "name": "identity_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the identity verification"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve a PDF report containing all the information of the identity verification.\n\nPlease note that this report is only available for verifications in statuses `declined` and `approved` once you receive the `identity_verification_report_created` event.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

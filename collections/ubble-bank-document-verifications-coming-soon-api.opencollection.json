@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Bank document verifications (Coming soon) API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank document verifications (Coming soon)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Bank Document Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Bank Document Verification"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Bank Document Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get the detailed results of a Bank Document Verification"
+        },
+        {
+          "info": {
+            "name": "Anonymize a Bank Document Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/anonymize",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document verification to anonymize"
+              }
+            ]
+          },
+          "docs": "Anonymize the personal data of a Bank Document Verification with the specified ID."
+        },
+        {
+          "info": {
+            "name": "List Bank Document Verification attempts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/attempts",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document verification"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip (offset)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to list all attempts of a Bank Document Verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Bank Document Verification attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/attempts",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document verification"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This endpoint allows you to create a Bank Document Verification attempt. It is possible when the Bank Document Verification is one of the following statuses: `created`, `retry_required`"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Bank Document Verification attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/attempts/:attempt_id",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document verification"
+              },
+              {
+                "name": "attempt_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document verification attempt"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve the details for a given Bank Document Verification attempt."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Bank Document Verification attempt asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/attempts/:attempt_id/assets",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Bank Document Verification"
+              },
+              {
+                "name": "attempt_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Bank Document Verification attempt"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip (offset)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve the assets associated with a Bank Document Verification.\nThis includes the document image.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n"
+        },
+        {
+          "info": {
+            "name": "Request webhook notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/notify",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document verification to notify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used to initiate a webhook call containing the latest event of a Bank Document Verification"
+        },
+        {
+          "info": {
+            "name": "Retrieve PDF report of a Bank Document Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/bank-document-verifications/:bank_document_verification_id/pdf-report",
+            "params": [
+              {
+                "name": "bank_document_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Bank Document Verification"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve a PDF report of a Bank Document Verification.\n\nPlease note that the PDF report is only available for bank document verifications that are\nin status `declined` and `approved` once you receive the `bank_document_verification_report_created` event.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,758 @@
+{
+  "item": [
+    {
+      "id": "355129b2-3288-4051-8294-65e3f799fddb",
+      "name": "Website verifications (Coming soon)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ab16a33-ff5f-4536-808f-166a8f4faee6",
+          "name": "Create a website verification",
+          "request": {
+            "name": "Create a website verification",
+            "description": {
+              "content": "Creates a website verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "website-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e401fbc6-510c-4caf-a764-007c99d68110",
+              "name": "Website verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"applicant\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"self\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"id\": \"wbv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"response_codes\": [\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"risk_labels\": [\n    \"mcc_not_confident\",\n    \"mcc_not_confident\"\n  ],\n  \"status\": \"initial_status\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"website_data\": {\n    \"legal_name\": \"string\",\n    \"country_of_incorporation\": \"US\",\n    \"mccs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"alternative_mccs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mcc_rationale\": \"string\",\n    \"risky_activities\": [\n      \"string\",\n      \"string\"\n    ],\n    \"legal_address\": {\n      \"address_line1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"address_line2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"city\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"state\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"zip\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"country\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"disclosure_urls\": {\n      \"privacy_policy_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"terms_and_conditions_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"refund_policy_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"contact_us_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"registration_date\": \"1978-01-15\"\n  },\n  \"webhook_url\": \"<uri>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22013143-ca61-40dc-8cbd-fc06532e46e0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "faddb640-ffe4-4f5f-b2ba-b1160bbef73b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f62f099f-cf0c-47e5-b5b5-26b0f08c1738",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "392aa159-f220-4260-93b2-0211e871091c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7b60df8-40a5-4736-a6a6-8c6b76de65fb",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72069f8f-c1c2-49eb-97a8-d686f11fce9a",
+          "name": "Retrieve a website verification",
+          "request": {
+            "name": "Retrieve a website verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of a website verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "website-verifications",
+                ":website_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "website_verification_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45cab790-24cd-47fe-95f9-710f3b835930",
+              "name": "Website verification retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"applicant\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"self\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"id\": \"wbv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"response_codes\": [\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"risk_labels\": [\n    \"multiple_faces_detected\",\n    \"multiple_faces_detected\"\n  ],\n  \"status\": \"created\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"website_data\": {\n    \"legal_name\": \"string\",\n    \"country_of_incorporation\": \"US\",\n    \"mccs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"alternative_mccs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mcc_rationale\": \"string\",\n    \"risky_activities\": [\n      \"string\",\n      \"string\"\n    ],\n    \"legal_address\": {\n      \"address_line1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"address_line2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"city\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"state\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"zip\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"country\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"disclosure_urls\": {\n      \"privacy_policy_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"terms_and_conditions_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"refund_policy_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"contact_us_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"registration_date\": \"2004-01-27\"\n  },\n  \"webhook_url\": \"<uri>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0023de2-4827-43d9-8567-548163fb3c56",
+              "name": "Website verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8202ba04-9e8a-49e9-9970-add45b353202",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b6d32f0-9cf6-4125-bf19-9bbe04bd5360",
+          "name": "Anonymize a website verification",
+          "request": {
+            "name": "Anonymize a website verification",
+            "description": {
+              "content": "Anonymize the personal data of a website verification with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "website-verifications",
+                ":website_verification_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "website_verification_id",
+                  "description": "(Required) ID of the website verification to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a63e9717-284d-4582-a1fa-d8eb9a4ae9bc",
+              "name": "Website verification anonymized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) ID of the website verification to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"applicant\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"self\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"id\": \"wbv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"response_codes\": [\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"risk_labels\": [\n    \"risky_document_format\",\n    \"risky_document_format\"\n  ],\n  \"status\": \"initial_status\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"website_url\": \"<uri>\",\n  \"website_data\": {\n    \"legal_name\": \"string\",\n    \"country_of_incorporation\": \"US\",\n    \"mccs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"alternative_mccs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mcc_rationale\": \"string\",\n    \"risky_activities\": [\n      \"string\",\n      \"string\"\n    ],\n    \"legal_address\": {\n      \"address_line1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"address_line2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"city\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"state\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"zip\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"country\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"disclosure_urls\": {\n      \"privacy_policy_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"terms_and_conditions_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"refund_policy_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"contact_us_url\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"registration_date\": \"1957-03-01\"\n  },\n  \"webhook_url\": \"<uri>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dacea109-8458-424c-a738-da19389570f3",
+              "name": "Website verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) ID of the website verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "243be18c-c5cb-4c60-ba98-6410cde9f261",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) ID of the website verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "320cf63f-a55c-4fbb-85d9-398bff3537fc",
+          "name": "Request webhook notification",
+          "request": {
+            "name": "Request webhook notification",
+            "description": {
+              "content": "This endpoint can be used to initiate a webhook call containing the latest event of a website verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "website-verifications",
+                ":website_verification_id",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "website_verification_id",
+                  "description": "(Required) ID of the website verification to notify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc51651f-051b-4dba-a9ec-2cd0ae959d9b",
+              "name": "Notification successfully requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "website-verifications",
+                    ":website_verification_id",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "website_verification_id",
+                      "description": "(Required) ID of the website verification to notify"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cbdef0d7-43c2-46ee-a4c4-b59ba57026e9",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Website verifications (Coming soon) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1759 @@
+{
+  "item": [
+    {
+      "id": "084adb6d-a496-460c-a633-8c4c8142e2c4",
+      "name": "ID document verifications",
+      "description": {
+        "content": "API for ID document verification",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c6bfa1a-0f56-49b5-a78c-c9023f248adb",
+          "name": "Create an ID document verification",
+          "request": {
+            "name": "Create an ID document verification",
+            "description": {
+              "content": "Creates an ID document verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe5dcd65-9f7c-4ef7-9837-a8e53e563992",
+              "name": "ID document verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iddv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21T17:32:28Z\",\n  \"modified_on\": \"2017-07-21T17:40:32Z\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  },\n  \"document\": {\n    \"full_name\": \"David Vincent\",\n    \"birth_date\": \"1934-10-02\",\n    \"document_type\": \"ID\",\n    \"document_issuing_country\": \"US\",\n    \"front_image_signed_url\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3c7c1c2-e190-4c58-b74b-03af05381841",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a862bdf-7b98-422c-a627-44e5cff40644",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f9a066a-be07-4224-aa91-029d460a9be1",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aeab9854-04e7-4e27-9619-c738a0b9bfcc",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6503a08-b2db-48ec-bc47-b9ed42c9180b",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef9aa850-0ff3-481e-859e-1109b53378b8",
+          "name": "Retrieve an ID document verification",
+          "request": {
+            "name": "Retrieve an ID document verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of an ID document verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae43f62c-fc81-47df-886d-9e6cc7615fb8",
+              "name": "Document verification retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iddv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21T17:32:28Z\",\n  \"modified_on\": \"2017-07-21T17:40:32Z\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  },\n  \"document\": {\n    \"full_name\": \"David Vincent\",\n    \"birth_date\": \"1934-10-02\",\n    \"document_type\": \"ID\",\n    \"document_issuing_country\": \"US\",\n    \"front_image_signed_url\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0c30f02-e1f9-4a83-9e2f-482830bbecc1",
+              "name": "ID document verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf799127-bd3e-4a01-b101-0115a5d59180",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e4e2676-92ff-462c-91d3-560d2cbd1aa0",
+          "name": "Anonymize an ID document verification",
+          "request": {
+            "name": "Anonymize an ID document verification",
+            "description": {
+              "content": "Anonymize the personal data of an ID document verification with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the document verification to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "588aa4db-b4bf-4353-a110-73164001838d",
+              "name": "ID document verification anonymized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iddv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0a126e5-eb4a-4655-977f-fca68ed2a6af",
+              "name": "ID document verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5c4c909-85ab-4aca-a852-4e19f2775523",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74bd8999-71e8-42ef-bf01-e7dddaf0be3d",
+          "name": "List ID document verification attempts",
+          "request": {
+            "name": "List ID document verification attempts",
+            "description": {
+              "content": "This endpoint allows you to list all attempts of an ID document verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34109c9a-482f-4d60-92b8-cfcc7e54b64b",
+              "name": "ID document verification attempts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 2,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"data\": [\n    {\n      \"id\": \"iddv_tkoi5db4hryu5cei5vwoabr7we\",\n      \"created_on\": \"2017-07-21 17:32:28+00:00\",\n      \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n      \"status\": \"completed\",\n      \"response_codes\": [],\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we\"\n        }\n      }\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2ddbbca-0d42-43f1-adde-dd5049e83ba5",
+              "name": "The provided document verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21d09f05-f112-4098-bbe5-d13e19030775",
+              "name": "An error occurred while fetching the attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b802aea0-eaef-466f-b968-cc230fbbd533",
+          "name": "Create an ID document verification attempt",
+          "request": {
+            "name": "Create an ID document verification attempt",
+            "description": {
+              "content": "This endpoint allows you to create an ID document verification attempt. It is possible when the ID document verification is one of the following statuses: `created`, `retry_required`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "1",
+                  "value": "o",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "2",
+                  "value": "b",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "3",
+                  "value": "j",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "4",
+                  "value": "e",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "5",
+                  "value": "c",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "6",
+                  "value": "t",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1cc7ff1e-9c76-4da3-adc7-2ddb4dc57cd4",
+              "name": "ID document verification attempt created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document_front",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iddv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "728cda5b-d737-46ca-a9d3-1d3c8ea319cf",
+              "name": "The provided ID document verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document_front",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d5ff797-7654-4f9b-a387-8439628057de",
+              "name": "The ID document verification is not in a valid state to create an attempt. The ID document verification status must be `created` or `retry_required`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document_front",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7b2ab89-cf1a-4dae-aaf3-42cc509ed6ce",
+              "name": "An error occurred while creating the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document_front",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97936ae9-1d10-4fd0-a720-2c787ee14a79",
+          "name": "Retrieve an ID document verification attempt",
+          "request": {
+            "name": "Retrieve an ID document verification attempt",
+            "description": {
+              "content": "This endpoint allows you to retrieve the details for a given ID document verification attempt",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "attempts",
+                ":attempt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the document verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "283c6413-b5a1-4352-8a48-9382705af66e",
+              "name": "ID document verification attempt retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iddv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffbbe78a-545f-414d-a1a0-d3e7f54ed075",
+              "name": "The provided document verification attempt ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "88ec8c18-a77e-4e60-9d75-34bed32cc0ce",
+              "name": "An error occurred while fetching the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75077d53-5db7-478f-ab02-99ef0d1b5799",
+          "name": "Retrieve an ID document verification attempt asset",
+          "request": {
+            "name": "Retrieve an ID document verification attempt asset",
+            "description": {
+              "content": "This endpoint allows you to retrieve the assets associated with an ID document verification.\nThis includes the document front image and the document back image.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "attempts",
+                ":attempt_id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the ID document verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the ID document verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c7b9ccb-b8c4-4671-b0f0-3f5795bfb53a",
+              "name": "ID document verification attempt asset retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "attempts",
+                    ":attempt_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the ID document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the ID document verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 2,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    }\n  },\n  \"data\": [\n    {\n      \"type\": \"document_front_image\",\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/assets/document_front_image\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f703092a-2e75-4e2e-81eb-c078d20d2651",
+          "name": "Request webhook notification",
+          "request": {
+            "name": "Request webhook notification",
+            "description": {
+              "content": "This endpoint can be used to initiate a webhook call containing the latest event of an ID document verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the document verification to notify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa9fbf6e-d8a2-40a3-83ef-174dff6002c5",
+              "name": "Notification successfully requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the document verification to notify"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "953df112-182d-444b-8aee-380a7531585f",
+          "name": "Retrieve PDF report of an ID document verification",
+          "request": {
+            "name": "Retrieve PDF report of an ID document verification",
+            "description": {
+              "content": "This endpoint allows you to retrieve a PDF report of an ID document verification.\n\nPlease note that the PDF report is only available for ID document verifications that are\nin status `declined` and `approved` once you receive the `id_document_verification_report_created` event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "id-document-verifications",
+                ":id_document_verification_id",
+                "pdf-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id_document_verification_id",
+                  "description": "(Required) ID of the ID document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20767159-bd43-42ec-9cf6-afd791f53aba",
+              "name": "ID document verification PDF report retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the ID document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pdf_report\": \"https://www.example.com/reports/iddv_123.pdf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10b65a61-729c-4ad0-89eb-54bcb869a0ed",
+              "name": "The PDF report is not available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "id-document-verifications",
+                    ":id_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id_document_verification_id",
+                      "description": "(Required) ID of the ID document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bb4e7c5c-641d-4d61-b1f1-3c9b9d45c010",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) ID document verifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for ID document verification",
+      "type": "text/plain"
+    }
+  }
+}

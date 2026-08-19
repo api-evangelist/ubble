@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "61e887bc-061a-4fc8-9a01-c3a29a028caa",
+      "name": "AML verifications",
+      "description": {
+        "content": "AML verification endpoints documentation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d146d617-d932-4dd9-830f-c0d49252a8b5",
+          "name": "Create an AML verification",
+          "request": {
+            "name": "Create an AML verification",
+            "description": {
+              "content": "This endpoint allows you to create an AML verification. You should get a `201` response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "aml-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1476352-79a8-46da-842a-21654ae06277",
+              "name": "AML verification created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "aml-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search_parameters\": {\n    \"configuration_identifier\": \"011e5c14-2222-738c-8852-dfdbbe53f233\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"amlv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"created\",\n  \"webhook_url\": \"https://my.api/events/\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"search_parameters\": {\n    \"configuration_identifier\": \"8eb79430-c014-41e5-be73-2c2c091322b8\"\n  },\n  \"monitored\": false,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/aml-verifications/amlv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1d9fa1a-e411-43e7-9adf-60822a72b46c",
+          "name": "Retrieve an AML verification",
+          "request": {
+            "name": "Retrieve an AML verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of an AML verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "aml-verifications",
+                ":aml_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aml_verification_id",
+                  "description": "(Required) ID of the AML verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b64dec3-6cad-4152-9706-c2a31ca6c4d9",
+              "name": "AML verification retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "aml-verifications",
+                    ":aml_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aml_verification_id",
+                      "description": "(Required) ID of the AML verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"amlv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"created\",\n  \"webhook_url\": \"https://my.api/events/\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"search_parameters\": {\n    \"configuration_identifier\": \"8eb79430-c014-41e5-be73-2c2c091322b8\"\n  },\n  \"monitored\": false,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/aml-verifications/amlv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ca1d399a-e70f-459c-9937-4c9e1786f41a",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) AML verifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AML verification endpoints documentation.",
+      "type": "text/plain"
+    }
+  }
+}

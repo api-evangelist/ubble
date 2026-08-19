@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Business applicants API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Business applicants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Business Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/business-applicants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This section describes all endpoints related to business applicants. It will enable you to create and manage business applicant objects."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Business Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/business-applicants/:business_applicant_id",
+            "params": [
+              {
+                "name": "business_applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Business Applicant to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a Business Applicant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

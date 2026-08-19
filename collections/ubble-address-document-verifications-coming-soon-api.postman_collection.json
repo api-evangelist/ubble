@@ -1,0 +1,1759 @@
+{
+  "item": [
+    {
+      "id": "e60b97f3-997b-499e-a034-002381b46072",
+      "name": "Address document verifications (Coming soon)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "784a2706-8922-4532-a6b8-02bb2f3a0be0",
+          "name": "Create an Address Document Verification",
+          "request": {
+            "name": "Create an Address Document Verification",
+            "description": {
+              "content": "Creates an Address Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48a822d7-5e0a-4540-8353-11357dd46f1f",
+              "name": "Address Document Verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"adv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21T17:32:28Z\",\n  \"modified_on\": \"2017-07-21T17:40:32Z\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  },\n  \"address_document\": {\n    \"type\": \"Utility Bill\",\n    \"full_name\": \"Acme Corporation\",\n    \"address\": {\n      \"address_line1\": \"123 Main St\",\n      \"address_line2\": \"Suite 100\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zip\": \"10001\",\n      \"country\": \"US\"\n    },\n    \"issue_date\": \"2023-01-15\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd8a3bef-d2c1-48e1-9679-f457c9facbb5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56cd06d4-f102-4637-b8ce-b9646d74e514",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47b90a2a-3f07-4be7-9558-13c16b8b6c4e",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0cd772b-303b-4499-b777-f43192ac9527",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25b3e355-6286-4a76-a5ae-4d6f13a99c51",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"Acme Corporation\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b955313c-5f69-4a21-86c0-0f5c28543cdb",
+          "name": "Retrieve an Address Document Verification",
+          "request": {
+            "name": "Retrieve an Address Document Verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of an Address Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2236120c-8312-4973-ba98-fa596127522e",
+              "name": "Address Document Verification retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"id\": \"adv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"response_codes\": [\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"status\": \"inconclusive\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"risk_labels\": [\n    \"mcc_not_confident\",\n    \"multiple_faces_detected\"\n  ],\n  \"address_document\": {\n    \"document_type\": \"string\",\n    \"issuer\": \"string\",\n    \"full_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"address\": {\n      \"address_line1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"address_line2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"city\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"state\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"zip\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"country\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"issue_date\": \"1984-05-23\"\n  },\n  \"webhook_url\": \"<uri>\",\n  \"declared_data\": {\n    \"name\": \"<string>\",\n    \"birth_date\": \"<date>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3601d217-bdcb-4807-a860-f84207c2a2e0",
+              "name": "Address Document Verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "328d1f14-7cbc-4a71-9467-8f06f3ae19ab",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6e8376c-c238-4560-bbd4-b6b67de22724",
+          "name": "Anonymize an Address Document Verification",
+          "request": {
+            "name": "Anonymize an Address Document Verification",
+            "description": {
+              "content": "Anonymize the personal data of an Address Document Verification with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the document verification to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd197b8f-3e1f-4532-a060-f1cd9963bf72",
+              "name": "Address Document Verification anonymized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"adv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b4bb545-99e7-45a7-91b5-dad18d947730",
+              "name": "Address Document Verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "680ab5e3-ca53-4d3f-b699-32e3691497c4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "400fba88-d7c6-423b-a5ac-40b232c1c361",
+          "name": "List Address Document Verification attempts",
+          "request": {
+            "name": "List Address Document Verification attempts",
+            "description": {
+              "content": "This endpoint allows you to list all attempts of an Address Document Verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34608713-a707-4fb5-9bf8-1080d489329d",
+              "name": "Address Document Verification attempts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 2,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"data\": [\n    {\n      \"id\": \"adv_tkoi5db4hryu5cei5vwoabr7we\",\n      \"created_on\": \"2017-07-21 17:32:28+00:00\",\n      \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n      \"status\": \"completed\",\n      \"response_codes\": [],\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123\"\n        }\n      }\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4906270-368c-4dac-a1bf-a4882ccc1479",
+              "name": "The provided document verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f864ddd3-3249-49f3-a282-ebb5be0d0410",
+              "name": "An error occurred while fetching the attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4018d377-bfa2-471a-b5d5-04b2ebb3be64",
+          "name": "Create an Address Document Verification attempt",
+          "request": {
+            "name": "Create an Address Document Verification attempt",
+            "description": {
+              "content": "This endpoint allows you to create an Address Document Verification attempt. It is possible when the Address Document Verification is one of the following statuses: `created`, `retry_required`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "1",
+                  "value": "o",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "2",
+                  "value": "b",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "3",
+                  "value": "j",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "4",
+                  "value": "e",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "5",
+                  "value": "c",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "6",
+                  "value": "t",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c89479f-2484-4c6f-9bef-cb79135ac87a",
+              "name": "Address Document Verification attempt created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"adv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1e8a37b-5e68-4da0-81c2-177b51df94bd",
+              "name": "The provided Address Document Verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "213f3131-dfee-4a51-a1ea-eff75ee7d783",
+              "name": "The Address Document Verification is not in a valid state to create an attempt. The Address Document Verification status must be `created` or `retry_required`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "697e4bd1-967a-439c-8eb7-c252f371a4c7",
+              "name": "An error occurred while creating the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68db7de1-12fb-4587-8438-c76d63aa0fff",
+          "name": "Retrieve an Address Document Verification attempt",
+          "request": {
+            "name": "Retrieve an Address Document Verification attempt",
+            "description": {
+              "content": "This endpoint allows you to retrieve the details for a given Address Document Verification attempt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "attempts",
+                ":attempt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the document verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d0857a3-2a61-4892-9e16-c76ea1658874",
+              "name": "Address Document Verification attempt retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"adv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2db76310-9920-4ecb-93c1-a395923c7deb",
+              "name": "The provided document verification attempt ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53799163-3689-4953-a7dc-6340396e6bca",
+              "name": "An error occurred while fetching the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a93329a-b45e-46ed-a117-711d4e219d3c",
+          "name": "Retrieve an Address Document Verification attempt asset",
+          "request": {
+            "name": "Retrieve an Address Document Verification attempt asset",
+            "description": {
+              "content": "This endpoint allows you to retrieve the assets associated with an Address Document Verification.\nThis includes the document image.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "attempts",
+                ":attempt_id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the Address Document Verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the Address Document Verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "951ca845-8a84-4ff5-a0af-b7aa4403d0cc",
+              "name": "Address Document Verification attempt asset retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "attempts",
+                    ":attempt_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the Address Document Verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the Address Document Verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 1,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/...\"\n    }\n  },\n  \"data\": [\n    {\n      \"type\": \"document\",\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/document\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "558dff2f-80ab-4954-be00-9fba8f00b4ba",
+          "name": "Request webhook notification",
+          "request": {
+            "name": "Request webhook notification",
+            "description": {
+              "content": "This endpoint can be used to initiate a webhook call containing the latest event of an Address Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the document verification to notify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ef240db-f7ba-413d-ae33-a7088f0c21e8",
+              "name": "Notification successfully requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the document verification to notify"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ada271f-3654-4c31-b7a9-ca8c9f813446",
+          "name": "Retrieve PDF report of an Address Document Verification",
+          "request": {
+            "name": "Retrieve PDF report of an Address Document Verification",
+            "description": {
+              "content": "This endpoint allows you to retrieve a PDF report of an Address Document Verification.\n\nPlease note that the PDF report is only available for address document verifications that are\nin status `declined` and `approved` once you receive the `address_document_verification_report_created` event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "address-document-verifications",
+                ":address_document_verification_id",
+                "pdf-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address_document_verification_id",
+                  "description": "(Required) ID of the Address Document Verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52a0d574-3f7a-4437-90cf-e5a5fcd932aa",
+              "name": "Address Document Verification PDF report retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the Address Document Verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pdf_report\": \"https://www.example.com/reports/adv_123.pdf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf7b4325-b2c0-48ee-b566-06d5021f9da6",
+              "name": "The PDF report is not available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "address-document-verifications",
+                    ":address_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address_document_verification_id",
+                      "description": "(Required) ID of the Address Document Verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e5f7da52-7436-4b6a-8023-cd8b6abcfd56",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Address document verifications (Coming soon) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

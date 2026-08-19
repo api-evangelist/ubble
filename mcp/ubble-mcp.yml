@@ -2,9 +2,8 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/ubble-identity-verification-openapi-original.yml
-notes: No official Ubble / Checkout.com Identity Verification MCP server was found
-  (npm, MCP registries, docs searched 2026-07-21). Candidate tool list derived from
-  the published OpenAPI 3.0.3 contract.
+notes: No official Ubble / Checkout.com Identity Verification MCP server was found (npm, MCP registries,
+  docs searched 2026-07-21). Candidate tool list derived from the published OpenAPI 3.0.3 contract.
 server:
   name: ubble
   transport: http
@@ -345,3 +344,9 @@ tools:
   method: POST
   path: /v2/website-verifications/{website_verification_id}/notify
   source_operation: openapi/ubble-identity-verification-openapi-original.yml#notify_website_verification
+deployment:
+  mode: none
+  verified: derived
+  tools: 67
+  checked: '2026-08-12'
+  source: catalog MCP census

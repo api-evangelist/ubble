@@ -1,0 +1,1759 @@
+{
+  "item": [
+    {
+      "id": "6d421d64-7a29-43cf-8d76-6108ff105318",
+      "name": "Bank document verifications (Coming soon)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5411dd57-6e56-486b-a674-ce44ac2f7ad4",
+          "name": "Create a Bank Document Verification",
+          "request": {
+            "name": "Create a Bank Document Verification",
+            "description": {
+              "content": "Creates a Bank Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2faaa410-e41d-464a-8b1e-c458e1dad87c",
+              "name": "Bank Document Verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21T17:32:28Z\",\n  \"modified_on\": \"2017-07-21T17:40:32Z\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  },\n  \"bank_document\": {\n    \"bank_account_number\": \"1234567890\",\n    \"bank_routing_number\": \"987654321\",\n    \"account_type\": \"checking\",\n    \"legal_name\": \"Acme Corporation\",\n    \"bank_name\": \"First National Bank\",\n    \"issue_date\": \"2023-01-15\",\n    \"document_type\": \"bank_statement\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfe2c74b-c7c6-43e5-b55b-24420dc9bbb5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20f6ed99-c123-4f38-bc5a-d6bbfc79fe72",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "08b38605-b28d-4255-b751-d63837bc581d",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "564c90fb-754d-4627-adb8-745ab6811a1b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd23aa86-f95b-45c3-8731-070a239e51b5",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"registered_name\": \"Acme Corporation\",\n    \"trading_name\": \"Acme Corp\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab48bc30-bc1b-4871-831c-da559689d0de",
+          "name": "Retrieve a Bank Document Verification",
+          "request": {
+            "name": "Retrieve a Bank Document Verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of a Bank Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c736ed7-8d99-4783-b9ea-f296781313e9",
+              "name": "Bank Document Verification retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    }\n  },\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"id\": \"bdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"response_codes\": [\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"code\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"summary\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ],\n  \"status\": \"retry_required\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"risk_labels\": [\n    \"risky_document_format\",\n    \"multiple_faces_detected\"\n  ],\n  \"bank_document\": {\n    \"bank_account_number\": \"string\",\n    \"bank_routing_number\": \"string\",\n    \"account_type\": \"savings\",\n    \"company_name\": \"string\",\n    \"bank_name\": \"string\",\n    \"issue_date\": \"2008-04-03\",\n    \"document_type\": \"bank_letter\",\n    \"company_address\": {\n      \"address_line1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"address_line2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"city\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"state\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"zip\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"country\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"webhook_url\": \"<uri>\",\n  \"declared_data\": {\n    \"registered_name\": \"<string>\",\n    \"trading_name\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5a4b20a-c948-45d3-8be2-71e9721b8e7e",
+              "name": "Bank Document Verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "051786d8-a5eb-4d32-8699-c33608f06836",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c5f33a1-586e-4ab2-8b25-dba22644c9eb",
+          "name": "Anonymize a Bank Document Verification",
+          "request": {
+            "name": "Anonymize a Bank Document Verification",
+            "description": {
+              "content": "Anonymize the personal data of a Bank Document Verification with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the document verification to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99ffd545-a9d6-4ff5-9451-1ee59d9d74b3",
+              "name": "Bank Document Verification anonymized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"bplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "599a7dcd-a441-4ca5-a27b-57d78aa512d8",
+              "name": "Bank Document Verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f82626a2-afb0-48b9-89f5-db2fddf5c44e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c266e75-4479-41af-9267-23c1243ff711",
+          "name": "List Bank Document Verification attempts",
+          "request": {
+            "name": "List Bank Document Verification attempts",
+            "description": {
+              "content": "This endpoint allows you to list all attempts of a Bank Document Verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f386108-d010-4c97-b1d2-8f7160af9de9",
+              "name": "Bank Document Verification attempts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 2,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"data\": [\n    {\n      \"id\": \"bdv_tkoi5db4hryu5cei5vwoabr7we\",\n      \"created_on\": \"2017-07-21 17:32:28+00:00\",\n      \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n      \"status\": \"completed\",\n      \"response_codes\": [],\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123\"\n        }\n      }\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe8b1a91-6f94-43f6-8558-44a757ee00a3",
+              "name": "The provided document verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f097bcde-43c0-4e91-aaa5-58254c1f1f4c",
+              "name": "An error occurred while fetching the attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea523637-0ec8-4b5d-a9d0-ac5a944a131b",
+          "name": "Create a Bank Document Verification attempt",
+          "request": {
+            "name": "Create a Bank Document Verification attempt",
+            "description": {
+              "content": "This endpoint allows you to create a Bank Document Verification attempt. It is possible when the Bank Document Verification is one of the following statuses: `created`, `retry_required`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "1",
+                  "value": "o",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "2",
+                  "value": "b",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "3",
+                  "value": "j",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "4",
+                  "value": "e",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "5",
+                  "value": "c",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "6",
+                  "value": "t",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98e5efc2-8150-4e58-a11a-b13a7eab1592",
+              "name": "Bank Document Verification attempt created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcaf3c36-6f3f-47fb-b946-7b4cababc996",
+              "name": "The provided Bank Document Verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a43fa47-d500-4bb9-800e-46fa0118b81a",
+              "name": "The Bank Document Verification is not in a valid state to create an attempt. The Bank Document Verification status must be `created` or `retry_required`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d6b7d64-9178-4c0b-915f-acdc656e83af",
+              "name": "An error occurred while creating the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "document",
+                      "value": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…\n",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "916c072d-137b-42b0-8067-0f87fe9d0ba4",
+          "name": "Retrieve a Bank Document Verification attempt",
+          "request": {
+            "name": "Retrieve a Bank Document Verification attempt",
+            "description": {
+              "content": "This endpoint allows you to retrieve the details for a given Bank Document Verification attempt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "attempts",
+                ":attempt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the document verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the document verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06adf0ce-b680-4d3d-b11d-dc35d2e56cf6",
+              "name": "Bank Document Verification attempt retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bdv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ab9c4df-b4c9-4b05-b888-aa7ed78ca868",
+              "name": "The provided document verification attempt ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b96ab61-49c7-4edb-b0f4-2b2b236abfbd",
+              "name": "An error occurred while fetching the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the document verification attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40245a75-ef25-4d50-aaea-6bac986c2416",
+          "name": "Retrieve a Bank Document Verification attempt asset",
+          "request": {
+            "name": "Retrieve a Bank Document Verification attempt asset",
+            "description": {
+              "content": "This endpoint allows you to retrieve the assets associated with a Bank Document Verification.\nThis includes the document image.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "attempts",
+                ":attempt_id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the Bank Document Verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the Bank Document Verification attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31fa3d67-06bd-4850-a714-0e8935ed46d7",
+              "name": "Bank Document Verification attempt asset retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "attempts",
+                    ":attempt_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the Bank Document Verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the Bank Document Verification attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 1,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/...\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/...\"\n    }\n  },\n  \"data\": [\n    {\n      \"type\": \"document\",\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/document\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e9b9b39-90da-4479-b3b2-b20165fe11f0",
+          "name": "Request webhook notification",
+          "request": {
+            "name": "Request webhook notification",
+            "description": {
+              "content": "This endpoint can be used to initiate a webhook call containing the latest event of a Bank Document Verification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the document verification to notify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a9686f9-bcd8-45ec-9fce-7afa1bd40e9a",
+              "name": "Notification successfully requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the document verification to notify"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2756d75-9f48-4a6e-a305-19807d7777dc",
+          "name": "Retrieve PDF report of a Bank Document Verification",
+          "request": {
+            "name": "Retrieve PDF report of a Bank Document Verification",
+            "description": {
+              "content": "This endpoint allows you to retrieve a PDF report of a Bank Document Verification.\n\nPlease note that the PDF report is only available for bank document verifications that are\nin status `declined` and `approved` once you receive the `bank_document_verification_report_created` event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bank-document-verifications",
+                ":bank_document_verification_id",
+                "pdf-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_document_verification_id",
+                  "description": "(Required) ID of the Bank Document Verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba8ac0fc-cc04-4a2e-89f7-5abab62d934e",
+              "name": "Bank Document Verification PDF report retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the Bank Document Verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pdf_report\": \"https://www.example.com/reports/bdv_123.pdf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b63a7648-c7b0-4191-a913-cd4234f9066a",
+              "name": "The PDF report is not available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bank-document-verifications",
+                    ":bank_document_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_document_verification_id",
+                      "description": "(Required) ID of the Bank Document Verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7112c35c-9fe5-4495-bbbc-58ef6b954fff",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Bank document verifications (Coming soon) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

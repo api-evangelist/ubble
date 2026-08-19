@@ -1,0 +1,1750 @@
+{
+  "item": [
+    {
+      "id": "83b473d1-1d76-4e8e-87ec-b5d0e8c8d478",
+      "name": "Identity verifications",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52a81b46-224e-43a3-9aa4-26cdc5c46f21",
+          "name": "Create and start an identity verification",
+          "request": {
+            "name": "Create and start an identity verification",
+            "description": {
+              "content": "This endpoint allows you to create and identity verification. You should get a `201` response and the identity verification resource containing the `_links/verification_url`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "create-and-start-idv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3002fd60-ef56-4507-9107-7a25592e875c",
+              "name": "Identity verification created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "create-and-start-idv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"redirect_url\": \"https://myweb.site?query-param=hello\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"idv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"pending\",\n  \"response_codes\": [],\n  \"risk_labels\": [],\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  },\n  \"documents\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"redirect_url\": \"https://myweb.site?query-param=hello\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"verification_url\": {\n      \"href\": \"https://id.ubble.ai/4hryu5cei5/\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d12665f-e58f-4968-ba2d-c8418286c626",
+          "name": "Create an identity verification",
+          "request": {
+            "name": "Create an identity verification",
+            "description": {
+              "content": "Creates an identity verification.\n\nWhen this request is successful, you'll get a 201 response with the identity verification resource.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54bca8d0-25ee-4474-b1a3-221c6eac32da",
+              "name": "Identity verification created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"John Smith\"\n  },\n  \"webhook_url\": \"https://my.api/events/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"idv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21T17:32:28Z\",\n  \"modified_on\": \"2017-07-21T17:40:32Z\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"created\",\n  \"response_codes\": [],\n  \"risk_labels\": [],\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  },\n  \"documents\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b60d7d05-5818-4f1f-bc2e-4163f7ca147f",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"John Smith\"\n  },\n  \"webhook_url\": \"https://my.api/events/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c237ec36-0669-458f-a84d-df5e8e909936",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"John Smith\"\n  },\n  \"webhook_url\": \"https://my.api/events/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9021e29-cc3e-4708-b6f7-c0a12ed18f63",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"John Smith\"\n  },\n  \"webhook_url\": \"https://my.api/events/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8d81bda-79d9-49eb-a9e3-e08a1ee2828e",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"John Smith\"\n  },\n  \"webhook_url\": \"https://my.api/events/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "118d23a6-f114-4a3b-90d2-94f86e2baa92",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"declared_data\": {\n    \"name\": \"John Smith\"\n  },\n  \"webhook_url\": \"https://my.api/events/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f6d2f1f-4a48-4bf8-8aa7-cb435ce40ff5",
+          "name": "Retrieve an identity verification",
+          "request": {
+            "name": "Retrieve an identity verification",
+            "description": {
+              "content": "This endpoint allows you to get the detailed results of an identity verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac02fb26-7027-4e17-89ef-1ec215528deb",
+              "name": "Identity verification retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"idv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"declined\",\n  \"response_codes\": [\n    {\n      \"code\": 61310,\n      \"summary\": \"document_front_not_captured\"\n    },\n    {\n      \"code\": 62102,\n      \"summary\": \"document_not_accepted\"\n    }\n  ],\n  \"risk_labels\": [\n    \"multiple_faces_detected\"\n  ],\n  \"verified_identity\": {\n    \"full_name\": \"David Vincent\",\n    \"birth_date\": \"1934-10-02\"\n  },\n  \"declared_data\": {\n    \"name\": \"David Vincent\"\n  },\n  \"documents\": [\n    {\n      \"full_name\": \"David Vincent\",\n      \"birth_date\": \"1934-10-02\",\n      \"document_type\": \"ID\",\n      \"document_issuing_country\": \"US\",\n      \"front_image_signed_url\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n    }\n  ],\n  \"face\": {\n    \"image_signed_url\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4\"\n  },\n  \"phone_number\": {\n    \"country_code\": \"+1\",\n    \"number\": \"2068133616\"\n  },\n  \"webhook_url\": \"https://my.api/events/\",\n  \"redirect_url\": \"https://myweb.site?query-param=hello\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"verification_url\": {\n      \"href\": \"https://id.ubble.ai/4hryu5cei5/\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "694d1a63-db7e-402b-9ddd-f94df5303419",
+          "name": "Anonymize an identity verification",
+          "request": {
+            "name": "Anonymize an identity verification",
+            "description": {
+              "content": "Anonymize the personal data of an identity verification with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "anonymize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification to anonymize"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "566da8b0-7310-4fd9-b529-abb84b02e5c1",
+              "name": "Identity verification anonymized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification to anonymize"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"idv_tkoi5db4hryu5cei5vwoabr7we\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"user_journey_id\": \"usj_tkoi5db4hryu5cei5vwoabr7we\",\n  \"applicant_id\": \"aplt_tkoi5db4hryu5cei5vwoabr7we\",\n  \"status\": \"pending\",\n  \"response_codes\": [],\n  \"risk_labels\": [\n    \"multiple_faces_detected\"\n  ],\n  \"phone_number\": {\n    \"country_code\": \"+1\",\n    \"number\": \"5555550102\"\n  },\n  \"documents\": [],\n  \"webhook_url\": \"https://my.api/events/\",\n  \"redirect_url\": \"https://myweb.site?query-param=hello\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"applicant\": {\n      \"href\": \"https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d9f11fd-75d7-43dc-a9ad-add472b74c75",
+              "name": "Bad request. The identity verification cannot be anonymized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26550db6-584a-4325-b7d4-a21745d4bbc3",
+              "name": "Identity verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60319ae0-057e-4582-8557-eb735fff5028",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "anonymize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification to anonymize"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bb1c9c1-0692-4d81-8bf6-7d57cc34254d",
+          "name": "List attempts",
+          "request": {
+            "name": "List attempts",
+            "description": {
+              "content": "This endpoint allows you to list all attempts of a verification.\n\nAttempts are returned ordered by creation date, newest first.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a28cd481-807c-42dc-a705-96c12e36df65",
+              "name": "List attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 2,\n  \"skip\": 10,\n  \"limit\": 10,\n  \"data\": [\n    {\n      \"id\": \"iatp_tkoi5db4hryu5cei5vwoabrPoQ\",\n      \"created_on\": \"2017-07-21 17:32:28+00:00\",\n      \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n      \"status\": \"checks_in_progress\",\n      \"response_codes\": [],\n      \"phone_number\": {\n        \"country_code\": \"+1\",\n        \"number\": \"2068133616\"\n      },\n      \"redirect_url\": \"https://myweb.site?query-param=hello\",\n      \"client_information\": {\n        \"pre_selected_residence_country\": \"FR\",\n        \"pre_selected_document_issuing_country\": \"FR\",\n        \"pre_selected_document_type\": \"ID\"\n      },\n      \"applicant_session_information\": {\n        \"ip_address\": \"123.123.123.01\"\n      },\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts/iatp_idv_tkoi5db4hryu5cei5vwoabr7we\"\n        },\n        \"verification_url\": {\n          \"href\": \"https://id.ubble.ai/4hryu5cei5/\"\n        }\n      }\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=10&limit=10\"\n    },\n    \"next\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=20&limit=10\"\n    },\n    \"previous\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=0&limit=10\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "579cc8de-50b8-499a-a567-d67aed5f2632",
+              "name": "The provided verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce44c8f3-9244-467b-8831-b2ad9c1e4c82",
+              "name": "An error occurred while fetching the attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b50a23c-fbd9-487c-bc5d-ed361ef31440",
+          "name": "Create an attempt",
+          "request": {
+            "name": "Create an attempt",
+            "description": {
+              "content": "This endpoint allows you to create a new Attempt. It is possible when the identity-verification is in one of the following statuses `created`, `pending`, `capture_in_progress`, `retry_required`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "attempts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f893796-c888-4abb-8d30-7cf2d308486d",
+              "name": "Attempt created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redirect_url\": \"https://myweb.site?query-param=hello\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iatp_tkoi5db4hryu5cei5vwoabrPoQ\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"status\": \"completed\",\n  \"response_codes\": [],\n  \"phone_number\": {\n    \"country_code\": \"+1\",\n    \"number\": \"2068133616\"\n  },\n  \"client_information\": {\n    \"pre_selected_residence_country\": \"FR\",\n    \"pre_selected_document_issuing_country\": \"FR\",\n    \"pre_selected_document_type\": \"ID\"\n  },\n  \"redirect_url\": \"https://myweb.site?query-param=hello\",\n  \"applicant_session_information\": {\n    \"ip_address\": \"33.333.333.33\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts/iatp_idv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"verification_url\": {\n      \"href\": \"https://id.ubble.ai/4hryu5cei5/\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d27b5844-f291-4682-8c57-dc8161704dd3",
+              "name": "The provided verification ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redirect_url\": \"https://myweb.site?query-param=hello\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75a6917a-b27f-4693-abbb-b69c7eb6bd48",
+              "name": "The current verification status does not allow the creation of a new attempt. The verification status must be either `created`, `pending`, `capture_in_progress`, or `retry_required`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redirect_url\": \"https://myweb.site?query-param=hello\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c352454b-5a5c-4ca9-a141-2566da215a0e",
+              "name": "An error occurred while creating the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redirect_url\": \"https://myweb.site?query-param=hello\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec44b342-753d-4853-821a-5c69ca1de570",
+          "name": "Retrieve an attempt",
+          "request": {
+            "name": "Retrieve an attempt",
+            "description": {
+              "content": "This endpoint allows you to retrieve the details for a given attempt",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "attempts",
+                ":attempt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) ID of the attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d797a30-8d17-4c29-a179-db796fb6f200",
+              "name": "Attempt fetched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"iatp_tkoi5db4hryu5cei5vwoabrPoQ\",\n  \"created_on\": \"2017-07-21 17:32:28+00:00\",\n  \"modified_on\": \"2017-07-21 17:40:32+00:00\",\n  \"phone_number\": {\n    \"country_code\": \"+1\",\n    \"number\": \"2068133616\"\n  },\n  \"redirect_url\": \"https://myweb.site?query-param=hello\",\n  \"status\": \"checks_in_progress\",\n  \"response_codes\": [],\n  \"client_information\": {\n    \"pre_selected_residence_country\": \"FR\",\n    \"pre_selected_document_issuing_country\": \"FR\",\n    \"pre_selected_document_type\": \"ID\"\n  },\n  \"applicant_session_information\": {\n    \"ip_address\": \"123.123.123.01\",\n    \"selected_documents\": [\n      {\n        \"country\": \"FR\",\n        \"document_type\": \"Passport\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/v2/identity-verifications/idv_tkoi5db4hryu5cei5vwoabr7we/attempts/iatp_idv_tkoi5db4hryu5cei5vwoabr7we\"\n    },\n    \"verification_url\": {\n      \"href\": \"https://id.ubble.ai/4hryu5cei5/\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88fcdf15-592f-4817-8ad7-fe52b70f04f1",
+              "name": "The provided verification ID or attempt ID is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c049300-1887-431f-9004-42cb3dbcf87c",
+              "name": "An error occurred while fetching the attempt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts",
+                    ":attempt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) ID of the attempt"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a08a9d2-d3c8-4a09-9c73-a69a6df7c33d",
+          "name": "Retrieve attempt assets",
+          "request": {
+            "name": "Retrieve attempt assets",
+            "description": {
+              "content": "Retrieves the assets associated with an identity verification attempt.\nThis includes face images, videos, and document images captured during the verification process.\nPlease note that videos are not exposed by default, contact your account manager to enable this feature.\n\nThe response is paginated (see [Pagination](#section/API-standards/Pagination) section).\nYou can navigate through pages using the `skip` and `limit` query parameters or by following the URLs in the `_links` object.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "attempts",
+                ":attempt_id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of items to skip (offset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) The ID of the identity verification"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "attempt_id",
+                  "description": "(Required) The ID of the attempt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a64a6fe-9095-4367-b326-adb5f371f38c",
+              "name": "The assets were retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "attempts",
+                    ":attempt_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) The ID of the identity verification"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "attempt_id",
+                      "description": "(Required) The ID of the attempt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n        }\n      },\n      \"type\": \"face_image\"\n    },\n    {\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n        }\n      },\n      \"type\": \"face_video\"\n    },\n    {\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n        }\n      },\n      \"type\": \"document_front_image\"\n    },\n    {\n      \"_links\": {\n        \"asset_url\": {\n          \"href\": \"https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555\"\n        }\n      },\n      \"type\": \"document_front_video\"\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ubble.ai/api/v2/face-authentications/fau_116kcr6z00h62kzvf4hw2twb3b/attempts/fatp_116kcr6z00h62kzvf4hw2twb3d/assets\"\n    }\n  },\n  \"limit\": 10,\n  \"skip\": 0,\n  \"total_count\": 4\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c514c588-ec03-4bde-b3d7-92535f079f36",
+          "name": "Request webhook notification",
+          "request": {
+            "name": "Request webhook notification",
+            "description": {
+              "content": "This endpoint can be used to initiate a webhook call containing the latest event of an identity verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification to notify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "155deaf8-5c9b-43fe-921c-20965ce5fe34",
+              "name": "Notification successfully requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification to notify"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e907da57-aa15-443b-b302-3c59753d98bd",
+          "name": "Retrieve PDF report of an identity verification",
+          "request": {
+            "name": "Retrieve PDF report of an identity verification",
+            "description": {
+              "content": "This endpoint allows you to retrieve a PDF report containing all the information of the identity verification.\n\nPlease note that this report is only available for verifications in statuses `declined` and `approved` once you receive the `identity_verification_report_created` event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity-verifications",
+                ":identity_verification_id",
+                "pdf-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identity_verification_id",
+                  "description": "(Required) ID of the identity verification"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be3f7cb8-a132-419a-af68-e77409fae486",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pdf_report\": \"https://www.example.com/reports/idv_123.pdf\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "735a01d2-60f5-410c-97d2-320ad1314bdb",
+              "name": "The PDF is not available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity-verifications",
+                    ":identity_verification_id",
+                    "pdf-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identity_verification_id",
+                      "description": "(Required) ID of the identity verification"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ubble.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a205d8a3-2b8d-40c2-9387-ab85c3e5e5dc",
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Identity verifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Website verifications (Coming soon) API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Website verifications (Coming soon)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a website verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/website-verifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a website verification"
+        },
+        {
+          "info": {
+            "name": "Retrieve a website verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ubble.ai/v2/website-verifications/:website_verification_id",
+            "params": [
+              {
+                "name": "website_verification_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get the detailed results of a website verification"
+        },
+        {
+          "info": {
+            "name": "Anonymize a website verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/website-verifications/:website_verification_id/anonymize",
+            "params": [
+              {
+                "name": "website_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the website verification to anonymize"
+              }
+            ]
+          },
+          "docs": "Anonymize the personal data of a website verification with the specified ID."
+        },
+        {
+          "info": {
+            "name": "Request webhook notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ubble.ai/v2/website-verifications/:website_verification_id/notify",
+            "params": [
+              {
+                "name": "website_verification_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the website verification to notify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used to initiate a webhook call containing the latest event of a website verification"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
