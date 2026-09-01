@@ -184,7 +184,7 @@ apis:
   humanURL: https://docs.ubble.ai/api
   baseURL: https://api.ubble.ai
   tags:
-  - Identity verifications
+  - Identity Verifications
   tags_raw:
   - Identity verifications
   properties:
@@ -200,7 +200,7 @@ apis:
   humanURL: https://docs.ubble.ai/api
   baseURL: https://api.ubble.ai
   tags:
-  - Service status
+  - Service Status
   tags_raw:
   - Service status
   properties:
