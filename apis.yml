@@ -235,6 +235,11 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/checkout-com/
+  name: Checkout.com
+  x-relationship: acquired
+  x-evidence: "description names Checkout.com and https://www.ubble.ai/ now redirects to checkout.com (roadmap#390, corroborate-dead.py)"
 - type: Website
   url: https://www.ubble.ai/
 - type: DeveloperPortal
