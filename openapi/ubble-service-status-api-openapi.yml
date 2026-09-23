@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Service status API
+  title: Checkout.com - Identity Verification Service status API
   version: 1.0.0
   x-logo:
     url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
@@ -8,12 +8,12 @@ info:
 servers:
 - url: https://api.ubble.ai
 tags:
-- name: Service status
+- name: Service Status
 paths:
   /health:
     get:
       tags:
-      - Service status
+      - Service Status
       summary: Retrieve API health
       description: This endpoint allows you to get the health of our api, anything other than a 200 status code is not OK
       operationId: retrieve_api_health

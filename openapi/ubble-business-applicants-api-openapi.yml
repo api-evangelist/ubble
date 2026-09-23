@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Business applicants API
+  title: Checkout.com - Identity Verification Business applicants API
   version: 1.0.0
   x-logo:
     url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
@@ -55,7 +55,6 @@ paths:
       tags:
       - Business applicants
       summary: Retrieve a Business Applicant
-      description: Retrieve a Business Applicant
       operationId: retrieve_business_applicant
       parameters:
       - name: business_applicant_id
@@ -78,6 +77,34 @@ paths:
           description: Business applicant not found
 components:
   schemas:
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    BaseBusinessApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
+    BusinessApplicantOutputBase:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BaseBusinessApplicant'
+      - $ref: '#/components/schemas/BusinessApplicantsLinks'
+    BusinessApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantInputBase'
     DatedObject:
       type: object
       required:
@@ -94,47 +121,21 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    BusinessApplicantOutputBase:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/BusinessApplicantId'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/BaseBusinessApplicant'
-      - $ref: '#/components/schemas/BusinessApplicantsLinks'
+    BusinessApplicantId:
+      type: string
+      description: Business Applicant unique identifier.
+      pattern: ^bplt_\w+$
+      example: bplt_tkoi5db4hryu5cei5vwoabr7we
     BusinessApplicantOutputPost:
       type: object
       required:
       - id
       allOf:
       - $ref: '#/components/schemas/BusinessApplicantOutputBase'
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
     BusinessApplicantInputBase:
       type: object
       allOf:
       - $ref: '#/components/schemas/BaseBusinessApplicant'
-    BusinessApplicantOutputGet:
-      type: object
-      required:
-      - id
-      allOf:
-      - $ref: '#/components/schemas/BusinessApplicantOutputBase'
     BusinessApplicantsLinks:
       type: object
       required:
@@ -143,21 +144,19 @@ components:
         _links:
           allOf:
           - $ref: '#/components/schemas/SelfLink'
-    BusinessApplicantId:
-      type: string
-      description: Business Applicant unique identifier.
-      pattern: ^bplt_\w+$
-      example: bplt_tkoi5db4hryu5cei5vwoabr7we
-    BaseBusinessApplicant:
+    SelfLink:
       type: object
+      required:
+      - self
       properties:
-        external_applicant_id:
-          type: string
-          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
-    BusinessApplicantInputPost:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    BusinessApplicantOutputGet:
       type: object
+      required:
+      - id
       allOf:
-      - $ref: '#/components/schemas/BusinessApplicantInputBase'
+      - $ref: '#/components/schemas/BusinessApplicantOutputBase'
   examples:
     business_applicant_response_body:
       value:

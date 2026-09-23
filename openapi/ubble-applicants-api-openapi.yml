@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Applicants API
+  title: Checkout.com - Identity Verification Applicants API
   version: 1.0.0
   x-logo:
     url: https://raw.githubusercontent.com/ubbleai/docs/main/cko_doc_logo.png
@@ -55,7 +55,6 @@ paths:
       tags:
       - Applicants
       summary: Retrieve an Applicant
-      description: Retrieve an Applicant
       operationId: retrieve_applicant
       parameters:
       - name: applicant_id
@@ -80,7 +79,6 @@ paths:
       tags:
       - Applicants
       summary: Update an Applicant
-      description: Update an Applicant
       operationId: update_applicant
       parameters:
       - name: applicant_id
@@ -145,20 +143,20 @@ paths:
           description: Internal server error
 components:
   schemas:
-    ApplicantInputBase:
+    ApplicantsLinks:
       type: object
-      allOf:
-      - $ref: '#/components/schemas/BaseApplicant'
-    ApplicantInputPatch:
-      type: object
+      required:
+      - _links
       properties:
-        external_applicant_name:
-          type: string
-          example: David Vincent
-        email:
-          type: string
-          format: email
-          example: david.vincent@courriel.ml
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/SelfLink'
+    ApplicantOutputPost:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/ApplicantOutputBase'
     HalLink:
       type: object
       required:
@@ -167,15 +165,24 @@ components:
         href:
           type: string
           format: uri
+    BaseApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name:
+          type: string
+          example: David Vincent
+        email:
+          type: string
+          format: email
+          example: david.vincent@courriel.ml
     ApplicantId:
       type: string
       description: Applicant unique identifier.
       pattern: ^aplt_\w+$
       example: aplt_tkoi5db4hryu5cei5vwoabr7we
-    ApplicantInputPost:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ApplicantInputBase'
     ApplicantOutputAnonymize:
       type: object
       required:
@@ -188,35 +195,10 @@ components:
       - $ref: '#/components/schemas/ApplicantsLinks'
       - $ref: '#/components/schemas/DatedObject'
       - $ref: '#/components/schemas/ApplicantOutputBase'
-    ApplicantOutputBase:
+    ApplicantInputPost:
       type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/ApplicantId'
       allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/BaseApplicant'
-      - $ref: '#/components/schemas/ApplicantsLinks'
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    ApplicantOutputPost:
-      type: object
-      required:
-      - id
-      allOf:
-      - $ref: '#/components/schemas/ApplicantOutputBase'
-    ApplicantOutputPatch:
-      type: object
-      required:
-      - id
-      allOf:
-      - $ref: '#/components/schemas/ApplicantOutputBase'
+      - $ref: '#/components/schemas/ApplicantInputBase'
     DatedObject:
       type: object
       required:
@@ -233,20 +215,15 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    ApplicantsLinks:
+    ApplicantOutputPatch:
       type: object
       required:
-      - _links
-      properties:
-        _links:
-          allOf:
-          - $ref: '#/components/schemas/SelfLink'
-    BaseApplicant:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantInputPatch:
       type: object
       properties:
-        external_applicant_id:
-          type: string
-          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
         external_applicant_name:
           type: string
           example: David Vincent
@@ -260,6 +237,27 @@ components:
       - id
       allOf:
       - $ref: '#/components/schemas/ApplicantOutputBase'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ApplicantOutputBase:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BaseApplicant'
+      - $ref: '#/components/schemas/ApplicantsLinks'
+    ApplicantInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicant'
   examples:
     applicant_patch_request_body:
       value:

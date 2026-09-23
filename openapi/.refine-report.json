@@ -1,21 +1,11 @@
 {
   "provider": "ubble",
   "sources": [
-    "ubble-address-document-verifications-coming-soon-api-openapi.yml",
-    "ubble-aml-verifications-api-openapi.yml",
-    "ubble-applicants-api-openapi.yml",
-    "ubble-bank-document-verifications-coming-soon-api-openapi.yml",
-    "ubble-business-applicants-api-openapi.yml",
-    "ubble-company-document-verifications-coming-soon-api-openapi.yml",
-    "ubble-face-authentications-api-openapi.yml",
-    "ubble-id-document-verifications-api-openapi.yml",
-    "ubble-identity-verifications-api-openapi.yml",
-    "ubble-service-status-api-openapi.yml",
-    "ubble-website-verifications-coming-soon-api-openapi.yml"
+    "_original/ubble-identity-verification-openapi-original.yml"
   ],
   "outputs": [
-    "ubble-address-document-verifications-coming-soon-api-openapi.yml",
     "ubble-aml-verifications-api-openapi.yml",
+    "ubble-address-document-verifications-coming-soon-api-openapi.yml",
     "ubble-applicants-api-openapi.yml",
     "ubble-bank-document-verifications-coming-soon-api-openapi.yml",
     "ubble-business-applicants-api-openapi.yml",
@@ -29,6 +19,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ubble-identity-verification-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Address document verifications (Coming soon)",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Applicants",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Bank document verifications (Coming soon)",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Business applicants",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Company document verifications (Coming soon)",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Face authentications",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Identity verifications",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Service status",
+    "ubble-identity-verification-openapi-original.yml: declared missing tag: Website verifications (Coming soon)",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ubble-address-document-verifications-coming-soon-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-aml-verifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-applicants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-bank-document-verifications-coming-soon-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-business-applicants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-company-document-verifications-coming-soon-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-face-authentications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-id-document-verifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-identity-verifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-service-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ubble-website-verifications-coming-soon-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
