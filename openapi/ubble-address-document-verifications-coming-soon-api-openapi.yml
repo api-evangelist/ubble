@@ -318,99 +318,6 @@ paths:
           description: The PDF report is not available
 components:
   schemas:
-    AddressDocumentVerificationAttemptOutputBase:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/AddressDocumentVerificationAttemptStates'
-        response_codes:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        _links:
-          $ref: '#/components/schemas/SelfLink'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    ListLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          description: Link to the current page
-          $ref: '#/components/schemas/HalLink'
-        previous:
-          description: Link to the previous page (null if on the first page)
-          $ref: '#/components/schemas/HalLink'
-        next:
-          description: Link to the next page (null if on the last page)
-          $ref: '#/components/schemas/HalLink'
-    AddressDocumentVerificationStatus:
-      type: string
-      description: Address Document Verification status.
-      enum:
-      - created
-      - quality_checks_in_progress
-      - checks_in_progress
-      - approved
-      - declined
-      - retry_required
-      - inconclusive
-    AddressDocumentVerificationInputPost:
-      type: object
-      required:
-      - applicant_id
-      - user_journey_id
-      allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationInputBase'
-    AddressDocumentVerificationAttemptOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationAttemptOutputBase'
-    AddressDocumentVerificationLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/SelfLink'
-    AddressDocumentVerificationAttemptInputPost:
-      type: object
-      required:
-      - document
-      allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationAttemptInputBase'
-    AddressDocumentVerificationInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationBase'
-    BaseOutputList:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of items available across all pages
-        skip:
-          type: integer
-          description: Number of items skipped (offset from the start)
-        limit:
-          type: integer
-          description: Maximum number of items returned in this page
-        _links:
-          $ref: '#/components/schemas/ListLinks'
     DatedObject:
       type: object
       required:
@@ -427,16 +334,6 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    AddressDocumentVerificationAttemptStates:
-      type: string
-      description: Address Document Verification attempt state.
-      enum:
-      - quality_checks_in_progress
-      - checks_in_progress
-      - completed
-      - quality_checks_aborted
-      - checks_inconclusive
-      - terminated
     AddressDocumentVerificationBase:
       type: object
       properties:
@@ -451,27 +348,6 @@ components:
           format: uri
         declared_data:
           $ref: '#/components/schemas/DeclaredData'
-    CountryCodeIso2:
-      type: string
-      format: ISO 3166-1 alpha-2
-      pattern: ^[A-Za-z]{2}$
-      example: US
-    ProofOfAddressDocument:
-      type: object
-      properties:
-        document_type:
-          type: string
-        issuer:
-          type: string
-        full_names:
-          type: array
-          items:
-            type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        issue_date:
-          type: string
-          format: date
     AddressDocumentVerificationOutputPdfReport:
       type: object
       required:
@@ -480,12 +356,90 @@ components:
         pdf_report:
           type: string
           format: uri
-    AddressDocumentVerificationAttemptInputBase:
+    AddressDocumentVerificationAttemptStates:
+      type: string
+      description: Address Document Verification attempt state.
+      enum:
+      - quality_checks_in_progress
+      - checks_in_progress
+      - completed
+      - quality_checks_aborted
+      - checks_inconclusive
+      - terminated
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    BaseOutputList:
       type: object
       properties:
-        document:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    AddressDocumentVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/AddressDocumentVerificationOutputBase'
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
           type: string
-          format: binary
+          format: uri
+    AddressDocumentVerificationInputPost:
+      type: object
+      required:
+      - applicant_id
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/AddressDocumentVerificationInputBase'
+    AddressDocumentVerificationAttemptOutputBase:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/AddressDocumentVerificationAttemptStates'
+        response_codes:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        _links:
+          $ref: '#/components/schemas/SelfLink'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
     AddressDocumentVerificationAttemptAssetsOutput:
       type: object
       required:
@@ -503,30 +457,18 @@ components:
             $ref: '#/components/schemas/AddressDocumentVerificationAttemptAsset'
       allOf:
       - $ref: '#/components/schemas/BaseOutputList'
-    AddressDocumentVerificationAttemptOutputList:
+    DeclaredData:
       type: object
       required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
+      - name
       properties:
-        data:
-          type: array
-          description: Array of Address Document Verification attempts for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/AddressDocumentVerificationAttemptOutputGet'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    RiskLabel:
-      type: string
-      description: Risk assessment label.
-      enum:
-      - multiple_faces_detected
-      - mcc_not_confident
-      - risky_document_format
+        name:
+          type: string
+          minLength: 2
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
     AddressDocumentVerificationAttemptAsset:
       type: object
       required:
@@ -547,15 +489,6 @@ components:
                 href:
                   type: string
                   format: uri
-    AddressDocumentVerificationAttemptOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationAttemptOutputBase'
     Address:
       type: object
       properties:
@@ -576,40 +509,28 @@ components:
           maxLength: 50
         country:
           $ref: '#/components/schemas/CountryCodeIso2'
-    AddressDocumentVerificationOutputAnonymize:
+    AddressDocumentVerificationAttemptInputPost:
       type: object
       required:
-      - id
-      - status
-      - applicant_id
-      - user_journey_id
-      - response_codes
-      - _links
+      - document
       allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationOutputBase'
-    DeclaredData:
+      - $ref: '#/components/schemas/AddressDocumentVerificationAttemptInputBase'
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    AddressDocumentVerificationLinks:
       type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          minLength: 2
-          maxLength: 255
-        birth_date:
-          type: string
-          format: date
-    AddressDocumentVerificationOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - user_journey_id
-      - _links
       allOf:
-      - $ref: '#/components/schemas/AddressDocumentVerificationOutputBase'
+      - $ref: '#/components/schemas/SelfLink'
     AddressDocumentVerificationOutputBase:
       type: object
       properties:
@@ -630,18 +551,31 @@ components:
       allOf:
       - $ref: '#/components/schemas/AddressDocumentVerificationBase'
       - $ref: '#/components/schemas/DatedObject'
-    AddressDocumentVerificationOutputGet:
+    AddressDocumentVerificationStatus:
+      type: string
+      description: Address Document Verification status.
+      enum:
+      - created
+      - quality_checks_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - inconclusive
+    AddressDocumentVerificationAttemptOutputGet:
       type: object
       required:
       - id
       - status
-      - applicant_id
       - response_codes
-      - user_journey_id
       - _links
       allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/AddressDocumentVerificationOutputBase'
+      - $ref: '#/components/schemas/AddressDocumentVerificationAttemptOutputBase'
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
     ResponseCodes:
       type: object
       description: The code giving more details about the result.
@@ -653,89 +587,157 @@ components:
       required:
       - code
       - summary
-    ResponseSummary:
-      type: string
-      description: A descriptive code of the response code.
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
-    ApplicantId:
-      type: string
-      description: Applicant unique identifier.
-      pattern: ^aplt_\w+$
-      example: aplt_tkoi5db4hryu5cei5vwoabr7we
-    AddressDocumentVerificationId:
-      type: string
-      description: Address Document Verification unique identifier.
-      pattern: ^adv_\w+$
-      example: adv_tkoi5db4hryu5cei5vwoabr7we
-    UserJourneyId:
-      type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
-    SelfLink:
+    AddressDocumentVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/AddressDocumentVerificationBase'
+    AddressDocumentVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/AddressDocumentVerificationOutputBase'
+    ListLinks:
       type: object
       required:
       - self
       properties:
         self:
+          description: Link to the current page
           $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    ProofOfAddressDocument:
+      type: object
+      properties:
+        document_type:
+          type: string
+        issuer:
+          type: string
+        full_names:
+          type: array
+          items:
+            type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        issue_date:
+          type: string
+          format: date
+    AddressDocumentVerificationAttemptInputBase:
+      type: object
+      properties:
+        document:
+          type: string
+          format: binary
+    AddressDocumentVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - user_journey_id
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/AddressDocumentVerificationOutputBase'
     RiskLabels:
       type: array
       items:
         $ref: '#/components/schemas/RiskLabel'
       description: Risk assessment labels
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return per page
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        default: 10
-    skipParam:
-      name: skip
-      in: query
-      description: Number of items to skip (offset)
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-  examples:
-    address_document_verification_attempt_output_assets_response_body:
-      value:
-        total_count: 1
-        skip: 10
-        limit: 10
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets
-          next:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/...
-          previous:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/...
+    AddressDocumentVerificationAttemptOutputList:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
         data:
-        - type: document
-          _links:
-            asset_url:
-              href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/document
-    address_document_verification_attempt_creation_response_body:
+          type: array
+          description: Array of Address Document Verification attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/AddressDocumentVerificationAttemptOutputGet'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    AddressDocumentVerificationId:
+      type: string
+      description: Address Document Verification unique identifier.
+      pattern: ^adv_\w+$
+      example: adv_tkoi5db4hryu5cei5vwoabr7we
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    AddressDocumentVerificationAttemptOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/AddressDocumentVerificationAttemptOutputBase'
+  examples:
+    address_document_verification_creation_request_body_min:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: Acme Corporation
+    address_document_verification_pdf_report_response_body:
+      value:
+        pdf_report: https://www.example.com/reports/adv_123.pdf
+    address_document_verification_attempt_creation_request_body_max:
+      value:
+        document: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
+
+          '
+    address_document_verification_anonymization_response_body:
       value:
         id: adv_tkoi5db4hryu5cei5vwoabr7we
         created_on: 2017-07-21 17:32:28+00:00
         modified_on: 2017-07-21 17:40:32+00:00
-        status: completed
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: created
         response_codes: []
+        webhook_url: https://my.api/events/
         _links:
           self:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123
-    address_document_verification_attempt_get_response_body:
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we
+    address_document_verification_attempt_list_response_body:
+      value:
+        total_count: 2
+        skip: 10
+        limit: 10
+        data:
+        - id: adv_tkoi5db4hryu5cei5vwoabr7we
+          created_on: 2017-07-21 17:32:28+00:00
+          modified_on: 2017-07-21 17:40:32+00:00
+          status: completed
+          response_codes: []
+          _links:
+            self:
+              href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts
+          next:
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+          previous:
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+    address_document_verification_attempt_creation_response_body:
       value:
         id: adv_tkoi5db4hryu5cei5vwoabr7we
         created_on: 2017-07-21 17:32:28+00:00
@@ -750,16 +752,6 @@ components:
         document: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
 
           '
-    address_document_verification_creation_request_body_max:
-      value:
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
-        declared_data:
-          name: Acme Corporation
-        webhook_url: https://my.api/events/
-    address_document_verification_pdf_report_response_body:
-      value:
-        pdf_report: https://www.example.com/reports/adv_123.pdf
     address_document_verification_creation_response_body:
       value:
         id: adv_tkoi5db4hryu5cei5vwoabr7we
@@ -786,51 +778,59 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we
-    address_document_verification_creation_request_body_min:
+    address_document_verification_creation_request_body_max:
       value:
         user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
         applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
         declared_data:
           name: Acme Corporation
-    address_document_verification_attempt_list_response_body:
+        webhook_url: https://my.api/events/
+    address_document_verification_attempt_output_assets_response_body:
       value:
-        total_count: 2
+        total_count: 1
         skip: 10
         limit: 10
-        data:
-        - id: adv_tkoi5db4hryu5cei5vwoabr7we
-          created_on: 2017-07-21 17:32:28+00:00
-          modified_on: 2017-07-21 17:40:32+00:00
-          status: completed
-          response_codes: []
-          _links:
-            self:
-              href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123
         _links:
           self:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets
           next:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/...
           previous:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
-    address_document_verification_anonymization_response_body:
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/...
+        data:
+        - type: document
+          _links:
+            asset_url:
+              href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123/assets/document
+    address_document_verification_attempt_get_response_body:
       value:
         id: adv_tkoi5db4hryu5cei5vwoabr7we
         created_on: 2017-07-21 17:32:28+00:00
         modified_on: 2017-07-21 17:40:32+00:00
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
-        status: created
+        status: completed
         response_codes: []
-        webhook_url: https://my.api/events/
         _links:
           self:
-            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we
-    address_document_verification_attempt_creation_request_body_max:
-      value:
-        document: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
-
-          '
+            href: https://api.ubble.ai/v2/address-document-verifications/adv_tkoi5db4hryu5cei5vwoabr7we/attempts/adv_attempt_123
+  parameters:
+    skipParam:
+      name: skip
+      in: query
+      description: Number of items to skip (offset)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
 x-tagGroups:
 - name: Endpoints documentation
   tags:

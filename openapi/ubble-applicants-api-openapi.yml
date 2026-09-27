@@ -143,62 +143,6 @@ paths:
           description: Internal server error
 components:
   schemas:
-    ApplicantsLinks:
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          allOf:
-          - $ref: '#/components/schemas/SelfLink'
-    ApplicantOutputPost:
-      type: object
-      required:
-      - id
-      allOf:
-      - $ref: '#/components/schemas/ApplicantOutputBase'
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    BaseApplicant:
-      type: object
-      properties:
-        external_applicant_id:
-          type: string
-          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
-        external_applicant_name:
-          type: string
-          example: David Vincent
-        email:
-          type: string
-          format: email
-          example: david.vincent@courriel.ml
-    ApplicantId:
-      type: string
-      description: Applicant unique identifier.
-      pattern: ^aplt_\w+$
-      example: aplt_tkoi5db4hryu5cei5vwoabr7we
-    ApplicantOutputAnonymize:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/ApplicantId'
-      allOf:
-      - $ref: '#/components/schemas/ApplicantsLinks'
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/ApplicantOutputBase'
-    ApplicantInputPost:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ApplicantInputBase'
     DatedObject:
       type: object
       required:
@@ -221,6 +165,47 @@ components:
       - id
       allOf:
       - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantOutputPost:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantsLinks:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/SelfLink'
+    ApplicantInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicant'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ApplicantOutputAnonymize:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/ApplicantsLinks'
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ApplicantInputBase'
     ApplicantInputPatch:
       type: object
       properties:
@@ -231,19 +216,38 @@ components:
           type: string
           format: email
           example: david.vincent@courriel.ml
+    BaseApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name:
+          type: string
+          example: David Vincent
+        email:
+          type: string
+          format: email
+          example: david.vincent@courriel.ml
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
     ApplicantOutputGet:
       type: object
       required:
       - id
       allOf:
       - $ref: '#/components/schemas/ApplicantOutputBase'
-    SelfLink:
+    HalLink:
       type: object
       required:
-      - self
+      - href
       properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
+        href:
+          type: string
+          format: uri
     ApplicantOutputBase:
       type: object
       properties:
@@ -254,26 +258,11 @@ components:
       - $ref: '#/components/schemas/DatedObject'
       - $ref: '#/components/schemas/BaseApplicant'
       - $ref: '#/components/schemas/ApplicantsLinks'
-    ApplicantInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BaseApplicant'
   examples:
     applicant_patch_request_body:
       value:
         external_applicant_name: David Vincent
         email: david.vincent@courriel.ml
-    applicant_response_body:
-      value:
-        id: aplt_tkoi5db4hryu5cei5vwoabr7we
-        created_on: 2017-07-21 17:32:28+00:00
-        modified_on: 2017-07-21 17:40:32+00:00
-        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
-        external_applicant_name: David Vincent
-        email: david.vincent@courriel.ml
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
     applicant_response_body_anonymized:
       value:
         id: aplt_tkoi5db4hryu5cei5vwoabr7we
@@ -289,6 +278,17 @@ components:
         external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
         external_applicant_name: David Vincent
         email: david.vincent@courriel.ml
+    applicant_response_body:
+      value:
+        id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name: David Vincent
+        email: david.vincent@courriel.ml
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
 x-tagGroups:
 - name: Endpoints documentation
   tags:

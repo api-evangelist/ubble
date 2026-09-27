@@ -77,34 +77,6 @@ paths:
           description: Business applicant not found
 components:
   schemas:
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    BaseBusinessApplicant:
-      type: object
-      properties:
-        external_applicant_id:
-          type: string
-          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
-    BusinessApplicantOutputBase:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/BusinessApplicantId'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/BaseBusinessApplicant'
-      - $ref: '#/components/schemas/BusinessApplicantsLinks'
-    BusinessApplicantInputPost:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BusinessApplicantInputBase'
     DatedObject:
       type: object
       required:
@@ -121,21 +93,48 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
+    BaseBusinessApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
     BusinessApplicantId:
       type: string
       description: Business Applicant unique identifier.
       pattern: ^bplt_\w+$
       example: bplt_tkoi5db4hryu5cei5vwoabr7we
+    BusinessApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantInputBase'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    BusinessApplicantInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseBusinessApplicant'
+    BusinessApplicantOutputBase:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BaseBusinessApplicant'
+      - $ref: '#/components/schemas/BusinessApplicantsLinks'
     BusinessApplicantOutputPost:
       type: object
       required:
       - id
       allOf:
       - $ref: '#/components/schemas/BusinessApplicantOutputBase'
-    BusinessApplicantInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BaseBusinessApplicant'
     BusinessApplicantsLinks:
       type: object
       required:
@@ -144,13 +143,14 @@ components:
         _links:
           allOf:
           - $ref: '#/components/schemas/SelfLink'
-    SelfLink:
+    HalLink:
       type: object
       required:
-      - self
+      - href
       properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
+        href:
+          type: string
+          format: uri
     BusinessApplicantOutputGet:
       type: object
       required:
