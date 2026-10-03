@@ -71,11 +71,87 @@ paths:
                 - $ref: '#/components/schemas/AMLVerificationOutputGet'
 components:
   schemas:
+    SearchParameters:
+      type: object
+      required:
+      - configuration_identifier
+      description: ComplyAdvantage search inputs
+      properties:
+        configuration_identifier:
+          type: string
+          description: Configuration identifier
+          example: 12345678-1234-1234-1234-123456789012
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
     AMLVerificationLinks:
       type: object
       allOf:
       - $ref: '#/components/schemas/SelfLink'
       - $ref: '#/components/schemas/ApplicantLink'
+    AMLVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - _links
+      - applicant_id
+      - search_parameters
+      properties:
+        id:
+          $ref: '#/components/schemas/AMLVerificationId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/AMLVerificationOutputBase'
+    AMLVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/AMLVerificationBase'
+    AMLVerificationId:
+      type: string
+      description: AML verification unique identifier.
+      pattern: ^amlv_\w+$
+      example: amlv_tkoi5db4hryu5cei5vwoabr7we
+    AMLVerificationInputPost:
+      type: object
+      required:
+      - webhook_url
+      - applicant_id
+      - search_parameters
+      allOf:
+      - $ref: '#/components/schemas/AMLVerificationInputBase'
+    AMLVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - _links
+      - applicant_id
+      - search_parameters
+      properties:
+        id:
+          $ref: '#/components/schemas/AMLVerificationId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/AMLVerificationOutputBase'
+    ApplicantLink:
+      type: object
+      required:
+      - applicant
+      properties:
+        applicant:
+          $ref: '#/components/schemas/HalLink'
     DatedObject:
       type: object
       required:
@@ -106,6 +182,14 @@ components:
             $ref: '#/components/schemas/SearchParameters'
           monitored:
             type: boolean
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
     AMLVerificationStatuses:
       type: string
       description: Status of the AML verification.
@@ -115,56 +199,6 @@ components:
       - approved
       - declined
       - review_required
-    AMLVerificationId:
-      type: string
-      description: AML verification unique identifier.
-      pattern: ^amlv_\w+$
-      example: amlv_tkoi5db4hryu5cei5vwoabr7we
-    AMLVerificationOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - webhook_url
-      - _links
-      - applicant_id
-      - search_parameters
-      properties:
-        id:
-          $ref: '#/components/schemas/AMLVerificationId'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/AMLVerificationOutputBase'
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    AMLVerificationOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - webhook_url
-      - _links
-      - applicant_id
-      - search_parameters
-      properties:
-        id:
-          $ref: '#/components/schemas/AMLVerificationId'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/AMLVerificationOutputBase'
-    AMLVerificationInputPost:
-      type: object
-      required:
-      - webhook_url
-      - applicant_id
-      - search_parameters
-      allOf:
-      - $ref: '#/components/schemas/AMLVerificationInputBase'
     AMLVerificationOutputBase:
       type: object
       properties:
@@ -176,40 +210,6 @@ components:
           - $ref: '#/components/schemas/AMLVerificationLinks'
       allOf:
       - $ref: '#/components/schemas/AMLVerificationBase'
-    ApplicantId:
-      type: string
-      description: Applicant unique identifier.
-      pattern: ^aplt_\w+$
-      example: aplt_tkoi5db4hryu5cei5vwoabr7we
-    ApplicantLink:
-      type: object
-      required:
-      - applicant
-      properties:
-        applicant:
-          $ref: '#/components/schemas/HalLink'
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    AMLVerificationInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/AMLVerificationBase'
-    SearchParameters:
-      type: object
-      required:
-      - configuration_identifier
-      description: ComplyAdvantage search inputs
-      properties:
-        configuration_identifier:
-          type: string
-          description: Configuration identifier
-          example: 12345678-1234-1234-1234-123456789012
   examples:
     aml_verification_creation_request_body_max:
       value:

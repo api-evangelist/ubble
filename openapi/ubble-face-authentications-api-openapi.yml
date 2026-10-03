@@ -284,6 +284,100 @@ paths:
           description: Notification successfully requested
 components:
   schemas:
+    FaceAuthenticationInputPost:
+      type: object
+      required:
+      - webhook_url
+      - applicant_id
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationInputBase'
+    FaceAttemptBase:
+      type: object
+      properties:
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        client_information:
+          $ref: '#/components/schemas/FaceAttemptClientInformation'
+        redirect_url:
+          type: string
+          format: uri
+    BaseApplicantSessionInformation:
+      type: object
+      properties:
+        ip_address:
+          type: string
+          description: Ip address of the applicant during the session
+          example: 123:456:789:00
+        number_of_sessions:
+          type: integer
+          description: Number of sessions opened by user
+          example: 3
+        user_agent:
+          type: string
+          description: User session user agent
+          example: Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
+        initial_device:
+          $ref: '#/components/schemas/InitialDevices'
+    FaceAuthenticationAttemptResponseList:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of face authentication attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/FaceAuthenticationAttemptOutputGet'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    PhoneNumber:
+      type: object
+      required:
+      - country_code
+      - number
+      properties:
+        country_code:
+          $ref: '#/components/schemas/PhonePrefix'
+        number:
+          $ref: '#/components/schemas/DomesticPhoneNumber'
+    PhonePrefix:
+      type: string
+      format: international phone prefix
+      pattern: ^\+(\d+)$
+      example: '+33'
+    ListLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    FaceAuthenticationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
     DatedObject:
       type: object
       required:
@@ -300,33 +394,80 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    FaceAuthenticationOutputAnonymize:
+    ActiveLink:
+      type: object
+      required:
+      - verification_url
+      properties:
+        verification_url:
+          $ref: '#/components/schemas/HalLink'
+    VerificationStatuses:
+      type: string
+      description: Status of the verification.
+      enum:
+      - created
+      - pending
+      - capture_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - refused
+      - inconclusive
+    FaceAuthenticationApplicantSessionInformation:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicantSessionInformation'
+    FaceAuthenticationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationBase'
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    LanguageCode:
+      type: string
+      format: IETF BCP 47 language tag
+      description: Language tag following IETF BCP 47 standard
+      example: en-US
+    FaceAuthenticationId:
+      type: string
+      description: Face authentication unique identifier.
+      pattern: ^fav_\w+$
+      example: fav_tkoi5db4hryu5cei5vwoabr7we
+    FaceAuthenticationAttemptOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - redirect_url
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
+    AttemptLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ActiveLink'
+      - $ref: '#/components/schemas/SelfLink'
+    FaceAuthenticationOutputPost:
       type: object
       required:
       - id
       - status
       - webhook_url
       - applicant_id
-      - user_journey_id
       - response_codes
       - risk_labels
+      - user_journey_id
       - _links
       properties:
         face:
           $ref: '#/components/schemas/VerificationFace'
       allOf:
       - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
-    FaceAuthenticationLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/SelfLink'
-      - $ref: '#/components/schemas/ApplicantLink'
-    FaceAuthenticationAttemptInputPost:
-      type: object
-      required:
-      - redirect_url
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationAttemptInputBase'
     SelfLink:
       type: object
       required:
@@ -334,16 +475,17 @@ components:
       properties:
         self:
           $ref: '#/components/schemas/HalLink'
-    PhoneNumber:
+    ResponseCodes:
       type: object
-      required:
-      - country_code
-      - number
+      description: The code giving more details about the result.
       properties:
-        country_code:
-          $ref: '#/components/schemas/PhonePrefix'
-        number:
-          $ref: '#/components/schemas/DomesticPhoneNumber'
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
     BaseOutputList:
       type: object
       properties:
@@ -358,13 +500,71 @@ components:
           description: Maximum number of items returned in this page
         _links:
           $ref: '#/components/schemas/ListLinks'
-    FaceAttemptClientInformation:
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    FaceAuthenticationBase:
       type: object
       properties:
-        pre_selected_residence_country:
-          $ref: '#/components/schemas/CountryCodeIso2'
-        pre_selected_language:
-          $ref: '#/components/schemas/LanguageCode'
+        user_journey_id:
+          $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          $ref: '#/components/schemas/ApplicantId'
+        webhook_url:
+          type: string
+          format: uri
+    FaceAuthenticationAttemptAssetOutput:
+      type: object
+      required:
+      - type
+      - _links
+      properties:
+        type:
+          type: string
+          enum:
+          - face_image
+          - face_video
+        _links:
+          required:
+          - asset_url
+          type: object
+          properties:
+            asset_url:
+              $ref: '#/components/schemas/HalLink'
+    FaceAuthenticationAttemptAssetsOutput:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of face authentication attempt assets for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/FaceAuthenticationAttemptAssetOutput'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    FaceAuthenticationAttemptOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - redirect_url
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
     FaceAuthenticationAttemptOutputBase:
       type: object
       properties:
@@ -385,262 +585,17 @@ components:
       allOf:
       - $ref: '#/components/schemas/DatedObject'
       - $ref: '#/components/schemas/FaceAttemptBase'
-    ApplicantId:
+    CountryCodeIso2:
       type: string
-      description: Applicant unique identifier.
-      pattern: ^aplt_\w+$
-      example: aplt_tkoi5db4hryu5cei5vwoabr7we
-    FaceAuthenticationOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - webhook_url
-      - applicant_id
-      - response_codes
-      - risk_labels
-      - user_journey_id
-      - _links
-      properties:
-        face:
-          $ref: '#/components/schemas/VerificationFace'
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
-    DomesticPhoneNumber:
-      type: string
-      format: domestic phone number
-      pattern: ^\d{1,14}$
-      example: '2068133616'
-    FaceAuthenticationBase:
-      type: object
-      properties:
-        user_journey_id:
-          $ref: '#/components/schemas/UserJourneyId'
-        applicant_id:
-          $ref: '#/components/schemas/ApplicantId'
-        webhook_url:
-          type: string
-          format: uri
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    FaceAuthenticationAttemptOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - redirect_url
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
-    FaceAuthenticationId:
-      type: string
-      description: Face authentication unique identifier.
-      pattern: ^fav_\w+$
-      example: fav_tkoi5db4hryu5cei5vwoabr7we
-    FaceAuthenticationAttemptAssetsOutput:
-      type: object
-      required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of face authentication attempt assets for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/FaceAuthenticationAttemptAssetOutput'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
-    FaceAuthenticationInputPost:
-      type: object
-      required:
-      - webhook_url
-      - applicant_id
-      - user_journey_id
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationInputBase'
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
     InitialDevices:
       type: string
       description: Initial device which started the session
       enum:
       - mobile
       - desktop
-    PhonePrefix:
-      type: string
-      format: international phone prefix
-      pattern: ^\+(\d+)$
-      example: '+33'
-    FaceAuthenticationAttemptResponseList:
-      type: object
-      required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of face authentication attempts for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/FaceAuthenticationAttemptOutputGet'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    RiskLabel:
-      type: string
-      description: Risk assessment label.
-      enum:
-      - multiple_faces_detected
-      - mcc_not_confident
-      - risky_document_format
-    CountryCodeIso2:
-      type: string
-      format: ISO 3166-1 alpha-2
-      pattern: ^[A-Za-z]{2}$
-      example: US
-    FaceAuthenticationInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationBase'
-    ActiveLink:
-      type: object
-      required:
-      - verification_url
-      properties:
-        verification_url:
-          $ref: '#/components/schemas/HalLink'
-    AttemptLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ActiveLink'
-      - $ref: '#/components/schemas/SelfLink'
-    FaceAuthenticationOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - webhook_url
-      - applicant_id
-      - response_codes
-      - risk_labels
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
-    UserJourneyId:
-      type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
-    ResponseCodes:
-      type: object
-      description: The code giving more details about the result.
-      properties:
-        code:
-          $ref: '#/components/schemas/ResponseCode'
-        summary:
-          $ref: '#/components/schemas/ResponseSummary'
-      required:
-      - code
-      - summary
-    BaseApplicantSessionInformation:
-      type: object
-      properties:
-        ip_address:
-          type: string
-          description: Ip address of the applicant during the session
-          example: 123:456:789:00
-        number_of_sessions:
-          type: integer
-          description: Number of sessions opened by user
-          example: 3
-        user_agent:
-          type: string
-          description: User session user agent
-          example: Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
-        initial_device:
-          $ref: '#/components/schemas/InitialDevices'
-    VerificationFace:
-      type: object
-      properties:
-        image_signed_url:
-          type:
-          - string
-          - 'null'
-    ApplicantLink:
-      type: object
-      required:
-      - applicant
-      properties:
-        applicant:
-          $ref: '#/components/schemas/HalLink'
-    FaceAuthenticationAttemptAssetOutput:
-      type: object
-      required:
-      - type
-      - _links
-      properties:
-        type:
-          type: string
-          enum:
-          - face_image
-          - face_video
-        _links:
-          required:
-          - asset_url
-          type: object
-          properties:
-            asset_url:
-              $ref: '#/components/schemas/HalLink'
-    FaceAuthenticationApplicantSessionInformation:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BaseApplicantSessionInformation'
-    FaceAttemptBase:
-      type: object
-      properties:
-        phone_number:
-          $ref: '#/components/schemas/PhoneNumber'
-        client_information:
-          $ref: '#/components/schemas/FaceAttemptClientInformation'
-        redirect_url:
-          type: string
-          format: uri
-    ListLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          description: Link to the current page
-          $ref: '#/components/schemas/HalLink'
-        previous:
-          description: Link to the previous page (null if on the first page)
-          $ref: '#/components/schemas/HalLink'
-        next:
-          description: Link to the next page (null if on the last page)
-          $ref: '#/components/schemas/HalLink'
-    LanguageCode:
-      type: string
-      format: IETF BCP 47 language tag
-      description: Language tag following IETF BCP 47 standard
-      example: en-US
     RiskLabels:
       type: array
       items:
@@ -659,36 +614,19 @@ components:
       - capture_refused
       - checks_inconclusive
       - terminated
-    VerificationStatuses:
-      type: string
-      description: Status of the verification.
-      enum:
-      - created
-      - pending
-      - capture_in_progress
-      - checks_in_progress
-      - approved
-      - declined
-      - retry_required
-      - refused
-      - inconclusive
-    FaceAuthenticationAttemptInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/FaceAttemptBase'
-    FaceAuthenticationAttemptOutputPost:
+    FaceAuthenticationAttemptInputPost:
       type: object
       required:
-      - id
-      - status
       - redirect_url
-      - response_codes
-      - _links
       allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
-    ResponseSummary:
-      type: string
-      description: A descriptive code of the response code.
+      - $ref: '#/components/schemas/FaceAuthenticationAttemptInputBase'
+    VerificationFace:
+      type: object
+      properties:
+        image_signed_url:
+          type:
+          - string
+          - 'null'
     FaceAuthenticationOutputBase:
       type: object
       properties:
@@ -709,50 +647,87 @@ components:
       allOf:
       - $ref: '#/components/schemas/FaceAuthenticationBase'
       - $ref: '#/components/schemas/DatedObject'
+    FaceAuthenticationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    FaceAuthenticationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - applicant_id
+      - user_journey_id
+      - response_codes
+      - risk_labels
+      - _links
+      properties:
+        face:
+          $ref: '#/components/schemas/VerificationFace'
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
+    DomesticPhoneNumber:
+      type: string
+      format: domestic phone number
+      pattern: ^\d{1,14}$
+      example: '2068133616'
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    FaceAuthenticationAttemptInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/FaceAttemptBase'
+    FaceAttemptClientInformation:
+      type: object
+      properties:
+        pre_selected_residence_country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        pre_selected_language:
+          $ref: '#/components/schemas/LanguageCode'
+    ApplicantLink:
+      type: object
+      required:
+      - applicant
+      properties:
+        applicant:
+          $ref: '#/components/schemas/HalLink'
   examples:
-    attempt_creation_request_body_min:
+    face_authentication_attempt_creation_response_body:
       value:
-        redirect_url: https://myweb.site?query-param=hello
-    face_authentication_creation_response_body:
-      value:
-        id: fav_tkoi5db4hryu5cei5vwoabr7we
+        id: fatp_tkoi5db4hryu5cei5vwoabrPoQ
         created_on: 2017-07-21 17:32:28+00:00
         modified_on: 2017-07-21 17:40:32+00:00
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
-        status: declined
-        response_codes:
-        - code: 62403
-          summary: consent_unclear
-        - code: 61402
-          summary: face_video_lighting_issue
-        risk_labels:
-        - multiple_faces_detected
-        face:
-          image_signed_url: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
-        webhook_url: https://my.api/events/
+        status: pending_redirection
+        response_codes: []
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        client_information:
+          pre_selected_residence_country: FR
+        redirect_url: https://myweb.site?query-param=hello
         _links:
           self:
-            href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we
-          applicant:
-            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
-    face_authentication_attempt_assets_response_body:
-      value:
-        data:
-        - _links:
-            asset_url:
-              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
-          type: face_image
-        - _links:
-            asset_url:
-              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
-          type: face_video
-        _links:
-          self:
-            href: https://api.ubble.ai/api/v2/face-authentications/fau_116kcr6z00h62kzvf4hw2twb3b/attempts/fatp_116kcr6z00h62kzvf4hw2twb3d/assets
-        limit: 10
-        skip: 0
-        total_count: 2
+            href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts/fatp_tkoi5db4hryu5cei5vwoabr7we
+          verification_url:
+            href: https://id.ubble.ai/4hryu5cei5/
     face_authentication_attempt_list_response_body:
       value:
         total_count: 2
@@ -804,24 +779,34 @@ components:
             href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=20&limit=10
           previous:
             href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts?skip=0&limit=10
-    face_authentication_attempt_creation_response_body:
+    face_authentication_attempt_assets_response_body:
       value:
-        id: fatp_tkoi5db4hryu5cei5vwoabrPoQ
-        created_on: 2017-07-21 17:32:28+00:00
-        modified_on: 2017-07-21 17:40:32+00:00
-        status: pending_redirection
-        response_codes: []
+        data:
+        - _links:
+            asset_url:
+              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+          type: face_image
+        - _links:
+            asset_url:
+              href: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/FRA-I5-Front-bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921906596.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=87d8467ab92cbad7c00171af28e613d495f3ff441ce0ea59dd013d68abc50555
+          type: face_video
+        _links:
+          self:
+            href: https://api.ubble.ai/api/v2/face-authentications/fau_116kcr6z00h62kzvf4hw2twb3b/attempts/fatp_116kcr6z00h62kzvf4hw2twb3d/assets
+        limit: 10
+        skip: 0
+        total_count: 2
+    face_attempt_creation_request_body_max:
+      value:
         phone_number:
           country_code: '+1'
           number: '2068133616'
         client_information:
           pre_selected_residence_country: FR
         redirect_url: https://myweb.site?query-param=hello
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts/fatp_tkoi5db4hryu5cei5vwoabr7we
-          verification_url:
-            href: https://id.ubble.ai/4hryu5cei5/
+    attempt_creation_request_body_min:
+      value:
+        redirect_url: https://myweb.site?query-param=hello
     face_authentication_attempt_get_response_body:
       value:
         id: fatp_tkoi5db4hryu5cei5vwoabrPoQ
@@ -842,14 +827,6 @@ components:
             href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts/fatp_tkoi5db4hryu5cei5vwoabr7we
           verification_url:
             href: https://id.ubble.ai/4hryu5cei5/
-    face_attempt_creation_request_body_max:
-      value:
-        phone_number:
-          country_code: '+1'
-          number: '2068133616'
-        client_information:
-          pre_selected_residence_country: FR
-        redirect_url: https://myweb.site?query-param=hello
     face_authentication_anonymization_response_body:
       value:
         id: fav_tkoi5db4hryu5cei5vwoabr7we
@@ -869,6 +846,29 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/face-authentications/face_tkoi5db4hryu5cei5vwoabr7we
+          applicant:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    face_authentication_creation_response_body:
+      value:
+        id: fav_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        status: declined
+        response_codes:
+        - code: 62403
+          summary: consent_unclear
+        - code: 61402
+          summary: face_video_lighting_issue
+        risk_labels:
+        - multiple_faces_detected
+        face:
+          image_signed_url: https://storage-b.env.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
+        webhook_url: https://my.api/events/
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we
           applicant:
             href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
   parameters:

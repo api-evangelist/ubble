@@ -318,138 +318,6 @@ paths:
           description: The PDF report is not available
 components:
   schemas:
-    DatedObject:
-      type: object
-      required:
-      - created_on
-      - modified_on
-      properties:
-        created_on:
-          description: UTC Date time when the resource was created
-          type: string
-          format: date-time
-          example: 2017-07-21 17:32:28+00:00
-        modified_on:
-          description: UTC Date time when the resource was modified
-          type: string
-          format: date-time
-          example: 2017-07-21 17:40:32+00:00
-    CompanyDocumentVerificationOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationOutputBase'
-    CompanyDocumentVerificationOutputAnonymize:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - user_journey_id
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationOutputBase'
-    CompanyDocumentVerificationOutputBase:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/CompanyDocumentVerificationId'
-        status:
-          $ref: '#/components/schemas/CompanyDocumentVerificationStatus'
-        response_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        risk_labels:
-          $ref: '#/components/schemas/RiskLabels'
-        company_document:
-          $ref: '#/components/schemas/CompanyDocument'
-        _links:
-          $ref: '#/components/schemas/CompanyDocumentVerificationLinks'
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationBase'
-      - $ref: '#/components/schemas/DatedObject'
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    CompanyDocumentVerificationOutputPdfReport:
-      type: object
-      required:
-      - pdf_report
-      properties:
-        pdf_report:
-          type: string
-          format: uri
-    BaseOutputList:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of items available across all pages
-        skip:
-          type: integer
-          description: Number of items skipped (offset from the start)
-        limit:
-          type: integer
-          description: Maximum number of items returned in this page
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    CompanyDocumentType:
-      type: string
-      description: Type of document.
-      enum:
-      - ein_letter
-    CompanyDocumentVerificationDeclaredData:
-      type: object
-      required:
-      - registered_name
-      properties:
-        registered_name:
-          type: string
-          minLength: 2
-          maxLength: 255
-    CompanyDocumentVerificationStatus:
-      type: string
-      description: Company Document Verification status.
-      enum:
-      - created
-      - quality_checks_in_progress
-      - checks_in_progress
-      - approved
-      - declined
-      - retry_required
-      - inconclusive
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    CompanyDocumentVerificationOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/CompanyDocumentVerificationOutputBase'
     CompanyDocumentVerificationAttemptStates:
       type: string
       description: Company Document Verification attempt state.
@@ -460,58 +328,15 @@ components:
       - quality_checks_aborted
       - checks_inconclusive
       - terminated
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
+    CompanyDocumentVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationBase'
     CompanyDocumentVerificationId:
       type: string
       description: Company Document Verification unique identifier.
       pattern: ^cdv_\w+$
       example: cdv_tkoi5db4hryu5cei5vwoabr7we
-    Address:
-      type: object
-      properties:
-        address_line1:
-          type: string
-          maxLength: 250
-        address_line2:
-          type: string
-          maxLength: 250
-        city:
-          type: string
-          maxLength: 50
-        state:
-          type: string
-          maxLength: 50
-        zip:
-          type: string
-          maxLength: 50
-        country:
-          $ref: '#/components/schemas/CountryCodeIso2'
-    RiskLabel:
-      type: string
-      description: Risk assessment label.
-      enum:
-      - multiple_faces_detected
-      - mcc_not_confident
-      - risky_document_format
-    CountryCodeIso2:
-      type: string
-      format: ISO 3166-1 alpha-2
-      pattern: ^[A-Za-z]{2}$
-      example: US
-    CompanyDocumentVerificationInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationBase'
-    CompanyDocumentVerificationAttemptInputPost:
-      type: object
-      required:
-      - document
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationAttemptInputBase'
     CompanyDocumentVerificationAttemptOutputBase:
       type: object
       properties:
@@ -528,52 +353,41 @@ components:
           $ref: '#/components/schemas/SelfLink'
       allOf:
       - $ref: '#/components/schemas/DatedObject'
-    CompanyDocumentVerificationLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/SelfLink'
-    CompanyDocumentVerificationAttemptOutputList:
+    ListLinks:
       type: object
       required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
+      - self
       properties:
-        data:
-          type: array
-          description: Array of Company Document Verification attempts for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/CompanyDocumentVerificationAttemptOutputGet'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    CompanyDocumentVerificationAttemptInputBase:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    DatedObject:
       type: object
+      required:
+      - created_on
+      - modified_on
       properties:
-        document:
+        created_on:
+          description: UTC Date time when the resource was created
           type: string
-          format: binary
-    UserJourneyId:
-      type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
-    CompanyDocumentVerificationBase:
-      type: object
-      properties:
-        user_journey_id:
-          allOf:
-          - $ref: '#/components/schemas/UserJourneyId'
-        applicant_id:
-          allOf:
-          - $ref: '#/components/schemas/BusinessApplicantId'
-        webhook_url:
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
           type: string
-          format: uri
-        declared_data:
-          $ref: '#/components/schemas/CompanyDocumentVerificationDeclaredData'
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
     CompanyDocumentVerificationAttemptAssetsOutput:
       type: object
       required:
@@ -591,33 +405,6 @@ components:
             $ref: '#/components/schemas/CompanyDocumentVerificationAttemptAsset'
       allOf:
       - $ref: '#/components/schemas/BaseOutputList'
-    CompanyDocumentVerificationAttemptOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationAttemptOutputBase'
-    CompanyDocumentVerificationInputPost:
-      type: object
-      required:
-      - applicant_id
-      - user_journey_id
-      allOf:
-      - $ref: '#/components/schemas/CompanyDocumentVerificationInputBase'
-    ResponseCodes:
-      type: object
-      description: The code giving more details about the result.
-      properties:
-        code:
-          $ref: '#/components/schemas/ResponseCode'
-        summary:
-          $ref: '#/components/schemas/ResponseSummary'
-      required:
-      - code
-      - summary
     CompanyDocumentVerificationAttemptOutputPost:
       type: object
       required:
@@ -627,30 +414,18 @@ components:
       - _links
       allOf:
       - $ref: '#/components/schemas/CompanyDocumentVerificationAttemptOutputBase'
-    BusinessApplicantId:
-      type: string
-      description: Business Applicant unique identifier.
-      pattern: ^bplt_\w+$
-      example: bplt_tkoi5db4hryu5cei5vwoabr7we
-    ListLinks:
+    CompanyDocumentVerificationOutputGet:
       type: object
       required:
-      - self
-      properties:
-        self:
-          description: Link to the current page
-          $ref: '#/components/schemas/HalLink'
-        previous:
-          description: Link to the previous page (null if on the first page)
-          $ref: '#/components/schemas/HalLink'
-        next:
-          description: Link to the next page (null if on the last page)
-          $ref: '#/components/schemas/HalLink'
-    RiskLabels:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskLabel'
-      description: Risk assessment labels
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/CompanyDocumentVerificationOutputBase'
     CompanyDocumentVerificationAttemptAsset:
       type: object
       required:
@@ -671,6 +446,201 @@ components:
                 href:
                   type: string
                   format: uri
+    CompanyDocumentVerificationAttemptOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationAttemptOutputBase'
+    CompanyDocumentVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - user_journey_id
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationOutputBase'
+    CompanyDocumentVerificationAttemptInputBase:
+      type: object
+      properties:
+        document:
+          type: string
+          format: binary
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    BaseOutputList:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    BusinessApplicantId:
+      type: string
+      description: Business Applicant unique identifier.
+      pattern: ^bplt_\w+$
+      example: bplt_tkoi5db4hryu5cei5vwoabr7we
+    CompanyDocumentVerificationInputPost:
+      type: object
+      required:
+      - applicant_id
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationInputBase'
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    CompanyDocumentVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationOutputBase'
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    CompanyDocumentVerificationOutputBase:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/CompanyDocumentVerificationId'
+        status:
+          $ref: '#/components/schemas/CompanyDocumentVerificationStatus'
+        response_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        risk_labels:
+          $ref: '#/components/schemas/RiskLabels'
+        company_document:
+          $ref: '#/components/schemas/CompanyDocument'
+        _links:
+          $ref: '#/components/schemas/CompanyDocumentVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationBase'
+      - $ref: '#/components/schemas/DatedObject'
+    RiskLabels:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskLabel'
+      description: Risk assessment labels
+    CompanyDocumentVerificationOutputPdfReport:
+      type: object
+      required:
+      - pdf_report
+      properties:
+        pdf_report:
+          type: string
+          format: uri
+    CompanyDocumentVerificationAttemptOutputList:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of Company Document Verification attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/CompanyDocumentVerificationAttemptOutputGet'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    CompanyDocumentVerificationDeclaredData:
+      type: object
+      required:
+      - registered_name
+      properties:
+        registered_name:
+          type: string
+          minLength: 2
+          maxLength: 255
+    CompanyDocumentVerificationBase:
+      type: object
+      properties:
+        user_journey_id:
+          allOf:
+          - $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+        webhook_url:
+          type: string
+          format: uri
+        declared_data:
+          $ref: '#/components/schemas/CompanyDocumentVerificationDeclaredData'
+    CompanyDocumentVerificationAttemptInputPost:
+      type: object
+      required:
+      - document
+      allOf:
+      - $ref: '#/components/schemas/CompanyDocumentVerificationAttemptInputBase'
+    CompanyDocumentVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+    CompanyDocumentVerificationStatus:
+      type: string
+      description: Company Document Verification status.
+      enum:
+      - created
+      - quality_checks_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - inconclusive
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
     CompanyDocument:
       type: object
       properties:
@@ -691,10 +661,51 @@ components:
           format: date
         document_type:
           $ref: '#/components/schemas/CompanyDocumentType'
-    ResponseSummary:
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    Address:
+      type: object
+      properties:
+        address_line1:
+          type: string
+          maxLength: 250
+        address_line2:
+          type: string
+          maxLength: 250
+        city:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        zip:
+          type: string
+          maxLength: 50
+        country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+    CompanyDocumentType:
       type: string
-      description: A descriptive code of the response code.
+      description: Type of document.
+      enum:
+      - ein_letter
   examples:
+    company_document_verification_creation_request_body_min:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          registered_name: Acme Corporation
+    company_document_verification_attempt_creation_request_body_min:
+      value:
+        document: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
+
+          '
     company_document_verification_attempt_creation_response_body:
       value:
         id: cdv_tkoi5db4hryu5cei5vwoabr7we
@@ -705,14 +716,6 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123
-    company_document_verification_pdf_report_response_body:
-      value:
-        pdf_report: https://www.example.com/reports/cdv_123.pdf
-    company_document_verification_attempt_creation_request_body_min:
-      value:
-        document: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
-
-          '
     company_document_verification_anonymization_response_body:
       value:
         id: cdv_tkoi5db4hryu5cei5vwoabr7we
@@ -726,6 +729,23 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we
+    company_document_verification_creation_request_body_max:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          registered_name: Acme Corporation
+        webhook_url: https://my.api/events/
+    company_document_verification_attempt_get_response_body:
+      value:
+        id: cdv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        status: completed
+        response_codes: []
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123
     company_document_verification_creation_response_body:
       value:
         id: cdv_tkoi5db4hryu5cei5vwoabr7we
@@ -753,51 +773,6 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we
-    company_document_verification_attempt_output_assets_response_body:
-      value:
-        total_count: 1
-        skip: 10
-        limit: 10
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets
-          next:
-            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/...
-          previous:
-            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/...
-        data:
-        - type: document
-          _links:
-            asset_url:
-              href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/document
-    company_document_verification_attempt_get_response_body:
-      value:
-        id: cdv_tkoi5db4hryu5cei5vwoabr7we
-        created_on: 2017-07-21 17:32:28+00:00
-        modified_on: 2017-07-21 17:40:32+00:00
-        status: completed
-        response_codes: []
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123
-    company_document_verification_creation_request_body_min:
-      value:
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
-        declared_data:
-          registered_name: Acme Corporation
-    company_document_verification_attempt_creation_request_body_max:
-      value:
-        document: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
-
-          '
-    company_document_verification_creation_request_body_max:
-      value:
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
-        declared_data:
-          registered_name: Acme Corporation
-        webhook_url: https://my.api/events/
     company_document_verification_attempt_list_response_body:
       value:
         total_count: 2
@@ -819,6 +794,31 @@ components:
             href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
           previous:
             href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+    company_document_verification_attempt_output_assets_response_body:
+      value:
+        total_count: 1
+        skip: 10
+        limit: 10
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets
+          next:
+            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/...
+          previous:
+            href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/...
+        data:
+        - type: document
+          _links:
+            asset_url:
+              href: https://api.ubble.ai/v2/company-document-verifications/cdv_tkoi5db4hryu5cei5vwoabr7we/attempts/cdv_attempt_123/assets/document
+    company_document_verification_attempt_creation_request_body_max:
+      value:
+        document: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
+
+          '
+    company_document_verification_pdf_report_response_body:
+      value:
+        pdf_report: https://www.example.com/reports/cdv_123.pdf
   parameters:
     skipParam:
       name: skip

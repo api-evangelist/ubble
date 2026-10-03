@@ -318,6 +318,45 @@ paths:
           description: The PDF report is not available
 components:
   schemas:
+    BankDocumentVerificationId:
+      type: string
+      description: Bank Document Verification unique identifier.
+      pattern: ^bdv_\w+$
+      example: bdv_tkoi5db4hryu5cei5vwoabr7we
+    ListLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    BankDocumentVerificationAttemptAsset:
+      type: object
+      required:
+      - type
+      - _links
+      properties:
+        type:
+          type: string
+          description: Type of asset
+          enum:
+          - document
+        _links:
+          type: object
+          properties:
+            asset_url:
+              type: object
+              properties:
+                href:
+                  type: string
+                  format: uri
     DatedObject:
       type: object
       required:
@@ -334,127 +373,40 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    BankDocumentVerificationOutputAnonymize:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - user_journey_id
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/BankDocumentVerificationOutputBase'
-    BankDocumentVerificationAttemptOutputList:
-      type: object
-      required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of Bank Document Verification attempts for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/BankDocumentVerificationAttemptOutputGet'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    BankDocumentVerificationBase:
-      type: object
-      properties:
-        user_journey_id:
-          allOf:
-          - $ref: '#/components/schemas/UserJourneyId'
-        applicant_id:
-          allOf:
-          - $ref: '#/components/schemas/BusinessApplicantId'
-        webhook_url:
-          type: string
-          format: uri
-        declared_data:
-          $ref: '#/components/schemas/BankDocumentVerificationDeclaredData'
-    BankDocumentVerificationOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/BankDocumentVerificationOutputBase'
-    BankDocumentVerificationOutputPdfReport:
-      type: object
-      required:
-      - pdf_report
-      properties:
-        pdf_report:
-          type: string
-          format: uri
-    AccountTypes:
+    BankDocumentVerificationAttemptStates:
       type: string
-      description: Type of account.
+      description: Bank Document Verification attempt state.
       enum:
-      - checking
-      - savings
-    BankDocumentVerificationId:
-      type: string
-      description: Bank Document Verification unique identifier.
-      pattern: ^bdv_\w+$
-      example: bdv_tkoi5db4hryu5cei5vwoabr7we
-    SelfLink:
+      - quality_checks_in_progress
+      - checks_in_progress
+      - completed
+      - quality_checks_aborted
+      - checks_inconclusive
+      - terminated
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    BankDocumentVerificationLinks:
       type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    BaseOutputList:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of items available across all pages
-        skip:
-          type: integer
-          description: Number of items skipped (offset from the start)
-        limit:
-          type: integer
-          description: Maximum number of items returned in this page
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    BankDocumentVerificationOutputBase:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/BankDocumentVerificationId'
-        status:
-          $ref: '#/components/schemas/BankDocumentVerificationStatus'
-        response_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        risk_labels:
-          $ref: '#/components/schemas/RiskLabels'
-        bank_document:
-          $ref: '#/components/schemas/BankDocument'
-        _links:
-          $ref: '#/components/schemas/BankDocumentVerificationLinks'
       allOf:
-      - $ref: '#/components/schemas/BankDocumentVerificationBase'
-      - $ref: '#/components/schemas/DatedObject'
-    HalLink:
+      - $ref: '#/components/schemas/SelfLink'
+    BankDocumentVerificationAttemptInputBase:
+      type: object
+      properties:
+        document:
+          type: string
+          format: binary
+    BankDocumentVerificationAttemptOutputPost:
       type: object
       required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/BankDocumentVerificationAttemptOutputBase'
     BankDocumentVerificationAttemptAssetsOutput:
       type: object
       required:
@@ -472,40 +424,21 @@ components:
             $ref: '#/components/schemas/BankDocumentVerificationAttemptAsset'
       allOf:
       - $ref: '#/components/schemas/BaseOutputList'
-    BankDocumentVerificationAttemptOutputGet:
+    BankDocumentVerificationOutputAnonymize:
       type: object
       required:
       - id
       - status
+      - applicant_id
+      - user_journey_id
       - response_codes
       - _links
       allOf:
-      - $ref: '#/components/schemas/BankDocumentVerificationAttemptOutputBase'
-    BankDocumentVerificationLinks:
+      - $ref: '#/components/schemas/BankDocumentVerificationOutputBase'
+    BankDocumentVerificationInputBase:
       type: object
       allOf:
-      - $ref: '#/components/schemas/SelfLink'
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
-    BankDocumentVerificationAttemptOutputBase:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/BankDocumentVerificationAttemptStates'
-        response_codes:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        _links:
-          $ref: '#/components/schemas/SelfLink'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BankDocumentVerificationBase'
     BankDocumentVerificationInputPost:
       type: object
       required:
@@ -513,38 +446,29 @@ components:
       - user_journey_id
       allOf:
       - $ref: '#/components/schemas/BankDocumentVerificationInputBase'
-    BankDocumentVerificationOutputGet:
+    SelfLink:
       type: object
       required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/BankDocumentVerificationOutputBase'
-    Address:
-      type: object
+      - self
       properties:
-        address_line1:
-          type: string
-          maxLength: 250
-        address_line2:
-          type: string
-          maxLength: 250
-        city:
-          type: string
-          maxLength: 50
-        state:
-          type: string
-          maxLength: 50
-        zip:
-          type: string
-          maxLength: 50
-        country:
-          $ref: '#/components/schemas/CountryCodeIso2'
+        self:
+          $ref: '#/components/schemas/HalLink'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    BusinessApplicantId:
+      type: string
+      description: Business Applicant unique identifier.
+      pattern: ^bplt_\w+$
+      example: bplt_tkoi5db4hryu5cei5vwoabr7we
     BankDocumentVerificationDeclaredData:
       type: object
       required:
@@ -559,27 +483,48 @@ components:
           type: string
           minLength: 2
           maxLength: 255
-    BankDocumentVerificationAttemptOutputPost:
+    BaseOutputList:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    BankDocumentType:
+      type: string
+      description: Type of document.
+      enum:
+      - bank_statement
+      - bank_letter
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    BankDocumentVerificationAttemptOutputList:
       type: object
       required:
-      - id
-      - status
-      - response_codes
+      - total_count
+      - skip
+      - limit
       - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of Bank Document Verification attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/BankDocumentVerificationAttemptOutputGet'
       allOf:
-      - $ref: '#/components/schemas/BankDocumentVerificationAttemptOutputBase'
-    RiskLabel:
-      type: string
-      description: Risk assessment label.
-      enum:
-      - multiple_faces_detected
-      - mcc_not_confident
-      - risky_document_format
-    CountryCodeIso2:
-      type: string
-      format: ISO 3166-1 alpha-2
-      pattern: ^[A-Za-z]{2}$
-      example: US
+      - $ref: '#/components/schemas/BaseOutputList'
     BankDocument:
       type: object
       properties:
@@ -606,11 +551,110 @@ components:
           $ref: '#/components/schemas/BankDocumentType'
         company_address:
           $ref: '#/components/schemas/Address'
-    UserJourneyId:
+    BankDocumentVerificationOutputPdfReport:
+      type: object
+      required:
+      - pdf_report
+      properties:
+        pdf_report:
+          type: string
+          format: uri
+    AccountTypes:
       type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
+      description: Type of account.
+      enum:
+      - checking
+      - savings
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    RiskLabels:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskLabel'
+      description: Risk assessment labels
+    BankDocumentVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BankDocumentVerificationOutputBase'
+    BankDocumentVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/BankDocumentVerificationOutputBase'
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
+    BankDocumentVerificationAttemptOutputBase:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/BankDocumentVerificationAttemptStates'
+        response_codes:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        _links:
+          $ref: '#/components/schemas/SelfLink'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+    BankDocumentVerificationBase:
+      type: object
+      properties:
+        user_journey_id:
+          allOf:
+          - $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+        webhook_url:
+          type: string
+          format: uri
+        declared_data:
+          $ref: '#/components/schemas/BankDocumentVerificationDeclaredData'
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    BankDocumentVerificationAttemptOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/BankDocumentVerificationAttemptOutputBase'
     BankDocumentVerificationStatus:
       type: string
       description: Bank Document Verification status.
@@ -622,115 +666,119 @@ components:
       - declined
       - retry_required
       - inconclusive
-    BankDocumentVerificationInputBase:
+    Address:
       type: object
+      properties:
+        address_line1:
+          type: string
+          maxLength: 250
+        address_line2:
+          type: string
+          maxLength: 250
+        city:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        zip:
+          type: string
+          maxLength: 50
+        country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+    BankDocumentVerificationOutputBase:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/BankDocumentVerificationId'
+        status:
+          $ref: '#/components/schemas/BankDocumentVerificationStatus'
+        response_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        risk_labels:
+          $ref: '#/components/schemas/RiskLabels'
+        bank_document:
+          $ref: '#/components/schemas/BankDocument'
+        _links:
+          $ref: '#/components/schemas/BankDocumentVerificationLinks'
       allOf:
       - $ref: '#/components/schemas/BankDocumentVerificationBase'
-    ResponseCodes:
-      type: object
-      description: The code giving more details about the result.
-      properties:
-        code:
-          $ref: '#/components/schemas/ResponseCode'
-        summary:
-          $ref: '#/components/schemas/ResponseSummary'
-      required:
-      - code
-      - summary
-    BankDocumentVerificationAttemptAsset:
-      type: object
-      required:
-      - type
-      - _links
-      properties:
-        type:
-          type: string
-          description: Type of asset
-          enum:
-          - document
-        _links:
-          type: object
-          properties:
-            asset_url:
-              type: object
-              properties:
-                href:
-                  type: string
-                  format: uri
-    BankDocumentVerificationAttemptStates:
-      type: string
-      description: Bank Document Verification attempt state.
-      enum:
-      - quality_checks_in_progress
-      - checks_in_progress
-      - completed
-      - quality_checks_aborted
-      - checks_inconclusive
-      - terminated
-    BusinessApplicantId:
-      type: string
-      description: Business Applicant unique identifier.
-      pattern: ^bplt_\w+$
-      example: bplt_tkoi5db4hryu5cei5vwoabr7we
-    ListLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          description: Link to the current page
-          $ref: '#/components/schemas/HalLink'
-        previous:
-          description: Link to the previous page (null if on the first page)
-          $ref: '#/components/schemas/HalLink'
-        next:
-          description: Link to the next page (null if on the last page)
-          $ref: '#/components/schemas/HalLink'
-    BankDocumentVerificationAttemptInputBase:
-      type: object
-      properties:
-        document:
-          type: string
-          format: binary
-    RiskLabels:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskLabel'
-      description: Risk assessment labels
-    BankDocumentType:
-      type: string
-      description: Type of document.
-      enum:
-      - bank_statement
-      - bank_letter
+      - $ref: '#/components/schemas/DatedObject'
     BankDocumentVerificationAttemptInputPost:
       type: object
       required:
       - document
       allOf:
       - $ref: '#/components/schemas/BankDocumentVerificationAttemptInputBase'
-    ResponseSummary:
-      type: string
-      description: A descriptive code of the response code.
+  parameters:
+    skipParam:
+      name: skip
+      in: query
+      description: Number of items to skip (offset)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
   examples:
-    bank_document_verification_anonymization_response_body:
+    bank_document_verification_pdf_report_response_body:
       value:
-        id: bdv_tkoi5db4hryu5cei5vwoabr7we
-        created_on: 2017-07-21 17:32:28+00:00
-        modified_on: 2017-07-21 17:40:32+00:00
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
-        status: created
-        response_codes: []
-        webhook_url: https://my.api/events/
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we
+        pdf_report: https://www.example.com/reports/bdv_123.pdf
+    bank_document_verification_attempt_creation_request_body_min:
+      value:
+        document: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
+
+          '
     bank_document_verification_attempt_creation_request_body_max:
       value:
         document: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
 
           '
+    bank_document_verification_attempt_creation_response_body:
+      value:
+        id: bdv_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        status: completed
+        response_codes: []
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123
+    bank_document_verification_attempt_output_assets_response_body:
+      value:
+        total_count: 1
+        skip: 10
+        limit: 10
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets
+          next:
+            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/...
+          previous:
+            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/...
+        data:
+        - type: document
+          _links:
+            asset_url:
+              href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/document
+    bank_document_verification_creation_request_body_min:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          registered_name: Acme Corporation
+          trading_name: Acme Corp
     bank_document_verification_attempt_list_response_body:
       value:
         total_count: 2
@@ -752,11 +800,6 @@ components:
             href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
           previous:
             href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
-    bank_document_verification_attempt_creation_request_body_min:
-      value:
-        document: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
-
-          '
     bank_document_verification_attempt_get_response_body:
       value:
         id: bdv_tkoi5db4hryu5cei5vwoabr7we
@@ -767,31 +810,6 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123
-    bank_document_verification_creation_request_body_max:
-      value:
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
-        declared_data:
-          registered_name: Acme Corporation
-          trading_name: Acme Corp
-        webhook_url: https://my.api/events/
-    bank_document_verification_attempt_output_assets_response_body:
-      value:
-        total_count: 1
-        skip: 10
-        limit: 10
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets
-          next:
-            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/...
-          previous:
-            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/...
-        data:
-        - type: document
-          _links:
-            asset_url:
-              href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123/assets/document
     bank_document_verification_creation_response_body:
       value:
         id: bdv_tkoi5db4hryu5cei5vwoabr7we
@@ -816,45 +834,27 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we
-    bank_document_verification_creation_request_body_min:
+    bank_document_verification_creation_request_body_max:
       value:
         user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
         applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
         declared_data:
           registered_name: Acme Corporation
           trading_name: Acme Corp
-    bank_document_verification_attempt_creation_response_body:
+        webhook_url: https://my.api/events/
+    bank_document_verification_anonymization_response_body:
       value:
         id: bdv_tkoi5db4hryu5cei5vwoabr7we
         created_on: 2017-07-21 17:32:28+00:00
         modified_on: 2017-07-21 17:40:32+00:00
-        status: completed
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: bplt_tkoi5db4hryu5cei5vwoabr7we
+        status: created
         response_codes: []
+        webhook_url: https://my.api/events/
         _links:
           self:
-            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we/attempts/bdv_attempt_123
-    bank_document_verification_pdf_report_response_body:
-      value:
-        pdf_report: https://www.example.com/reports/bdv_123.pdf
-  parameters:
-    skipParam:
-      name: skip
-      in: query
-      description: Number of items to skip (offset)
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return per page
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        default: 10
+            href: https://api.ubble.ai/v2/bank-document-verifications/bdv_tkoi5db4hryu5cei5vwoabr7we
 x-tagGroups:
 - name: Endpoints documentation
   tags:
