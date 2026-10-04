@@ -124,6 +124,39 @@ paths:
           description: Notification successfully requested
 components:
   schemas:
+    RiskLabel:
+      type: string
+      description: Risk assessment label.
+      enum:
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    WebsiteVerificationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - website_url
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
     WebsiteVerificationOutputBase:
       type: object
       properties:
@@ -144,6 +177,17 @@ components:
       allOf:
       - $ref: '#/components/schemas/WebsiteVerificationBase'
       - $ref: '#/components/schemas/DatedObject'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
     WebsiteVerificationOutputPost:
       type: object
       required:
@@ -157,208 +201,10 @@ components:
       - _links
       allOf:
       - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
-    WebsiteVerificationOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - risk_labels
-      - user_journey_id
-      - website_url
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
-    WebsiteVerificationLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/SelfLink'
-      - $ref: '#/components/schemas/ApplicantLink'
-    DatedObject:
-      type: object
-      required:
-      - created_on
-      - modified_on
-      properties:
-        created_on:
-          description: UTC Date time when the resource was created
-          type: string
-          format: date-time
-          example: 2017-07-21 17:32:28+00:00
-        modified_on:
-          description: UTC Date time when the resource was modified
-          type: string
-          format: date-time
-          example: 2017-07-21 17:40:32+00:00
-    WebsiteVerificationId:
-      type: string
-      description: Website verification unique identifier.
-      pattern: ^wbv_\w+$
-      example: wbv_tkoi5db4hryu5cei5vwoabr7we
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
-    WebsiteVerificationStatus:
-      type: string
-      description: Status of the website verification.
-      enum:
-      - initial_status
-      - created
-      - checks_in_progress
-      - approved
-      - declined
-      - inconclusive
-    WebsiteVerificationOutputAnonymize:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - risk_labels
-      - user_journey_id
-      - website_url
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
-    DisclosureURLs:
-      type: object
-      description: URLs to disclosure pages found on the website
-      properties:
-        privacy_policy_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to the privacy policy page
-        terms_and_conditions_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to the terms and conditions page
-        refund_policy_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to the refund policy page
-        contact_us_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: URL to the contact us page
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    ResponseCodes:
-      type: object
-      description: The code giving more details about the result.
-      properties:
-        code:
-          $ref: '#/components/schemas/ResponseCode'
-        summary:
-          $ref: '#/components/schemas/ResponseSummary'
-      required:
-      - code
-      - summary
-    BusinessApplicantId:
-      type: string
-      description: Business Applicant unique identifier.
-      pattern: ^bplt_\w+$
-      example: bplt_tkoi5db4hryu5cei5vwoabr7we
-    UserJourneyId:
-      type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
-    CountryCodeIso2:
-      type: string
-      format: ISO 3166-1 alpha-2
-      pattern: ^[A-Za-z]{2}$
-      example: US
-    RiskLabels:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskLabel'
-      description: Risk assessment labels
     WebsiteVerificationInputBase:
       type: object
       allOf:
       - $ref: '#/components/schemas/WebsiteVerificationBase'
-    WebsiteVerificationBase:
-      type: object
-      properties:
-        user_journey_id:
-          allOf:
-          - $ref: '#/components/schemas/UserJourneyId'
-        applicant_id:
-          allOf:
-          - $ref: '#/components/schemas/BusinessApplicantId'
-        webhook_url:
-          type: string
-          format: uri
-        website_url:
-          type: string
-          format: uri
-          maxLength: 1024
-          description: URL of the website to be verified
-    ResponseSummary:
-      type: string
-      description: A descriptive code of the response code.
-    RiskLabel:
-      type: string
-      description: Risk assessment label.
-      enum:
-      - multiple_faces_detected
-      - mcc_not_confident
-      - risky_document_format
-    Address:
-      type: object
-      properties:
-        address_line1:
-          type: string
-          maxLength: 250
-        address_line2:
-          type: string
-          maxLength: 250
-        city:
-          type: string
-          maxLength: 50
-        state:
-          type: string
-          maxLength: 50
-        zip:
-          type: string
-          maxLength: 50
-        country:
-          $ref: '#/components/schemas/CountryCodeIso2'
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    WebsiteVerificationInputPost:
-      type: object
-      required:
-      - applicant_id
-      - user_journey_id
-      - website_url
-      allOf:
-      - $ref: '#/components/schemas/WebsiteVerificationInputBase'
     WebsiteVerificationResult:
       type: object
       properties:
@@ -396,6 +242,125 @@ components:
           - 'null'
           format: date
           description: The registration date of the domain
+    DisclosureURLs:
+      type: object
+      description: URLs to disclosure pages found on the website
+      properties:
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to the privacy policy page
+        terms_and_conditions_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to the terms and conditions page
+        refund_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to the refund policy page
+        contact_us_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: URL to the contact us page
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    WebsiteVerificationStatus:
+      type: string
+      description: Status of the website verification.
+      enum:
+      - initial_status
+      - created
+      - checks_in_progress
+      - approved
+      - declined
+      - inconclusive
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    WebsiteVerificationId:
+      type: string
+      description: Website verification unique identifier.
+      pattern: ^wbv_\w+$
+      example: wbv_tkoi5db4hryu5cei5vwoabr7we
+    WebsiteVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - website_url
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/WebsiteVerificationOutputBase'
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    WebsiteVerificationInputPost:
+      type: object
+      required:
+      - applicant_id
+      - user_journey_id
+      - website_url
+      allOf:
+      - $ref: '#/components/schemas/WebsiteVerificationInputBase'
+    WebsiteVerificationBase:
+      type: object
+      properties:
+        user_journey_id:
+          allOf:
+          - $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+        webhook_url:
+          type: string
+          format: uri
+        website_url:
+          type: string
+          format: uri
+          maxLength: 1024
+          description: URL of the website to be verified
     ApplicantLink:
       type: object
       required:
@@ -403,6 +368,41 @@ components:
       properties:
         applicant:
           $ref: '#/components/schemas/HalLink'
+    WebsiteVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    RiskLabels:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskLabel'
+      description: Risk assessment labels
+    BusinessApplicantId:
+      type: string
+      description: Business Applicant unique identifier.
+      pattern: ^bplt_\w+$
+      example: bplt_tkoi5db4hryu5cei5vwoabr7we
+    Address:
+      type: object
+      properties:
+        address_line1:
+          type: string
+          maxLength: 250
+        address_line2:
+          type: string
+          maxLength: 250
+        city:
+          type: string
+          maxLength: 50
+        state:
+          type: string
+          maxLength: 50
+        zip:
+          type: string
+          maxLength: 50
+        country:
+          $ref: '#/components/schemas/CountryCodeIso2'
 x-tagGroups:
 - name: Endpoints documentation
   tags:

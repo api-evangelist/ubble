@@ -143,36 +143,38 @@ paths:
           description: Internal server error
 components:
   schemas:
-    ApplicantOutputAnonymize:
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    ApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ApplicantInputBase'
+    ApplicantsLinks:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/SelfLink'
+    ApplicantOutputGet:
       type: object
       required:
       - id
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/ApplicantId'
       allOf:
-      - $ref: '#/components/schemas/ApplicantsLinks'
-      - $ref: '#/components/schemas/DatedObject'
       - $ref: '#/components/schemas/ApplicantOutputBase'
-    BaseApplicant:
+    HalLink:
       type: object
+      required:
+      - href
       properties:
-        external_applicant_id:
+        href:
           type: string
-          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
-        external_applicant_name:
-          type: string
-          example: David Vincent
-        email:
-          type: string
-          format: email
-          example: david.vincent@courriel.ml
-    ApplicantInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BaseApplicant'
-    ApplicantOutputGet:
+          format: uri
+    ApplicantOutputPatch:
       type: object
       required:
       - id
@@ -188,11 +190,42 @@ components:
           type: string
           format: email
           example: david.vincent@courriel.ml
-    ApplicantId:
-      type: string
-      description: Applicant unique identifier.
-      pattern: ^aplt_\w+$
-      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    ApplicantOutputAnonymize:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/ApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/ApplicantsLinks'
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/ApplicantOutputBase'
+    ApplicantInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicant'
+    BaseApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name:
+          type: string
+          example: David Vincent
+        email:
+          type: string
+          format: email
+          example: david.vincent@courriel.ml
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
     ApplicantOutputBase:
       type: object
       properties:
@@ -203,7 +236,7 @@ components:
       - $ref: '#/components/schemas/DatedObject'
       - $ref: '#/components/schemas/BaseApplicant'
       - $ref: '#/components/schemas/ApplicantsLinks'
-    ApplicantOutputPatch:
+    ApplicantOutputPost:
       type: object
       required:
       - id
@@ -225,51 +258,7 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    ApplicantInputPost:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ApplicantInputBase'
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    ApplicantsLinks:
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          allOf:
-          - $ref: '#/components/schemas/SelfLink'
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    ApplicantOutputPost:
-      type: object
-      required:
-      - id
-      allOf:
-      - $ref: '#/components/schemas/ApplicantOutputBase'
   examples:
-    applicant_response_body:
-      value:
-        id: aplt_tkoi5db4hryu5cei5vwoabr7we
-        created_on: 2017-07-21 17:32:28+00:00
-        modified_on: 2017-07-21 17:40:32+00:00
-        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
-        external_applicant_name: David Vincent
-        email: david.vincent@courriel.ml
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
     applicant_response_body_anonymized:
       value:
         id: aplt_tkoi5db4hryu5cei5vwoabr7we
@@ -284,6 +273,17 @@ components:
       value:
         external_applicant_name: David Vincent
         email: david.vincent@courriel.ml
+    applicant_response_body:
+      value:
+        id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k
+        external_applicant_name: David Vincent
+        email: david.vincent@courriel.ml
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
     applicant_creation_request_body:
       value:
         external_applicant_id: ext_osdfdfdb4hryu5cei5vwoabrk5k

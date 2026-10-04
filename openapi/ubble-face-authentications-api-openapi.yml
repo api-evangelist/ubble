@@ -284,174 +284,13 @@ paths:
           description: Notification successfully requested
 components:
   schemas:
-    FaceAuthenticationInputPost:
-      type: object
-      required:
-      - webhook_url
-      - applicant_id
-      - user_journey_id
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationInputBase'
-    FaceAttemptBase:
-      type: object
-      properties:
-        phone_number:
-          $ref: '#/components/schemas/PhoneNumber'
-        client_information:
-          $ref: '#/components/schemas/FaceAttemptClientInformation'
-        redirect_url:
-          type: string
-          format: uri
-    BaseApplicantSessionInformation:
-      type: object
-      properties:
-        ip_address:
-          type: string
-          description: Ip address of the applicant during the session
-          example: 123:456:789:00
-        number_of_sessions:
-          type: integer
-          description: Number of sessions opened by user
-          example: 3
-        user_agent:
-          type: string
-          description: User session user agent
-          example: Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
-        initial_device:
-          $ref: '#/components/schemas/InitialDevices'
-    FaceAuthenticationAttemptResponseList:
-      type: object
-      required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of face authentication attempts for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/FaceAuthenticationAttemptOutputGet'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    PhoneNumber:
-      type: object
-      required:
-      - country_code
-      - number
-      properties:
-        country_code:
-          $ref: '#/components/schemas/PhonePrefix'
-        number:
-          $ref: '#/components/schemas/DomesticPhoneNumber'
-    PhonePrefix:
+    RiskLabel:
       type: string
-      format: international phone prefix
-      pattern: ^\+(\d+)$
-      example: '+33'
-    ListLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          description: Link to the current page
-          $ref: '#/components/schemas/HalLink'
-        previous:
-          description: Link to the previous page (null if on the first page)
-          $ref: '#/components/schemas/HalLink'
-        next:
-          description: Link to the next page (null if on the last page)
-          $ref: '#/components/schemas/HalLink'
-    FaceAuthenticationOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - webhook_url
-      - applicant_id
-      - response_codes
-      - risk_labels
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
-    DatedObject:
-      type: object
-      required:
-      - created_on
-      - modified_on
-      properties:
-        created_on:
-          description: UTC Date time when the resource was created
-          type: string
-          format: date-time
-          example: 2017-07-21 17:32:28+00:00
-        modified_on:
-          description: UTC Date time when the resource was modified
-          type: string
-          format: date-time
-          example: 2017-07-21 17:40:32+00:00
-    ActiveLink:
-      type: object
-      required:
-      - verification_url
-      properties:
-        verification_url:
-          $ref: '#/components/schemas/HalLink'
-    VerificationStatuses:
-      type: string
-      description: Status of the verification.
+      description: Risk assessment label.
       enum:
-      - created
-      - pending
-      - capture_in_progress
-      - checks_in_progress
-      - approved
-      - declined
-      - retry_required
-      - refused
-      - inconclusive
-    FaceAuthenticationApplicantSessionInformation:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BaseApplicantSessionInformation'
-    FaceAuthenticationInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationBase'
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
-    LanguageCode:
-      type: string
-      format: IETF BCP 47 language tag
-      description: Language tag following IETF BCP 47 standard
-      example: en-US
-    FaceAuthenticationId:
-      type: string
-      description: Face authentication unique identifier.
-      pattern: ^fav_\w+$
-      example: fav_tkoi5db4hryu5cei5vwoabr7we
-    FaceAuthenticationAttemptOutputGet:
-      type: object
-      required:
-      - id
-      - status
-      - redirect_url
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
-    AttemptLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ActiveLink'
-      - $ref: '#/components/schemas/SelfLink'
+      - multiple_faces_detected
+      - mcc_not_confident
+      - risky_document_format
     FaceAuthenticationOutputPost:
       type: object
       required:
@@ -468,6 +307,23 @@ components:
           $ref: '#/components/schemas/VerificationFace'
       allOf:
       - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
+    FaceAuthenticationOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - webhook_url
+      - applicant_id
+      - response_codes
+      - risk_labels
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
+    FaceAuthenticationApplicantSessionInformation:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BaseApplicantSessionInformation'
     SelfLink:
       type: object
       required:
@@ -475,46 +331,47 @@ components:
       properties:
         self:
           $ref: '#/components/schemas/HalLink'
-    ResponseCodes:
-      type: object
-      description: The code giving more details about the result.
-      properties:
-        code:
-          $ref: '#/components/schemas/ResponseCode'
-        summary:
-          $ref: '#/components/schemas/ResponseSummary'
-      required:
-      - code
-      - summary
-    BaseOutputList:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of items available across all pages
-        skip:
-          type: integer
-          description: Number of items skipped (offset from the start)
-        limit:
-          type: integer
-          description: Maximum number of items returned in this page
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    UserJourneyId:
+    DomesticPhoneNumber:
       type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
-    FaceAuthenticationBase:
+      format: domestic phone number
+      pattern: ^\d{1,14}$
+      example: '2068133616'
+    FaceAttemptBase:
       type: object
       properties:
-        user_journey_id:
-          $ref: '#/components/schemas/UserJourneyId'
-        applicant_id:
-          $ref: '#/components/schemas/ApplicantId'
-        webhook_url:
+        phone_number:
+          $ref: '#/components/schemas/PhoneNumber'
+        client_information:
+          $ref: '#/components/schemas/FaceAttemptClientInformation'
+        redirect_url:
           type: string
           format: uri
+    InitialDevices:
+      type: string
+      description: Initial device which started the session
+      enum:
+      - mobile
+      - desktop
+    FaceAuthenticationAttemptOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - redirect_url
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
+    PhoneNumber:
+      type: object
+      required:
+      - country_code
+      - number
+      properties:
+        country_code:
+          $ref: '#/components/schemas/PhonePrefix'
+        number:
+          $ref: '#/components/schemas/DomesticPhoneNumber'
     FaceAuthenticationAttemptAssetOutput:
       type: object
       required:
@@ -533,100 +390,11 @@ components:
           properties:
             asset_url:
               $ref: '#/components/schemas/HalLink'
-    FaceAuthenticationAttemptAssetsOutput:
-      type: object
-      required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of face authentication attempt assets for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/FaceAuthenticationAttemptAssetOutput'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
     ApplicantId:
       type: string
       description: Applicant unique identifier.
       pattern: ^aplt_\w+$
       example: aplt_tkoi5db4hryu5cei5vwoabr7we
-    FaceAuthenticationAttemptOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - redirect_url
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
-    FaceAuthenticationAttemptOutputBase:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/AttemptStates'
-        response_codes:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        applicant_session_information:
-          $ref: '#/components/schemas/FaceAuthenticationApplicantSessionInformation'
-        _links:
-          allOf:
-          - $ref: '#/components/schemas/AttemptLinks'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/FaceAttemptBase'
-    CountryCodeIso2:
-      type: string
-      format: ISO 3166-1 alpha-2
-      pattern: ^[A-Za-z]{2}$
-      example: US
-    InitialDevices:
-      type: string
-      description: Initial device which started the session
-      enum:
-      - mobile
-      - desktop
-    RiskLabels:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskLabel'
-      description: Risk assessment labels
-    AttemptStates:
-      type: string
-      description: States of an attempt.
-      enum:
-      - pending_redirection
-      - capture_in_progress
-      - checks_in_progress
-      - completed
-      - expired
-      - capture_aborted
-      - capture_refused
-      - checks_inconclusive
-      - terminated
-    FaceAuthenticationAttemptInputPost:
-      type: object
-      required:
-      - redirect_url
-      allOf:
-      - $ref: '#/components/schemas/FaceAuthenticationAttemptInputBase'
-    VerificationFace:
-      type: object
-      properties:
-        image_signed_url:
-          type:
-          - string
-          - 'null'
     FaceAuthenticationOutputBase:
       type: object
       properties:
@@ -647,11 +415,218 @@ components:
       allOf:
       - $ref: '#/components/schemas/FaceAuthenticationBase'
       - $ref: '#/components/schemas/DatedObject'
+    FaceAuthenticationInputPost:
+      type: object
+      required:
+      - webhook_url
+      - applicant_id
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationInputBase'
+    CountryCodeIso2:
+      type: string
+      format: ISO 3166-1 alpha-2
+      pattern: ^[A-Za-z]{2}$
+      example: US
+    BaseApplicantSessionInformation:
+      type: object
+      properties:
+        ip_address:
+          type: string
+          description: Ip address of the applicant during the session
+          example: 123:456:789:00
+        number_of_sessions:
+          type: integer
+          description: Number of sessions opened by user
+          example: 3
+        user_agent:
+          type: string
+          description: User session user agent
+          example: Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36
+        initial_device:
+          $ref: '#/components/schemas/InitialDevices'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    PhonePrefix:
+      type: string
+      format: international phone prefix
+      pattern: ^\+(\d+)$
+      example: '+33'
+    LanguageCode:
+      type: string
+      format: IETF BCP 47 language tag
+      description: Language tag following IETF BCP 47 standard
+      example: en-US
+    FaceAuthenticationAttemptOutputGet:
+      type: object
+      required:
+      - id
+      - status
+      - redirect_url
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationAttemptOutputBase'
+    FaceAuthenticationAttemptInputPost:
+      type: object
+      required:
+      - redirect_url
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationAttemptInputBase'
+    FaceAuthenticationId:
+      type: string
+      description: Face authentication unique identifier.
+      pattern: ^fav_\w+$
+      example: fav_tkoi5db4hryu5cei5vwoabr7we
+    BaseOutputList:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    VerificationStatuses:
+      type: string
+      description: Status of the verification.
+      enum:
+      - created
+      - pending
+      - capture_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - refused
+      - inconclusive
     FaceAuthenticationLinks:
       type: object
       allOf:
       - $ref: '#/components/schemas/SelfLink'
       - $ref: '#/components/schemas/ApplicantLink'
+    ActiveLink:
+      type: object
+      required:
+      - verification_url
+      properties:
+        verification_url:
+          $ref: '#/components/schemas/HalLink'
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    FaceAttemptClientInformation:
+      type: object
+      properties:
+        pre_selected_residence_country:
+          $ref: '#/components/schemas/CountryCodeIso2'
+        pre_selected_language:
+          $ref: '#/components/schemas/LanguageCode'
+    ResponseSummary:
+      type: string
+      description: A descriptive code of the response code.
+    ListLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    FaceAuthenticationAttemptInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/FaceAttemptBase'
+    VerificationFace:
+      type: object
+      properties:
+        image_signed_url:
+          type:
+          - string
+          - 'null'
+    FaceAuthenticationAttemptOutputBase:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/AttemptStates'
+        response_codes:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        applicant_session_information:
+          $ref: '#/components/schemas/FaceAuthenticationApplicantSessionInformation'
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/AttemptLinks'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/FaceAttemptBase'
+    AttemptLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ActiveLink'
+      - $ref: '#/components/schemas/SelfLink'
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    FaceAuthenticationAttemptAssetsOutput:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of face authentication attempt assets for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/FaceAuthenticationAttemptAssetOutput'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
     FaceAuthenticationOutputAnonymize:
       type: object
       required:
@@ -668,40 +643,29 @@ components:
           $ref: '#/components/schemas/VerificationFace'
       allOf:
       - $ref: '#/components/schemas/FaceAuthenticationOutputBase'
-    ResponseSummary:
+    UserJourneyId:
       type: string
-      description: A descriptive code of the response code.
-    RiskLabel:
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
+    AttemptStates:
       type: string
-      description: Risk assessment label.
+      description: States of an attempt.
       enum:
-      - multiple_faces_detected
-      - mcc_not_confident
-      - risky_document_format
-    DomesticPhoneNumber:
-      type: string
-      format: domestic phone number
-      pattern: ^\d{1,14}$
-      example: '2068133616'
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    FaceAuthenticationAttemptInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/FaceAttemptBase'
-    FaceAttemptClientInformation:
-      type: object
-      properties:
-        pre_selected_residence_country:
-          $ref: '#/components/schemas/CountryCodeIso2'
-        pre_selected_language:
-          $ref: '#/components/schemas/LanguageCode'
+      - pending_redirection
+      - capture_in_progress
+      - checks_in_progress
+      - completed
+      - expired
+      - capture_aborted
+      - capture_refused
+      - checks_inconclusive
+      - terminated
     ApplicantLink:
       type: object
       required:
@@ -709,7 +673,51 @@ components:
       properties:
         applicant:
           $ref: '#/components/schemas/HalLink'
+    FaceAuthenticationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/FaceAuthenticationBase'
+    RiskLabels:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskLabel'
+      description: Risk assessment labels
+    FaceAuthenticationAttemptResponseList:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of face authentication attempts for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/FaceAuthenticationAttemptOutputGet'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
+    FaceAuthenticationBase:
+      type: object
+      properties:
+        user_journey_id:
+          $ref: '#/components/schemas/UserJourneyId'
+        applicant_id:
+          $ref: '#/components/schemas/ApplicantId'
+        webhook_url:
+          type: string
+          format: uri
   examples:
+    face_attempt_creation_request_body_max:
+      value:
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        client_information:
+          pre_selected_residence_country: FR
+        redirect_url: https://myweb.site?query-param=hello
     face_authentication_attempt_creation_response_body:
       value:
         id: fatp_tkoi5db4hryu5cei5vwoabrPoQ
@@ -796,37 +804,6 @@ components:
         limit: 10
         skip: 0
         total_count: 2
-    face_attempt_creation_request_body_max:
-      value:
-        phone_number:
-          country_code: '+1'
-          number: '2068133616'
-        client_information:
-          pre_selected_residence_country: FR
-        redirect_url: https://myweb.site?query-param=hello
-    attempt_creation_request_body_min:
-      value:
-        redirect_url: https://myweb.site?query-param=hello
-    face_authentication_attempt_get_response_body:
-      value:
-        id: fatp_tkoi5db4hryu5cei5vwoabrPoQ
-        created_on: 2017-07-21 17:32:28+00:00
-        modified_on: 2017-07-21 17:40:32+00:00
-        phone_number:
-          country_code: '+1'
-          number: '2068133616'
-        redirect_url: https://myweb.site?query-param=hello
-        status: checks_in_progress
-        response_codes: []
-        client_information:
-          pre_selected_residence_country: FR
-        applicant_session_information:
-          ip_address: 123.123.123.01
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts/fatp_tkoi5db4hryu5cei5vwoabr7we
-          verification_url:
-            href: https://id.ubble.ai/4hryu5cei5/
     face_authentication_anonymization_response_body:
       value:
         id: fav_tkoi5db4hryu5cei5vwoabr7we
@@ -848,6 +825,9 @@ components:
             href: https://api.ubble.ai/v2/face-authentications/face_tkoi5db4hryu5cei5vwoabr7we
           applicant:
             href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    attempt_creation_request_body_min:
+      value:
+        redirect_url: https://myweb.site?query-param=hello
     face_authentication_creation_response_body:
       value:
         id: fav_tkoi5db4hryu5cei5vwoabr7we
@@ -871,16 +851,27 @@ components:
             href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we
           applicant:
             href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
+    face_authentication_attempt_get_response_body:
+      value:
+        id: fatp_tkoi5db4hryu5cei5vwoabrPoQ
+        created_on: 2017-07-21 17:32:28+00:00
+        modified_on: 2017-07-21 17:40:32+00:00
+        phone_number:
+          country_code: '+1'
+          number: '2068133616'
+        redirect_url: https://myweb.site?query-param=hello
+        status: checks_in_progress
+        response_codes: []
+        client_information:
+          pre_selected_residence_country: FR
+        applicant_session_information:
+          ip_address: 123.123.123.01
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/face-authentications/fav_tkoi5db4hryu5cei5vwoabr7we/attempts/fatp_tkoi5db4hryu5cei5vwoabr7we
+          verification_url:
+            href: https://id.ubble.ai/4hryu5cei5/
   parameters:
-    skipParam:
-      name: skip
-      in: query
-      description: Number of items to skip (offset)
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     limitParam:
       name: limit
       in: query
@@ -890,6 +881,15 @@ components:
         type: integer
         minimum: 1
         default: 10
+    skipParam:
+      name: skip
+      in: query
+      description: Number of items to skip (offset)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
 x-tagGroups:
 - name: Endpoints documentation
   tags:
