@@ -77,6 +77,24 @@ paths:
           description: Business applicant not found
 components:
   schemas:
+    BusinessApplicantsLinks:
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          allOf:
+          - $ref: '#/components/schemas/SelfLink'
+    BusinessApplicantOutputGet:
+      type: object
+      required:
+      - id
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantOutputBase'
+    BusinessApplicantInputPost:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/BusinessApplicantInputBase'
     BusinessApplicantOutputPost:
       type: object
       required:
@@ -91,31 +109,16 @@ components:
         href:
           type: string
           format: uri
-    BusinessApplicantInputPost:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/BusinessApplicantInputBase'
-    BusinessApplicantOutputBase:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/BusinessApplicantId'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-      - $ref: '#/components/schemas/BaseBusinessApplicant'
-      - $ref: '#/components/schemas/BusinessApplicantsLinks'
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
     BusinessApplicantInputBase:
       type: object
       allOf:
       - $ref: '#/components/schemas/BaseBusinessApplicant'
+    BaseBusinessApplicant:
+      type: object
+      properties:
+        external_applicant_id:
+          type: string
+          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
     DatedObject:
       type: object
       required:
@@ -132,31 +135,28 @@ components:
           type: string
           format: date-time
           example: 2017-07-21 17:40:32+00:00
-    BusinessApplicantsLinks:
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          allOf:
-          - $ref: '#/components/schemas/SelfLink'
-    BusinessApplicantOutputGet:
-      type: object
-      required:
-      - id
-      allOf:
-      - $ref: '#/components/schemas/BusinessApplicantOutputBase'
     BusinessApplicantId:
       type: string
       description: Business Applicant unique identifier.
       pattern: ^bplt_\w+$
       example: bplt_tkoi5db4hryu5cei5vwoabr7we
-    BaseBusinessApplicant:
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    BusinessApplicantOutputBase:
       type: object
       properties:
-        external_applicant_id:
-          type: string
-          example: ext_business_osdfdfdb4hryu5cei5vwoabrk5k
+        id:
+          allOf:
+          - $ref: '#/components/schemas/BusinessApplicantId'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+      - $ref: '#/components/schemas/BaseBusinessApplicant'
+      - $ref: '#/components/schemas/BusinessApplicantsLinks'
   examples:
     business_applicant_response_body:
       value:

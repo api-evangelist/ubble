@@ -321,6 +321,89 @@ paths:
           description: The PDF report is not available
 components:
   schemas:
+    DeclaredData:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+    ListLinks:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          description: Link to the current page
+          $ref: '#/components/schemas/HalLink'
+        previous:
+          description: Link to the previous page (null if on the first page)
+          $ref: '#/components/schemas/HalLink'
+        next:
+          description: Link to the next page (null if on the last page)
+          $ref: '#/components/schemas/HalLink'
+    SelfLink:
+      type: object
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/HalLink'
+    IdDocumentVerificationOutputPdfReport:
+      type: object
+      required:
+      - pdf_report
+      properties:
+        pdf_report:
+          type: string
+          format: uri
+    IdDocumentVerificationOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - response_codes
+      - user_journey_id
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
+    BaseOutputList:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of items available across all pages
+        skip:
+          type: integer
+          description: Number of items skipped (offset from the start)
+        limit:
+          type: integer
+          description: Maximum number of items returned in this page
+        _links:
+          $ref: '#/components/schemas/ListLinks'
+    UserJourneyId:
+      type: string
+      description: User journey unique identifier.
+      pattern: ^usj_\w+$
+      example: usj_tkoi5db4hryu5cei5vwoabr7we
+    ApplicantId:
+      type: string
+      description: Applicant unique identifier.
+      pattern: ^aplt_\w+$
+      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+    IdDocumentVerificationInputPost:
+      type: object
+      required:
+      - applicant_id
+      - user_journey_id
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationInputBase'
     IdDocumentVerificationBase:
       type: object
       properties:
@@ -335,25 +418,38 @@ components:
         webhook_url:
           type: string
           format: uri
-    IdDocumentVerificationAttemptInputBase:
+    IdDocumentVerificationId:
+      type: string
+      description: ID ocument verification unique identifier.
+      pattern: ^iddv_\w+$
+      example: iddv_tkoi5db4hryu5cei5vwoabr7we
+    IdDocumentVerificationAttemptOutputPost:
+      type: object
+      required:
+      - id
+      - status
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputBase'
+    IdDocumentVerificationOutputBase:
       type: object
       properties:
-        document_front:
-          type: string
-          format: binary
-        document_back:
-          type: string
-          format: binary
-    IdDocumentVerificationAttemptStates:
-      type: string
-      description: ID document verification attempt state.
-      enum:
-      - quality_checks_in_progress
-      - checks_in_progress
-      - completed
-      - quality_checks_aborted
-      - checks_inconclusive
-      - terminated
+        id:
+          $ref: '#/components/schemas/IdDocumentVerificationId'
+        status:
+          $ref: '#/components/schemas/IdDocumentVerificationStatus'
+        response_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        document:
+          $ref: '#/components/schemas/Document'
+        _links:
+          $ref: '#/components/schemas/IdDocumentVerificationLinks'
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationBase'
+      - $ref: '#/components/schemas/DatedObject'
     IdDocumentVerificationAttemptOutputAssetOutput:
       type: object
       required:
@@ -374,25 +470,6 @@ components:
                 href:
                   type: string
                   format: uri
-    SelfLink:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          $ref: '#/components/schemas/HalLink'
-    IdDocumentVerificationLinks:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/SelfLink'
-      - $ref: '#/components/schemas/ApplicantLink'
-    Gender:
-      type: string
-      description: Person gender.
-      example: M
-      enum:
-      - M
-      - F
     IdDocumentVerificationAttemptOutputGet:
       type: object
       required:
@@ -402,43 +479,9 @@ components:
       - _links
       allOf:
       - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputBase'
-    PreSignedUrl:
+    ResponseSummary:
       type: string
-      format: uri
-      description: Pre-signed URL
-      example: https://storage-b.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
-    IdDocumentVerificationAttemptOutputBase:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/IdDocumentVerificationAttemptStates'
-        response_codes:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        _links:
-          $ref: '#/components/schemas/SelfLink'
-      allOf:
-      - $ref: '#/components/schemas/DatedObject'
-    IdDocumentVerificationOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - response_codes
-      - user_journey_id
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
-    ApplicantId:
-      type: string
-      description: Applicant unique identifier.
-      pattern: ^aplt_\w+$
-      example: aplt_tkoi5db4hryu5cei5vwoabr7we
+      description: A descriptive code of the response code.
     IdDocumentVerificationOutputGet:
       type: object
       required:
@@ -451,30 +494,67 @@ components:
       allOf:
       - $ref: '#/components/schemas/DatedObject'
       - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
+    IdDocumentVerificationOutputAnonymize:
+      type: object
+      required:
+      - id
+      - status
+      - applicant_id
+      - user_journey_id
+      - response_codes
+      - _links
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
+    DatedObject:
+      type: object
+      required:
+      - created_on
+      - modified_on
+      properties:
+        created_on:
+          description: UTC Date time when the resource was created
+          type: string
+          format: date-time
+          example: 2017-07-21 17:32:28+00:00
+        modified_on:
+          description: UTC Date time when the resource was modified
+          type: string
+          format: date-time
+          example: 2017-07-21 17:40:32+00:00
+    Gender:
+      type: string
+      description: Person gender.
+      example: M
+      enum:
+      - M
+      - F
+    IdDocumentVerificationAttemptInputPost:
+      type: object
+      required:
+      - document_front
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationAttemptInputBase'
+    IdDocumentVerificationStatus:
+      type: string
+      description: ID document verification status.
+      enum:
+      - created
+      - quality_checks_in_progress
+      - checks_in_progress
+      - approved
+      - declined
+      - retry_required
+      - inconclusive
     CountryCodeIso2:
       type: string
       format: ISO 3166-1 alpha-2
       pattern: ^[A-Za-z]{2}$
       example: US
-    ResponseCodes:
-      type: object
-      description: The code giving more details about the result.
-      properties:
-        code:
-          $ref: '#/components/schemas/ResponseCode'
-        summary:
-          $ref: '#/components/schemas/ResponseSummary'
-      required:
-      - code
-      - summary
-    IdDocumentVerificationOutputPdfReport:
-      type: object
-      required:
-      - pdf_report
-      properties:
-        pdf_report:
-          type: string
-          format: uri
+    ResponseCode:
+      type: integer
+      description: The numeric code of the response code.
+      minimum: 10000
+      maximum: 69999
     IdDocumentVerificationAttemptOutputList:
       type: object
       required:
@@ -492,104 +572,16 @@ components:
             $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputGet'
       allOf:
       - $ref: '#/components/schemas/BaseOutputList'
-    IdDocumentVerificationOutputBase:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/IdDocumentVerificationId'
-        status:
-          $ref: '#/components/schemas/IdDocumentVerificationStatus'
-        response_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseCodes'
-        document:
-          $ref: '#/components/schemas/Document'
-        _links:
-          $ref: '#/components/schemas/IdDocumentVerificationLinks'
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationBase'
-      - $ref: '#/components/schemas/DatedObject'
-    IdDocumentVerificationInputBase:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationBase'
-    IdDocumentVerificationAttemptAssetsOutput:
-      type: object
-      required:
-      - total_count
-      - skip
-      - limit
-      - _links
-      - data
-      properties:
-        data:
-          type: array
-          description: Array of ID document verification attempt assets for the current page
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputAssetOutput'
-      allOf:
-      - $ref: '#/components/schemas/BaseOutputList'
-    BaseOutputList:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of items available across all pages
-        skip:
-          type: integer
-          description: Number of items skipped (offset from the start)
-        limit:
-          type: integer
-          description: Maximum number of items returned in this page
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    IdDocumentVerificationAttemptOutputPost:
-      type: object
-      required:
-      - id
-      - status
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputBase'
-    IdDocumentVerificationStatus:
+    IdDocumentVerificationAttemptStates:
       type: string
-      description: ID document verification status.
+      description: ID document verification attempt state.
       enum:
-      - created
       - quality_checks_in_progress
       - checks_in_progress
-      - approved
-      - declined
-      - retry_required
-      - inconclusive
-    HalLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-          format: uri
-    ResponseSummary:
-      type: string
-      description: A descriptive code of the response code.
-    ListLinks:
-      type: object
-      required:
-      - self
-      properties:
-        self:
-          description: Link to the current page
-          $ref: '#/components/schemas/HalLink'
-        previous:
-          description: Link to the previous page (null if on the first page)
-          $ref: '#/components/schemas/HalLink'
-        next:
-          description: Link to the next page (null if on the last page)
-          $ref: '#/components/schemas/HalLink'
+      - completed
+      - quality_checks_aborted
+      - checks_inconclusive
+      - terminated
     DocumentTypes:
       type: string
       description: Type of document.
@@ -601,56 +593,6 @@ components:
       - Residence Permit
       - Travel Document
       - Visa
-    IdDocumentVerificationInputPost:
-      type: object
-      required:
-      - applicant_id
-      - user_journey_id
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationInputBase'
-    IdDocumentVerificationAttemptInputPost:
-      type: object
-      required:
-      - document_front
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationAttemptInputBase'
-    DatedObject:
-      type: object
-      required:
-      - created_on
-      - modified_on
-      properties:
-        created_on:
-          description: UTC Date time when the resource was created
-          type: string
-          format: date-time
-          example: 2017-07-21 17:32:28+00:00
-        modified_on:
-          description: UTC Date time when the resource was modified
-          type: string
-          format: date-time
-          example: 2017-07-21 17:40:32+00:00
-    UserJourneyId:
-      type: string
-      description: User journey unique identifier.
-      pattern: ^usj_\w+$
-      example: usj_tkoi5db4hryu5cei5vwoabr7we
-    ResponseCode:
-      type: integer
-      description: The numeric code of the response code.
-      minimum: 10000
-      maximum: 69999
-    IdDocumentVerificationOutputAnonymize:
-      type: object
-      required:
-      - id
-      - status
-      - applicant_id
-      - user_journey_id
-      - response_codes
-      - _links
-      allOf:
-      - $ref: '#/components/schemas/IdDocumentVerificationOutputBase'
     Document:
       type: object
       properties:
@@ -727,6 +669,76 @@ components:
         address:
           type: string
           maxLength: 1000
+    IdDocumentVerificationAttemptOutputBase:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/IdDocumentVerificationAttemptStates'
+        response_codes:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ResponseCodes'
+        _links:
+          $ref: '#/components/schemas/SelfLink'
+      allOf:
+      - $ref: '#/components/schemas/DatedObject'
+    ResponseCodes:
+      type: object
+      description: The code giving more details about the result.
+      properties:
+        code:
+          $ref: '#/components/schemas/ResponseCode'
+        summary:
+          $ref: '#/components/schemas/ResponseSummary'
+      required:
+      - code
+      - summary
+    IdDocumentVerificationAttemptInputBase:
+      type: object
+      properties:
+        document_front:
+          type: string
+          format: binary
+        document_back:
+          type: string
+          format: binary
+    HalLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          format: uri
+    IdDocumentVerificationLinks:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/SelfLink'
+      - $ref: '#/components/schemas/ApplicantLink'
+    IdDocumentVerificationInputBase:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/IdDocumentVerificationBase'
+    IdDocumentVerificationAttemptAssetsOutput:
+      type: object
+      required:
+      - total_count
+      - skip
+      - limit
+      - _links
+      - data
+      properties:
+        data:
+          type: array
+          description: Array of ID document verification attempt assets for the current page
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/IdDocumentVerificationAttemptOutputAssetOutput'
+      allOf:
+      - $ref: '#/components/schemas/BaseOutputList'
     ApplicantLink:
       type: object
       required:
@@ -734,23 +746,11 @@ components:
       properties:
         applicant:
           $ref: '#/components/schemas/HalLink'
-    DeclaredData:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          minLength: 2
-          maxLength: 255
-        birth_date:
-          type: string
-          format: date
-    IdDocumentVerificationId:
+    PreSignedUrl:
       type: string
-      description: ID ocument verification unique identifier.
-      pattern: ^iddv_\w+$
-      example: iddv_tkoi5db4hryu5cei5vwoabr7we
+      format: uri
+      description: Pre-signed URL
+      example: https://storage-b.ubble.ai/ubble-ai/NDYOOVHGZPAQ/a54b3393-f02a-47c9-a9c5-2f6ee73560e1/bb603e2f-5de9-40f2-9631-8285a33c24c0/live_face/bb603e2f-5de9-40f2-9631-8285a33c24c0-1679921946714.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=V9jgOdpOdeVSFTkA4ZsG%2F20230327%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230327T163223Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b7d87fec4f11f0df949da7beade2519cf1a51ce70fe9cc1cf0470d73f5340e4
   examples:
     id_document_verification_anonymization_response_body:
       value:
@@ -788,9 +788,32 @@ components:
             href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
           previous:
             href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
-    id_document_verification_attempt_creation_request_body_min:
+    id_document_verification_attempt_output_assets_response_body:
       value:
-        document_front: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
+        total_count: 2
+        skip: 10
+        limit: 10
+        _links:
+          self:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts
+          next:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+          previous:
+            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
+        data:
+        - type: document_front_image
+          _links:
+            asset_url:
+              href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/assets/document_front_image
+    id_document_verification_pdf_report_response_body:
+      value:
+        pdf_report: https://www.example.com/reports/iddv_123.pdf
+    id_document_verification_attempt_creation_request_body_max:
+      value:
+        document_front: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
+
+          '
+        document_back: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
 
           '
     id_document_verification_attempt_get_response_body:
@@ -803,13 +826,6 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
-    id_document_verification_creation_request_body_max:
-      value:
-        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
-        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
-        declared_data:
-          name: David Vincent
-        webhook_url: https://my.api/events/
     id_document_verification_creation_response_body:
       value:
         id: iddv_tkoi5db4hryu5cei5vwoabr7we
@@ -833,40 +849,18 @@ components:
             href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
           applicant:
             href: https://api.ubble.ai/v2/applicants/aplt_tkoi5db4hryu5cei5vwoabr7we
-    id_document_verification_attempt_creation_request_body_max:
+    id_document_verification_attempt_creation_request_body_min:
       value:
-        document_front: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
+        document_front: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…
 
           '
-        document_back: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA…
-
-          '
-    id_document_verification_attempt_output_assets_response_body:
-      value:
-        total_count: 2
-        skip: 10
-        limit: 10
-        _links:
-          self:
-            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts
-          next:
-            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
-          previous:
-            href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/attempts/...
-        data:
-        - type: document_front_image
-          _links:
-            asset_url:
-              href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we/assets/document_front_image
-    id_document_verification_creation_request_body_min:
+    id_document_verification_creation_request_body_max:
       value:
         user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
         applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
         declared_data:
           name: David Vincent
-    id_document_verification_pdf_report_response_body:
-      value:
-        pdf_report: https://www.example.com/reports/iddv_123.pdf
+        webhook_url: https://my.api/events/
     id_document_verification_attempt_creation_response_body:
       value:
         id: iddv_tkoi5db4hryu5cei5vwoabr7we
@@ -877,16 +871,13 @@ components:
         _links:
           self:
             href: https://api.ubble.ai/v2/id-document-verifications/iddv_tkoi5db4hryu5cei5vwoabr7we
+    id_document_verification_creation_request_body_min:
+      value:
+        user_journey_id: usj_tkoi5db4hryu5cei5vwoabr7we
+        applicant_id: aplt_tkoi5db4hryu5cei5vwoabr7we
+        declared_data:
+          name: David Vincent
   parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return per page
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        default: 10
     skipParam:
       name: skip
       in: query
@@ -896,6 +887,15 @@ components:
         type: integer
         minimum: 0
         default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
 x-tagGroups:
 - name: Endpoints documentation
   tags:
