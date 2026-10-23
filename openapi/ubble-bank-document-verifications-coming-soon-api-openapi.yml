@@ -869,3 +869,9 @@ x-tagGroups:
   - Company document verifications (Coming soon)
   - Address document verifications (Coming soon)
   - Service status
+x-provenance:
+  method: harvested
+  publisher: Ubble
+  source: https://docs.ubble.ai/openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
