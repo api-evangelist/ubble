@@ -64,6 +64,140 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Ubble is a company surfaced as a portfolio company of partech and added to the API Evangelist network as a stub for enrichment. Sector: Applicative SaaS. This profile is a lead awaiting the enrichment pipeline.
+Ubble is a Paris-founded identity verification company, now part of Checkout.com and operated as the Checkout.com Identity Verification (Identities) solution. Its API at api.ubble.ai powers video-based identity verification, ID document verification, AML screening with ongoing monitoring, biometric face authentication, and address/bank/company document and website verifications, with a hosted capture flow, CloudEvents webhooks signed with ECDSA/SHA-512, and a published OpenAPI 3.0.3 contract.
 
-Backed by: partech — https://www.ubble.ai/
+**Areas:** Company · Identity Verification · KYC · AML · Biometrics · Face Authentication · Document Verification · Fraud Prevention · Compliance · Fintech
+
+## Ubble on APIs.io
+
+Everything profiled for Ubble is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ubble/](https://apis.io/providers/ubble/)** — or go straight to one of the APIs or properties below.
+
+### APIs (11)
+
+- [Ubble Address document verifications (Coming soon) API](https://apis.io/apis/ubble/ubble-address-document-verifications-coming-soon-api/) — The Address document verifications (Coming soon) API from Ubble — 8 operation(s) for address document verifications (coming soon).
+- [Ubble AML verifications API](https://apis.io/apis/ubble/ubble-aml-verifications-api/) — AML verification endpoints documentation.
+- [Ubble Applicants API](https://apis.io/apis/ubble/ubble-applicants-api/) — The Applicants API from Ubble — 3 operation(s) for applicants.
+- [Ubble Bank document verifications (Coming soon) API](https://apis.io/apis/ubble/ubble-bank-document-verifications-coming-soon-api/) — The Bank document verifications (Coming soon) API from Ubble — 8 operation(s) for bank document verifications (coming soon).
+- [Ubble Business applicants API](https://apis.io/apis/ubble/ubble-business-applicants-api/) — The Business applicants API from Ubble — 2 operation(s) for business applicants.
+- [Ubble Company document verifications (Coming soon) API](https://apis.io/apis/ubble/ubble-company-document-verifications-coming-soon-api/) — The Company document verifications (Coming soon) API from Ubble — 8 operation(s) for company document verifications (coming soon).
+- [Ubble Face authentications API](https://apis.io/apis/ubble/ubble-face-authentications-api/) — The Face authentications API from Ubble — 7 operation(s) for face authentications.
+- [Ubble ID document verifications API](https://apis.io/apis/ubble/ubble-id-document-verifications-api/) — API for ID document verification
+- [Ubble Identity verifications API](https://apis.io/apis/ubble/ubble-identity-verifications-api/) — The Identity verifications API from Ubble — 9 operation(s) for identity verifications.
+- [Ubble Service status API](https://apis.io/apis/ubble/ubble-service-status-api/) — The Service status API from Ubble — 1 operation(s) for service status.
+- [Ubble Website verifications (Coming soon) API](https://apis.io/apis/ubble/ubble-website-verifications-coming-soon-api/) — The Website verifications (Coming soon) API from Ubble — 4 operation(s) for website verifications (coming soon).
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Ubble Webhooks](https://apis.io/asyncapis/ubble/ubble-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [ubble](https://apis.io/servers/ubble/ubble/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Address document verifications (Coming soon) API](https://apis.io/collections/ubble/open-ubble-address-document-verifications-coming-soon-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) AML verifications API](https://apis.io/collections/ubble/open-ubble-aml-verifications-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Applicants API](https://apis.io/collections/ubble/open-ubble-applicants-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Bank document verifications (Coming soon) API](https://apis.io/collections/ubble/open-ubble-bank-document-verifications-coming-soon-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Business applicants API](https://apis.io/collections/ubble/open-ubble-business-applicants-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Company document verifications (Coming soon) API](https://apis.io/collections/ubble/open-ubble-company-document-verifications-coming-soon-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Face authentications API](https://apis.io/collections/ubble/open-ubble-face-authentications-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) ID document verifications API](https://apis.io/collections/ubble/open-ubble-id-document-verifications-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Identity verifications API](https://apis.io/collections/ubble/open-ubble-identity-verifications-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Service status API](https://apis.io/collections/ubble/open-ubble-service-status-api/)
+- [Checkout.com - Identity Verification Address document verifications (Coming soon) Address document verifications (Coming soon) Website verifications (Coming soon) API](https://apis.io/collections/ubble/open-ubble-website-verifications-coming-soon-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Ubble Identity Verification Overlay](https://apis.io/overlays/ubble/ubble-identity-verification-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ubble Authentication](https://apis.io/security/ubble/ubble-authentication/)
+- [Ubble Domain Security](https://apis.io/security/ubble/ubble-domain-security/)
+- [Ubble Trust Center](https://apis.io/security/ubble/ubble-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ubble.ai/)
+- [Documentation](https://docs.ubble.ai/docs/introduction/)
+- [Getting started](https://docs.ubble.ai/docs/introduction/before-you-begin)
+- [API reference](https://docs.ubble.ai/api)
+- [Blog](https://www.checkout.com/blog)
+- [Compliance](https://www.checkout.com/products/identity-verification)
+- [Terms of service](https://www.checkout.com/legal/terms-and-policies)
+- [Privacy policy](https://www.checkout.com/legal/privacy-policy)
+- [GitHub](https://github.com/ubbleai)
+- [Status](https://status.ubble.ai/)
+
+## API Evangelist rating
+
+**Kin Score 40.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 53.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 28.0 |
+| Access clarity | 36.8 |
+
+**Agent readiness 32.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 28.3** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ubble/](https://apis.io/providers/ubble/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ubble: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ubble/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
